@@ -1,0 +1,13 @@
+#Jetbrains's dir
+
+.idea
+
+#Apple's dir
+
+.DS_Store
+
+#Generated modules
+
+/node_modules
+.next
+yarn.lock
