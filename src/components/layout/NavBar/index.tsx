@@ -5,6 +5,7 @@ import {
     Flex,
     Spacer,
     IconButton,
+    Icon,
     Button,
     Image,
     Collapse,
@@ -15,7 +16,7 @@ import {
 
 import NextLink from "next/link";
 
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 import PageButton from "@/components/layout/NavBar/PageButton";
 
@@ -25,7 +26,9 @@ function NavBar(): any {
 
     return (
         <>
-        <Flex>
+        <Flex
+            shadow={"base"}
+        >
             <Flex
                 top={"1rem"}
                 right={"1rem"}
@@ -72,7 +75,10 @@ function NavBar(): any {
                     size={"lg"}
                     mr={"2"}
                     mt={2}
-                    icon={!isOpen ? <HamburgerIcon /> : <CloseIcon />}
+                    icon={!isOpen ? <Icon as={FiMenu} /> : <Icon as={FiX} />}
+                    _hover={{
+                        bg: "#007ed840",
+                    }}
                     onClick={onToggle}
                 />
             </Flex>
@@ -87,6 +93,7 @@ function NavBar(): any {
                 align={"center"}
                 padding={"2%"}
                 mt={"1%"}
+                boxShadow={"outline"}
             >
                 <Stack
                     direction={"column"}
