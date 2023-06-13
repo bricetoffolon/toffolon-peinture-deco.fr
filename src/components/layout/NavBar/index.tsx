@@ -37,8 +37,12 @@ function NavBar(): any {
                     passHref
                 >
                     <Button
-                        w={"20%"}
-                        variant={"ghost"}
+                        w={{
+                            base:"30%",
+                            md:"20%"
+                        }}
+                        variant={""}
+                        mt={"1%"}
                     >
                         <Image
                             align={"center"}
@@ -60,14 +64,18 @@ function NavBar(): any {
                 </Flex>
             </Flex>
             <Spacer />
-            <IconButton
-                aria-label={"Open menu"}
-                size={"lg"}
-                mr={"2"}
-                mt={2}
-                icon={!isOpen ? <HamburgerIcon /> : <CloseIcon />}
-                onClick={onToggle}
-            />
+            <Flex
+                display={['flex', 'flex', 'none','none']}
+            >
+                <IconButton
+                    aria-label={"Open menu"}
+                    size={"lg"}
+                    mr={"2"}
+                    mt={2}
+                    icon={!isOpen ? <HamburgerIcon /> : <CloseIcon />}
+                    onClick={onToggle}
+                />
+            </Flex>
         </Flex>
 
         <Collapse
