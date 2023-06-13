@@ -1,4 +1,6 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react';
+
+import '@/styles/carousel.css';
 
 function MyApp({ Component, pageProps }: any) {
     return (
