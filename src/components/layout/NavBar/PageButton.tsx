@@ -4,11 +4,26 @@ import {Button, Icon} from "@chakra-ui/react";
 
 import NextLink from "next/link";
 
-import { FaEnvelope, FaPaintBrush, FaClipboardCheck } from "react-icons/fa";
+import { FaEnvelope, FaPaintBrush, FaClipboardCheck, FaInfoCircle } from "react-icons/fa";
 
 function PageButton(): any {
     return (
         <>
+            <NextLink
+                href={"/notre-entreprise.tsx"}
+                passHref
+            >
+                <Button
+                    variant={"ghost"}
+                    _hover={{
+                        bg: "#007ed840",
+                        shadow: "base"
+                    }}
+                    leftIcon={<Icon as={FaInfoCircle} color={"#007ed8"}/>}
+                >
+                    Notre entreprise
+                </Button>
+            </NextLink>
             <NextLink
                 href={"/prestations"}
                 passHref

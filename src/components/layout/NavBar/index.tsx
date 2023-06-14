@@ -45,15 +45,20 @@ function NavBar(): any {
                         variant={""}
                         mt={"1%"}
                     >
-                        <Image
-                            align={"center"}
-                            src={"https://toffolon-website.s3.eu-west-3.amazonaws.com/Toffolon-Icon.png"}
-                        />
+                        <Flex>
+                            <Image
+                                align={"center"}
+                                src={"https://toffolon-website.s3.eu-west-3.amazonaws.com/Toffolon-Icon.png"}
+                            />
+                        </Flex>
                     </Button>
                 </NextLink>
                 <Flex
                     margin={"1%"}
-                    display={['none', 'none', 'flex','flex']}
+                    display={{
+                        base: 'none',
+                        xl: 'flex'
+                    }}
                     right={"0"}
                     position={"fixed"}
                 >
@@ -66,7 +71,10 @@ function NavBar(): any {
             </Flex>
             <Spacer />
             <Flex
-                display={['flex', 'flex', 'none','none']}
+                display={{
+                    base: 'flex',
+                    xl: 'none'
+                }}
             >
                 <IconButton
                     aria-label={"Open menu"}

@@ -3,9 +3,9 @@ import React from 'react'
 import useEmblaCarousel from 'embla-carousel-react';
 import AutoPlay from 'embla-carousel-autoplay';
 
-import { Heading, Stack, Text } from "@chakra-ui/react";
-
 import SlideContent from "@/components/landing/ImageSlider/SlideContent";
+
+import Section1 from "@/components/landing/ImageSlider/Section1";
 
 
 export default function ImageSlider(): any {
@@ -18,16 +18,7 @@ export default function ImageSlider(): any {
                     <SlideContent
                         imageUrl={"https://rhodescustomfinishes.com/wp-content/uploads/2021/09/exterior-paint-2.jpg"}
                         Content={
-                            <Stack
-                                direction={"column"}
-                                align={"center"}
-                            >
-                                <Heading
-                                >
-                                    Une entreprise familliale depuis 1968
-                                </Heading>
-                                <Text>Certifié Qualibat</Text>
-                            </Stack>
+                            <Section1 />
                         }
                     />
                 </div>
@@ -35,16 +26,7 @@ export default function ImageSlider(): any {
                     <SlideContent
                         imageUrl={"https://www.aceserviceswa.com/wp-content/uploads/2020/12/hero-home-painting-services-ephrata-wa.jpg"}
                         Content={
-                            <Stack
-                                direction={"column"}
-                                align={"center"}
-                            >
-                                <Heading
-                                >
-                                    Une entreprise familliale depuis 1968
-                                </Heading>
-                                <Text>Certifié Qualibat</Text>
-                            </Stack>
+                            <Section1 />
                         }
                     />
                 </div>
@@ -52,16 +34,7 @@ export default function ImageSlider(): any {
                         <SlideContent
                             imageUrl={"https://www.aceserviceswa.com/wp-content/uploads/2020/12/hero-home-painting-services-ephrata-wa.jpg"}
                             Content={
-                                <Stack
-                                    direction={"column"}
-                                    align={"center"}
-                                >
-                                    <Heading
-                                    >
-                                        Une entreprise familliale depuis 1968
-                                    </Heading>
-                                    <Text>Certifié Qualibat</Text>
-                                </Stack>
+                                <Section1 />
                             }
                         />
                 </div>

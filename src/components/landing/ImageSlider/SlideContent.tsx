@@ -15,7 +15,9 @@ export default function SlideContent({imageUrl, Content}) {
             width={"100vw"}
             height={"100vh"}
         >
-            <Center h={"100%"}>
+            <Center
+                padding={"1%"}
+            >
                 {Content}
             </Center>
         </Box>

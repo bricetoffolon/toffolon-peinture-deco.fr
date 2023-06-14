@@ -18,7 +18,7 @@ export default function Footer() {
                 <Stack
                     direction={{
                         base: 'column',
-                        md: 'row'
+                        xl: 'row'
                     }}
                     spacing={{
                         base: 2,
@@ -31,7 +31,12 @@ export default function Footer() {
                     <NextLink
                         href={"mention-legal"}
                     >
-                        Mention Légal
+                        Mention Légales
+                    </NextLink>
+                    <NextLink
+                        href={"notre-entreprise.tsx"}
+                    >
+                        Notre entreprise
                     </NextLink>
                     <NextLink
                         href={"/prestations"}
