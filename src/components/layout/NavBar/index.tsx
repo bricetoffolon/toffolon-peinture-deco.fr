@@ -9,8 +9,6 @@ import {
     Button,
     Image,
     Collapse,
-    Stack,
-    Box,
     useDisclosure,
 } from "@chakra-ui/react";
 
@@ -88,19 +86,17 @@ function NavBar(): any {
             in={isOpen}
             unmountOnExit
         >
-            <Box
+            <Flex
                 bg={"gray.200"}
-                align={"center"}
                 padding={"2%"}
                 mt={"1%"}
                 boxShadow={"outline"}
+                direction={"column"}
+                alignItems={"center"}
+                gap={3}
             >
-                <Stack
-                    direction={"column"}
-                >
-                    <PageButton />
-                </Stack>
-            </Box>
+                <PageButton />
+            </Flex>
         </Collapse>
         </>
     );

@@ -1,21 +1,23 @@
 import React from "react";
 
-import { AspectRatio, Box, Center } from '@chakra-ui/react';
+import { Box, Center } from '@chakra-ui/react';
 
-export default function ({imageUrl, Content}) {
+
+
+export default function SlideContent({imageUrl, Content}) {
     return (
-        <AspectRatio ratio={16/9}>
-            <Box
-                position={"relative"}
-                backgroundPosition={"center"}
-                bacgroundRepeat={"no-repeat"}
-                backgroundSize={"cover"}
-                backgroundImage={`url(${imageUrl})`}
-            >
-                <Center>
-                    {Content}
-                </Center>
-            </Box>
-        </AspectRatio>
+        <Box
+            position={"relative"}
+            backgroundPosition={"center"}
+            backgroundRepeat={"no-repeat"}
+            backgroundSize={"cover"}
+            backgroundImage={`url(${imageUrl})`}
+            width={"100vw"}
+            height={"100vh"}
+        >
+            <Center h={"100%"}>
+                {Content}
+            </Center>
+        </Box>
     );
 }

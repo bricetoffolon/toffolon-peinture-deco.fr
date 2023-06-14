@@ -34,13 +34,35 @@ export default function ImageSlider(): any {
                 <div className={"embla__slide"}>
                     <SlideContent
                         imageUrl={"https://www.aceserviceswa.com/wp-content/uploads/2020/12/hero-home-painting-services-ephrata-wa.jpg"}
-                        caption={"Hi"}
+                        Content={
+                            <Stack
+                                direction={"column"}
+                                align={"center"}
+                            >
+                                <Heading
+                                >
+                                    Une entreprise familliale depuis 1968
+                                </Heading>
+                                <Text>Certifié Qualibat</Text>
+                            </Stack>
+                        }
                     />
                 </div>
                 <div className={"embla__slide"}>
                         <SlideContent
                             imageUrl={"https://www.aceserviceswa.com/wp-content/uploads/2020/12/hero-home-painting-services-ephrata-wa.jpg"}
-                            caption={"Ha"}
+                            Content={
+                                <Stack
+                                    direction={"column"}
+                                    align={"center"}
+                                >
+                                    <Heading
+                                    >
+                                        Une entreprise familliale depuis 1968
+                                    </Heading>
+                                    <Text>Certifié Qualibat</Text>
+                                </Stack>
+                            }
                         />
                 </div>
             </div>

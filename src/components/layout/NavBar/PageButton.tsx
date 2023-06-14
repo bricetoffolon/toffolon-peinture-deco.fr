@@ -52,7 +52,7 @@ function PageButton(): any {
                         shadow: "base"
                     }}
                 >
-                    Nous contactez
+                    Nous contacter
                 </Button>
             </NextLink>
         </>
