@@ -7,7 +7,7 @@ import {Box, Text, Stack, Flex} from "@chakra-ui/react";
 export default function Footer() {
     return (
         <Box
-            bg={"gray.200"}
+            bg={"#108BDD"}
             padding={{
                 base:"3%",
                 sm: "2%",

@@ -16,7 +16,7 @@ import NextLink from "next/link";
 
 import { FiMenu, FiX } from 'react-icons/fi';
 
-import PageButton from "@/components/layout/NavBar/PageButton";
+import PageButton from "@/components/layout/Button/PageButton";
 
 function NavBar(): any {
     const {isOpen, onToggle} = useDisclosure();
