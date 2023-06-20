@@ -1,10 +1,20 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 import '@/styles/carousel.css';
 
+const theme = extendTheme({
+    colors: {
+        brand: {
+            250: "#108BDD40",
+            500: "#108BDD",
+            900: "#0C5D89"
+        }
+    }
+})
+
 function MyApp({ Component, pageProps }: any) {
     return (
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
             <Component {...pageProps} />
         </ChakraProvider>
     )
