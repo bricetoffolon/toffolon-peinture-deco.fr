@@ -8,7 +8,7 @@ import SlideContent from "@/components/landing/ImageSlider/SlideContent";
 import Section1 from "@/components/landing/ImageSlider/Section1";
 
 
-export default function ImageSlider(): any {
+export default function ImageSlider(): React.JSX.Element {
     const [emblaRef] = useEmblaCarousel({ loop: false }, [AutoPlay()]);
 
     return (

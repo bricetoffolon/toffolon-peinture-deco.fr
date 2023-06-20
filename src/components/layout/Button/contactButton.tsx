@@ -6,18 +6,18 @@ import { Button, Icon } from "@chakra-ui/react";
 
 import { FaEnvelope } from "react-icons/fa";
 
-export default function ContactButton({fontSize}) {
+export default function ContactButton({fontSize}: {fontSize?: string}): React.JSX.Element {
     return (
         <NextLink
             href={"/contact"}
             passHref
         >
             <Button
-                bg={"#108BDD"}
+                bg={"brand.500"}
                 shadow={"base"}
-                leftIcon={fontSize ? null : <Icon as={FaEnvelope} />}
+                leftIcon={fontSize ? undefined : <Icon as={FaEnvelope} />}
                 _hover={{
-                    bg: "#007ed840",
+                    bg: "brand.250",
                     shadow: "base"
                 }}
                 fontSize={fontSize}

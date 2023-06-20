@@ -1,15 +1,16 @@
 import React from "react";
 
-import {Button, Icon} from "@chakra-ui/react";
+import { Button, ButtonGroup, Icon } from "@chakra-ui/react";
 
 import NextLink from "next/link";
 
 import { FaPaintBrush, FaClipboardCheck, FaInfoCircle } from "react-icons/fa";
+
 import ContactButton from "@/components/layout/Button/contactButton";
 
-function PageButton(): any {
+function PageButton(): React.JSX.Element {
     return (
-        <>
+        <ButtonGroup>
             <NextLink
                 href={"/notre-entreprise"}
                 passHref
@@ -17,10 +18,10 @@ function PageButton(): any {
                 <Button
                     variant={"ghost"}
                     _hover={{
-                        bg: "#007ed840",
+                        bg: "brand.250",
                         shadow: "base"
                     }}
-                    leftIcon={<Icon as={FaInfoCircle} color={"#007ed8"}/>}
+                    leftIcon={<Icon as={FaInfoCircle} color={"brand.500"}/>}
                 >
                     Notre entreprise
                 </Button>
@@ -32,10 +33,10 @@ function PageButton(): any {
                 <Button
                     variant={"ghost"}
                     _hover={{
-                        bg: "#007ed840",
+                        bg: "brand.250",
                         shadow: "base"
                     }}
-                    leftIcon={<Icon as={FaPaintBrush} color={"#007ed8"}/>}
+                    leftIcon={<Icon as={FaPaintBrush} color={"brand.500"}/>}
                 >
                     Nos prestations
                 </Button>
@@ -47,16 +48,16 @@ function PageButton(): any {
                 <Button
                     variant={"ghost"}
                     _hover={{
-                        bg: "#007ed840",
+                        bg: "brand.250",
                         shadow: "base",
                     }}
-                    leftIcon={<Icon as={FaClipboardCheck} color={"#007ed8"}/>}
+                    leftIcon={<Icon as={FaClipboardCheck} color={"brand.500"}/>}
                 >
                     Nos réalisations
                 </Button>
             </NextLink>
             <ContactButton />
-        </>
+        </ButtonGroup>
     );
 }
 

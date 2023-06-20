@@ -1,7 +1,6 @@
 import React from "react";
 
 import {
-    ButtonGroup,
     Flex,
     Spacer,
     IconButton,
@@ -18,8 +17,8 @@ import { FiMenu, FiX } from 'react-icons/fi';
 
 import PageButton from "@/components/layout/Button/PageButton";
 
-function NavBar(): any {
-    const {isOpen, onToggle} = useDisclosure();
+function NavBar(): React.JSX.Element {
+    const {isOpen, onToggle}: {isOpen: boolean, onToggle: any} = useDisclosure();
 
 
     return (
@@ -60,13 +59,8 @@ function NavBar(): any {
                         xl: 'flex'
                     }}
                     right={"0"}
-                    position={"fixed"}
                 >
-                    <ButtonGroup
-                        margin={"1%"}
-                    >
-                        <PageButton />
-                    </ButtonGroup>
+                    <PageButton />
                 </Flex>
             </Flex>
             <Spacer />
@@ -82,9 +76,6 @@ function NavBar(): any {
                     mr={"2"}
                     mt={2}
                     icon={!isOpen ? <Icon as={FiMenu} /> : <Icon as={FiX} />}
-                    _hover={{
-                        bg: "#007ed840",
-                    }}
                     onClick={onToggle}
                 />
             </Flex>
@@ -101,7 +92,6 @@ function NavBar(): any {
                 boxShadow={"outline"}
                 direction={"column"}
                 alignItems={"center"}
-                gap={3}
             >
                 <PageButton />
             </Flex>

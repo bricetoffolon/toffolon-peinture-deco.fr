@@ -2,12 +2,12 @@ import React from "react";
 
 import NextLink from "next/link";
 
-import {Box, Text, Stack, Flex} from "@chakra-ui/react";
+import { Box, Text, Stack, Flex } from "@chakra-ui/react";
 
-export default function Footer() {
+export default function Footer(): React.JSX.Element {
     return (
         <Box
-            bg={"#108BDD"}
+            bg={"brand.500"}
             padding={{
                 base:"3%",
                 sm: "2%",

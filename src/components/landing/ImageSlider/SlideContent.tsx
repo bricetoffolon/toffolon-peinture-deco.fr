@@ -4,7 +4,7 @@ import { Box, Center } from '@chakra-ui/react';
 
 
 
-export default function SlideContent({imageUrl, Content}) {
+export default function SlideContent({imageUrl, Content}: { imageUrl: string, Content: React.JSX.Element }) {
     return (
         <Box
             position={"relative"}

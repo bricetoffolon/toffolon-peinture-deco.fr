@@ -2,12 +2,12 @@ import React from 'react';
 
 import NextLink from "next/link";
 
-import {Button, Flex, Grid, GridItem, Heading, Text} from "@chakra-ui/react";
+import { Button, Flex, Grid, GridItem, Heading, Text } from "@chakra-ui/react";
 
 import { motion } from "framer-motion";
 
 
-export default function Section1() {
+export default function Section1(): React.JSX.Element {
     return (
         <motion.div
             initial={{ opacity: 0, y: 100 }}
@@ -19,7 +19,6 @@ export default function Section1() {
                 duration: 1.5,
             }}
         >
-        {/*<SlideFade in={true} offsetY='50px' timeout={"1000"}>*/}
             <Grid
                 h={"100vh"}
                 w={"100vw"}
@@ -40,14 +39,14 @@ export default function Section1() {
                                 md: "2xl",
                                 xl: "3xl"
                             }}
-                            color={"#007ed8"}
+                            color={"brand.500"}
                         >
                             Entreprise de peinture
                         </Heading>
                         <Text
                             fontSize={"lg"}
                             as={"b"}
-                            color={"#007ed8"}
+                            color={"brand.500"}
                         >
                             Un savoir-faire depuis 1960
                         </Text>
@@ -63,7 +62,7 @@ export default function Section1() {
                         >
                             <Button
                                 variant={"outline"}
-                                color={"#007ed8"}
+                                color={"brand.500"}
                                 size={"lg"}
                             >
                                 En savoir plus
