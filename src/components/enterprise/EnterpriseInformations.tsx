@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function EntrepriseInformations() {
+export function EnterpriseInformations(): React.JSX.Element {
     return (
         <>
             <p className="has-line-data" data-line-start="0" data-line-end="1">Issue d’une entreprise familiale créée en
@@ -17,6 +17,42 @@ export default function EntrepriseInformations() {
                     soit dédié à un seul chantier à la fois</strong>.</p>
             <p className="has-line-data" data-line-start="4" data-line-end="5">Nos devis, dont le chiffrage est estimé avec
                 le plus grand soin sont <strong>gratuits</strong>.</p>
+        </>
+    );
+}
+
+export function EnterpriseCatchPhrase(): React.JSX.Element {
+    return (
+        <>
+            <p className="has-line-data" data-line-start="0" data-line-end="3">
+                CONFIEZ-NOUS VOS TRAVAUX EXTÉRIEURS OU
+                INTÉRIEURS.<br/>
+                UNE SEULE ÉQUIPE VOUS EST DÉDIÉE TOUT AU LONG DE VOTRE CHANTIER:<br/>
+                AUCUN CHANGEMENT, AUCUN ARRÊT DU CHANTIER</p>
+        </>
+    );
+}
+
+export function EnterpriseLabel(): React.JSX.Element {
+    return (
+        <>
+            <h2>
+                Votre chantier de <strong style={{
+                color: 'brand.500'
+            }}>A</strong> à <strong style={{
+                color: 'brand.500'
+            }}>Z</strong>
+            </h2>
+        </>
+    );
+}
+
+export function EnterpriseTitle(): React.JSX.Element {
+    return (
+        <>
+            <p>Depuis <strong style={{
+                color: 'brand.500'
+            }}>1960</strong></p>
         </>
     );
 }
