@@ -29,22 +29,22 @@ export default function Footer(): React.JSX.Element {
                         Toffolon © 2023
                     </Text>
                     <NextLink
-                        href={"mention-legal"}
+                        href={"mention-legales"}
                     >
                         Mention Légales
                     </NextLink>
                     <NextLink
-                        href={"notre-entreprise.tsx"}
+                        href={"notre-entreprise"}
                     >
                         Notre entreprise
                     </NextLink>
                     <NextLink
-                        href={"/prestations"}
+                        href={"/nos-prestations"}
                     >
                         Nos Prestations
                     </NextLink>
                     <NextLink
-                        href={"/realisations"}
+                        href={"/nos-realisations"}
                     >
                         Nos Réalisations
                     </NextLink>

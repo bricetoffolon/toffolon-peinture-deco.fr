@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, ButtonGroup, Icon } from "@chakra-ui/react";
+import { Button, Icon } from "@chakra-ui/react";
 
 import NextLink from "next/link";
 
@@ -10,7 +10,7 @@ import ContactButton from "@/components/layout/Button/contactButton";
 
 function PageButton(): React.JSX.Element {
     return (
-        <ButtonGroup>
+        <>
             <NextLink
                 href={"/notre-entreprise"}
                 passHref
@@ -27,7 +27,7 @@ function PageButton(): React.JSX.Element {
                 </Button>
             </NextLink>
             <NextLink
-                href={"/prestations"}
+                href={"/nos-prestations"}
                 passHref
             >
                 <Button
@@ -42,7 +42,7 @@ function PageButton(): React.JSX.Element {
                 </Button>
             </NextLink>
             <NextLink
-                href={"/realisations"}
+                href={"/nos-realisations"}
                 passHref
             >
                 <Button
@@ -57,7 +57,7 @@ function PageButton(): React.JSX.Element {
                 </Button>
             </NextLink>
             <ContactButton />
-        </ButtonGroup>
+        </>
     );
 }
 
