@@ -10,12 +10,14 @@ import {
     DrawerContent,
     DrawerHeader,
     DrawerOverlay,
+    Flex,
     Heading,
     Icon,
     Text,
     useDisclosure
 } from "@chakra-ui/react";
-import {FaPlusCircle} from "react-icons/fa";
+
+import { FaPlusCircle } from "react-icons/fa";
 
 export default function ServiceDrawer({service}: {service: any}): React.JSX.Element {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -54,13 +56,7 @@ export default function ServiceDrawer({service}: {service: any}): React.JSX.Elem
                         pt={"3%"}
                     >
                         <Center>
-                            <Heading
-                                size={{
-                                    base: "lg",
-                                    xl: "2xl",
-                                }}
-                                color={"brand.500"}
-                            >
+                            <Heading size={{base: "lg", xl: "2xl",}} color={"brand.500"}>
                                 {service.name}
                             </Heading>
                         </Center>
@@ -68,11 +64,20 @@ export default function ServiceDrawer({service}: {service: any}): React.JSX.Elem
                     <DrawerCloseButton />
                     <DrawerHeader>
                     </DrawerHeader>
-                    <DrawerBody>
-                        <Text>
-                            Hello
-                        </Text>
-                    </DrawerBody>
+                    {service.content ?
+                        (
+                            <DrawerBody>
+                                <Flex align={"center"} direction={{base: "column"}} gap={10} paddingLeft={"10%"} paddingRight={"10%"}>
+                                    <Heading color={"brand.500"} size={{base: "lg", xl:"xl"}}>
+                                        {service.content.label}
+                                    </Heading>
+                                    <Text color={"brand.900"} as={"b"}>{service.content.description}</Text>
+                                </Flex>
+                                <Flex>
+                                </Flex>
+                            </DrawerBody>
+                        ) : null
+                    }
                 </DrawerContent>
             </Drawer>
         </>

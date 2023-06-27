@@ -1,0 +1,35 @@
+{
+  "data": [
+    {
+      "name": "Ravalement",
+      "description": "Nous faisons de des ravalement ma bonne dame",
+      "imageUrl": "https://st2.depositphotos.com/1007959/6173/i/950/depositphotos_61734427-stock-photo-house-painter-painting-the-trim.jpg"
+    },
+    {
+      "name": "Isolation thermique",
+      "description": "L'isolation c'est notre dada",
+      "imageUrl": "https://st3.depositphotos.com/1007373/18624/i/450/depositphotos_186242144-stock-photo-house-thermal-insulation-with-mineral.jpg",
+      "content": {
+        "title": "Isolation Thermique",
+        "label": "Notre entreprise est certifiée QUALIBAT RGE depuis 2015 pour la réalisation des travaux d’isolation thermique exté- rieure sur les pavillons, im- meubles, magasins...",
+        "steps": ["Etude de votre projet & Conseil Techniques", "Remise des Document légaux & Planning prévisionnel", "Commande des matériaux & Début du chantier", "Signature du PV de réception & Remise des garanti si nécessaires"],
+        "description": "Nous fournissons et posons les matériaux nécessaires à l’isolation thermique extérieure. En premier lieu, nous plaquons un isolant, recouvert par un enduit armé, ceci protège votre bâtiment et imperméabilise les façades. L’enduit décoratif représente la touche finale de la façade, tout en isolant les bâtiments.\nL’isolation permet d’alléger vos factures d’énergie, de bénéficier d’avantages fiscaux et de prétendre à des subventions. Pour cela les matériaux doivent avoir les certifications ACERMI et avis techniques spécifiques."
+      }
+    },
+    {
+      "name": "Rénovation",
+      "description": "Nous faisons de la rénovations depuis 1908",
+      "imageUrl": "https://st2.depositphotos.com/4826249/7208/i/950/depositphotos_72084155-stock-photo-home-renovation.jpg"
+    },
+    {
+      "name": "Revêtements de sols",
+      "description": "Revetons le sol",
+      "imageUrl": "https://st2.depositphotos.com/1508704/9409/i/600/depositphotos_94097996-stock-photo-decorative-steel-flooring-perspective-view.jpg"
+    },
+    {
+      "name": "Peinture",
+      "description": "La peinture c'est tout un art",
+      "imageUrl": "https://tl-renovation.fr/wp-content/uploads/2022/02/AdobeStock_305476114-1024x683.jpeg"
+    }
+  ]
+}
