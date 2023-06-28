@@ -1,25 +1,24 @@
-import {Injectable, UnauthorizedException} from '@nestjs/common';
-import {UsersService} from "../users/users.service";
-import {JwtService} from "@nestjs/jwt";
+import { Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
+import { UsersService } from "../users/users.service";
+import { User} from "@prisma/client";
 
 @Injectable()
 export class AuthService {
-    constructor(
-        private usersService: UsersService,
-        private jwtService: JwtService,
-    ) {}
+    constructor(private readonly usersService: UsersService) {}
 
-    async signIn(username: string, pass: string): Promise<any> {
-        const user = await this.usersService.findOne(username);
-        if (user?.password !== pass) {
-            throw new UnauthorizedException();
+    async validateUser(email: string, password: string): Promise<User> | undefined {
+        try {
+            const user: User = await this.usersService.user({"email": email})
+
+            if (user && user.password == password)
+                return user;
+
+        } catch (error) {
+            console.error('An error occurred during user validation:', error);
+
+            throw new InternalServerErrorException('User validation failed. Please try again later')
         }
 
-        console.log(username)
-        const payload = { sub: user.userId, username: user.username }
-
-        return {
-            access_token: await this.jwtService.signAsync(payload)
-        };
+        throw new UnauthorizedException('Invalid Credentials');
     }
 }

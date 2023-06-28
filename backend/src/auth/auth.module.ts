@@ -1,28 +1,33 @@
-import { Module } from '@nestjs/common';
+import {MiddlewareConsumer, Module, NestModule} from '@nestjs/common';
+import { PassportModule } from "@nestjs/passport";
+import * as expressSession from "express-session";
+import * as passport from 'passport';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UsersModule } from "../users/users.module";
-import {JwtModule} from "@nestjs/jwt";
-import {jwtConstants} from "./constants";
-import {APP_GUARD} from "@nestjs/core";
-import {AuthGuards} from "./auth.guards";
+import { LocalStrategy } from "./local.strategy";
+import { UserSerializer } from "./user.serializer";
 
 @Module({
-  imports: [
-      UsersModule,
-      JwtModule.register({
-        global: true,
-        secret: jwtConstants.secret,
-        signOptions: { expiresIn: '60s' },
+  imports: [UsersModule,
+      PassportModule.register({
+          session: true
       })
   ],
   controllers: [AuthController],
-  providers: [
-      AuthService,
-      {
-          provide: APP_GUARD,
-          useClass: AuthGuards
-      }
-  ]
+  providers: [AuthService, LocalStrategy, UserSerializer],
 })
-export class AuthModule {}
+export class AuthModule implements NestModule {
+    configure(consumer: MiddlewareConsumer) {
+        consumer
+            .apply(
+                expressSession({
+                    secret: 'SOME SESSION SECRET',
+                    resave: false,
+                    saveUninitialized: false,
+                }),
+                passport.session(),
+            )
+            .forRoutes('*')
+    }
+}
