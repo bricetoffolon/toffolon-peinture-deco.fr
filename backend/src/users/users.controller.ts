@@ -2,6 +2,8 @@ import { Body, Controller, Post, Get } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { User } from "@prisma/client";
 
+import * as bcrypt from 'bcrypt';
+
 @Controller('user')
 export class UsersController {
     constructor(private readonly usersService: UsersService) {}
@@ -11,9 +13,13 @@ export class UsersController {
         @Body('password') userPassword: string,
         @Body('email') userEmail: string,
     ): Promise<User> {
+
+        const saltOrRounds = 10;
+        const hash = await bcrypt.hash(userPassword, saltOrRounds);
+
         return await this.usersService.createUser({
             email: userEmail,
-            password: userPassword,
+            password: hash,
             role: "admin"
         })
     };

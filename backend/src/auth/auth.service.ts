@@ -1,4 +1,5 @@
 import { Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import { UsersService } from "../users/users.service";
 import { User} from "@prisma/client";
 
@@ -10,7 +11,9 @@ export class AuthService {
         try {
             const user: User = await this.usersService.user({"email": email})
 
-            if (user && user.password == password)
+            const isMatch: boolean = await bcrypt.compare(password, user.password)
+
+            if (user && isMatch)
                 return user;
 
         } catch (error) {
