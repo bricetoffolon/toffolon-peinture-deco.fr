@@ -9,16 +9,14 @@ export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Post('login')
     login(@Req() request: any, @Session() session: ExpressSession) {
-        console.log(session)
-
         return request.user;
     }
 
     @UseGuards(IsAuthenticatedGuard)
     @Post('logout')
-    async logout(@Req() request: Request) {
+    async logout(@Req() request: Request): Promise<{ logout: boolean }> {
         const logoutError = await new Promise((resolve) =>
-            request.logOut({ keepSessionInfo: false }, (error) =>
+            request.logOut({keepSessionInfo: false}, (error) =>
                 resolve(error),
             ),
         );
@@ -36,7 +34,9 @@ export class AuthController {
 
     @UseGuards(IsAuthenticatedGuard)
     @Get('protected')
-    protected () {
+    protected(@Session() session: ExpressSession) {
+        console.log(session["passport"].user)
+
         return {
             message: "route protected"
         }
