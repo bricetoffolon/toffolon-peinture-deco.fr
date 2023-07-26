@@ -12,6 +12,7 @@ model User {
 
 model Image {
   id     Int    @id @default(autoincrement())
+  name   String?
   url    String
   Post   Post?  @relation(fields: [postId], references: [id])
   postId Int?

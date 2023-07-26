@@ -32,10 +32,12 @@ export class UsersController {
     @UseGuards(IsAuthenticatedGuard)
     @Get('/')
     async getUser(
-        @Body('email') userEmail: string,
+        @Request() req: any
     ): Promise<User> {
+        console.log()
+
         return await this.usersService.user({
-            "email": userEmail,
+            "email": req.session.passport.user,
         });
     }
 

@@ -19,7 +19,7 @@ export default class MailService {
             to: userEmail,
             subject: subject,
             from: this.serverEmail,
-            html: `<h1>${object}<h1>`
+            html: `${object}`
         }
 
         return await this.sendGridService.sendEmail(mail);
@@ -29,7 +29,7 @@ export default class MailService {
         console.log(userEmail, accessToken);
 
         return this.sendEmail(
-            userEmail, "Verifier votre addresse email", `${this.serverRoute}/user/verify?key=${accessToken}`
+            userEmail, "Verifier votre addresse email", `<h1>${this.serverRoute}/user/verify?key=${accessToken}<h1>`
         )
     }
 }
