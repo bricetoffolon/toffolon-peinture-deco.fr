@@ -13,8 +13,6 @@ export class SendgridService {
     async sendEmail(mail: SendGrid.MailDataRequired): Promise<SendGrid.ClientResponse> {
         const transport = await SendGrid.send(mail);
 
-        console.log('Success')
-
         return transport[0]
     }
 }

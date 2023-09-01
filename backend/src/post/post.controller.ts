@@ -5,7 +5,6 @@ import {
     Post,
     UseInterceptors,
     UploadedFiles,
-    Put,
     Param,
     Get,
     Delete,
@@ -67,7 +66,7 @@ export class PostController {
     }
 
     @UseGuards(IsAuthenticatedGuard)
-    @Put('/:id')
+    @Post('/:id')
     @UseInterceptors(FilesInterceptor('files'))
     async uploadPostImages(
         @Param ("id") id: string,
@@ -75,9 +74,13 @@ export class PostController {
     ) {
         const post = await this.postService.post({"id": Number(id)})
 
+        console.log(post)
+
         if (!post) {
             throw new InternalServerErrorException();
         }
+
+        console.log(files)
 
         for (let i: number = 0; i < files.length; i += 1) {
             const name: string = files[i].originalname

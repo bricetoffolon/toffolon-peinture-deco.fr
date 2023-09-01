@@ -2,19 +2,19 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
   password String
-  role String @default("USER")
-  posts Post[]
+  role     String  @default("USER")
+  posts    Post[]
 }
 
 model Image {
-  id     Int    @id @default(autoincrement())
+  id     Int     @id @default(autoincrement())
   name   String?
   url    String
-  Post   Post?  @relation(fields: [postId], references: [id])
+  Post   Post?   @relation(fields: [postId], references: [id])
   postId Int?
 }
 
