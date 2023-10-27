@@ -14,7 +14,7 @@ export default function Footer(): React.JSX.Element {
             }}
             as={"footer"}
         >
-            <Flex alignItems={"center"} justifyContent={"center"}>
+            <Flex alignItems={"center"} justifyContent={"center"} mb={"0.5%"}>
                 <Stack
                     direction={{
                         base: 'column',
@@ -25,9 +25,6 @@ export default function Footer(): React.JSX.Element {
                         md:6
                     }}
                 >
-                    <Text as={"b"}>
-                        Toffolon © 2023
-                    </Text>
                     <NextLink
                         href={"mention-legales"}
                     >
@@ -54,6 +51,13 @@ export default function Footer(): React.JSX.Element {
                         Nous Contacter
                     </NextLink>
                 </Stack>
+            </Flex>
+            <Flex
+                justifyContent={"center"}
+            >
+                <Text as={"b"} textShadow={"2px 2px 4px rgba(0,0,0,0.4)"}>
+                    Toffolon © 2023
+                </Text>
             </Flex>
         </Box>
     );

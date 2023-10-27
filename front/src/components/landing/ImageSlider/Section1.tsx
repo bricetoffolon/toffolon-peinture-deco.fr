@@ -40,6 +40,8 @@ export default function Section1(): React.JSX.Element {
                                 xl: "3xl"
                             }}
                             color={"brand.500"}
+                            fontWeight={"bold"}
+                            textShadow={"2px 2px 4px rgba(0,0,0,0.4)"}
                         >
                             Entreprise de peinture
                         </Heading>
@@ -47,6 +49,8 @@ export default function Section1(): React.JSX.Element {
                             fontSize={"lg"}
                             as={"b"}
                             color={"brand.500"}
+                            fontWeight={"bold"}
+                            textShadow={"2px 2px 4px rgba(0,0,0,0.4)"}
                         >
                             Un savoir-faire depuis 1960
                         </Text>
@@ -64,6 +68,8 @@ export default function Section1(): React.JSX.Element {
                                 variant={"outline"}
                                 color={"brand.500"}
                                 size={"lg"}
+                                boxShadow={'2xl'}
+                                textShadow={"2px 2px 4px rgba(0,0,0,0.4)"}
                             >
                                 En savoir plus
                             </Button>

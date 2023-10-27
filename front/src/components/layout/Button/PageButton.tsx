@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Icon } from "@chakra-ui/react";
+import {Button, Flex, Icon} from "@chakra-ui/react";
 
 import NextLink from "next/link";
 
@@ -10,7 +10,7 @@ import ContactButton from "@/components/layout/Button/contactButton";
 
 function PageButton(): React.JSX.Element {
     return (
-        <>
+        <Flex gap={6}>
             <NextLink
                 href={"/notre-entreprise"}
                 passHref
@@ -22,6 +22,7 @@ function PageButton(): React.JSX.Element {
                         shadow: "base"
                     }}
                     leftIcon={<Icon as={FaInfoCircle} color={"brand.500"}/>}
+                    textShadow={"2px 2px 4px rgba(0,0,0,0.4)"}
                 >
                     Notre entreprise
                 </Button>
@@ -37,6 +38,7 @@ function PageButton(): React.JSX.Element {
                         shadow: "base"
                     }}
                     leftIcon={<Icon as={FaPaintBrush} color={"brand.500"}/>}
+                    textShadow={"2px 2px 4px rgba(0,0,0,0.4)"}
                 >
                     Nos prestations
                 </Button>
@@ -52,12 +54,13 @@ function PageButton(): React.JSX.Element {
                         shadow: "base",
                     }}
                     leftIcon={<Icon as={FaClipboardCheck} color={"brand.500"}/>}
+                    textShadow={"2px 2px 4px rgba(0,0,0,0.4)"}
                 >
                     Nos réalisations
                 </Button>
             </NextLink>
             <ContactButton />
-        </>
+        </Flex>
     );
 }
 
