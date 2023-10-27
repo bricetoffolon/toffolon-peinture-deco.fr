@@ -7,7 +7,7 @@ import { hookAPICallToastResp } from "@/hook/hookAPICall";
 export default function UpdatePass(): React.JSX.Element {
     const router = useRouter();
 
-    const [key, setKey] = useState('');
+    const [key, setKey] = useState<any>('');
 
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');

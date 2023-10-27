@@ -1,55 +1,63 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     AspectRatio,
     Box,
-    Heading,
-    Modal,
-    ModalBody,
-    ModalContent,
-    ModalHeader,
-    ModalCloseButton,
-    ModalOverlay,
-    useDisclosure
+    useDisclosure,
 } from "@chakra-ui/react";
 
-export default function Post({data, email}: {data: any, email: any}): React.JSX.Element {
+import { motion } from "framer-motion";
+
+import PostModal from "@/components/api/posts/postModal";
+
+
+export default function Post({ data, admin, setResponse }: {data: any, admin: boolean, setResponse: any}): React.JSX.Element {
     const {isOpen, onOpen, onClose} = useDisclosure();
+
+    const [reload, setReload] = useState<boolean>(false);
+
+    if (reload) {
+        setResponse(null);
+        setReload(false);
+    }
 
     return (
         <>
         {
             data.image.length > 0 ? (
                 <>
-                <AspectRatio maxW='400px' ratio={1}>
-                    <Box
-                        as={"button"}
-                        bg={"gray.200"}
-                        borderRadius={"lg"}
-                        margin={"1%"}
-                        padding={"10%"}
-                        backgroundPosition={"center"}
-                        backgroundRepeat={"no-repeat"}
-                        backgroundSize={"cover"}
-                        backgroundImage={`url(${data.image[0].url})`}
-                        onClick={onOpen}
+                    <motion.div
+                        whileHover={{
+                            scale: 1.1,
+                            transition: {duration: 0.2}
+                        }}
+                        whileTap={{
+                            scale: 0.8,
+                        }}
                     >
-                     <Heading
-                         opacity={"0%"}
-                     >{data.title}</Heading>
-                    </Box>
-                </AspectRatio>
+                        <AspectRatio maxW='400px' ratio={1}>
+                            <Box
+                                as={"button"}
+                                bg={"gray.200"}
+                                borderRadius={"lg"}
+                                margin={"1%"}
+                                padding={"10%"}
+                                backgroundPosition={"center"}
+                                backgroundRepeat={"no-repeat"}
+                                backgroundSize={"cover"}
+                                backgroundImage={`url(${data.image[0].url})`}
+                                onClick={onOpen}
+                            >
+                            </Box>
+                        </AspectRatio>
+                    </motion.div>
 
-                <Modal
-                    isOpen={isOpen}
-                    onClose={onClose}
-                >
-                    <ModalOverlay />
-                    <ModalContent>
-                        <ModalCloseButton />
-                        <ModalHeader></ModalHeader>
-                        <ModalBody></ModalBody>
-                    </ModalContent>
-                </Modal>
+                    <PostModal
+                        data={data}
+                        isOpen={isOpen}
+                        onClose={onClose}
+                        admin={admin}
+                        setReload={setReload}
+                    />
                 </>
 
             ) : null

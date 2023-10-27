@@ -15,7 +15,7 @@ import { FormValue } from "./interface";
 
 export default function UserForm({title, inputs, formValues, setFormValues, setIsSubmit}: {title: string, inputs: string[], formValues: FormValue, setFormValues: any, setIsSubmit: any}): React.JSX.Element {
     const handleValueChange = (fieldname: string, value: string) => {
-        setFormValues((prevValues) => ({
+        setFormValues((prevValues: any) => ({
             ...prevValues,
                 [fieldname]: value
         }));

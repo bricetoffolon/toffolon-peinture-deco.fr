@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import instance from "@/hook/instance";
 
 import { useToast } from "@chakra-ui/react";
@@ -9,6 +9,8 @@ async function apiCall(method: string, endpoint: string, data: JSON): Promise<Ax
         return instance.post(endpoint, data);
     if (method == "get")
         return instance.get(endpoint);
+    if (method == "delete")
+        return instance.delete(endpoint);
 }
 
 export function hookAPICallToastResp(method: string, endpoint: string, data: any, isSubmit: boolean, setIsSubmit: any): void {

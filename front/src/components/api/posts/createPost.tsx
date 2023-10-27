@@ -17,16 +17,16 @@ import {
 import { FileUploader } from "react-drag-drop-files";
 import hookAddPost from "@/hook/hookAddPost";
 
-export default function CreatePost({email}): React.JSX.Element {
+export default function CreatePost({email, setResponse}: {email: string, setResponse: any}): React.JSX.Element {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const fileType = ["JPEG", "PNG"];
+    const fileType: string[] = ["JPEG", "PNG"];
 
     const [files, setFiles]: [any, any] = useState([]);
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [isSubmit, setIsSubmit] = useState(false);
+    const [title, setTitle] = useState<string>('');
+    const [content, setContent] = useState<string>('');
+    const [isSubmit, setIsSubmit] = useState<boolean>(false);
 
     hookAddPost("/post", {"title": title, authorEmail: email, "content": content}, isSubmit, setIsSubmit, files);
 
@@ -66,7 +66,7 @@ export default function CreatePost({email}): React.JSX.Element {
                             <Input value={content} onChange={(e) => handleValueChange(setContent, e)}/>
                         </FormControl>
                         <FileUploader
-                            handleChange={(e) => setFiles([...files, ...e])}
+                            handleChange={(e: any) => setFiles([...files, ...e])}
                             name="file"
                             types={fileType}
                             multiple={true}
@@ -76,6 +76,7 @@ export default function CreatePost({email}): React.JSX.Element {
                         <Button color={"brand.500"}
                                 onClick={() => {
                                     setIsSubmit(true);
+                                    setResponse(null);
                                     onClose();
                                 }}
                         >Submit</Button>

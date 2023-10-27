@@ -6,9 +6,10 @@ import GetPosts from "@/components/api/posts/getPosts";
 import {hookAPICallDataResp} from "@/hook/hookAPICall";
 
 export default function Posts() {
-    const [response, setResponse] = useState<any>('');
+    const [user, setUser] = useState<any>('');
+    const [response, setResponse] = useState<any>(null);
 
-    hookAPICallDataResp("get", "/user", {}, response, setResponse);
+    hookAPICallDataResp("get", "/user", {}, user, setUser);
 
     return (
         <Flex
@@ -17,13 +18,16 @@ export default function Posts() {
             direction={"column"}
         >
             {
-                response && response.data && response.data.email ? (
+                user && user.data && user.data.email ? (
                     <>
                         <CreatePost
-                            email={response.data.email}
+                            email={user.data.email}
+                            setResponse={setResponse}
                         />
                         <GetPosts
-                            email={response.data.email}
+                            admin={true}
+                            response={response}
+                            setResponse={setResponse}
                         />
                     </>
                 ) : null
