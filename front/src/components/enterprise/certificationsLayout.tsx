@@ -8,26 +8,27 @@ export default function CertificationLayout(): React.JSX.Element {
         <Flex
             alignItems={"center"}
             direction={"column"}
-            gap={2}
+            gap={10}
         >
             <Flex
                 w={"5vw"}
                 h={"5vh"}
                 alignItems={"center"}
-                m={"1%"}
             >
                 <Image
                     src={"https://toffolon-website.s3.eu-west-3.amazonaws.com/certification-qualibat-rge"}
                     alt={"certification-qualibat-rge"}
                 />
             </Flex>
-            {
-                certifications.map((certif: string) => (
-                    <Tag color={"brand.500"}>
-                        {certif}
-                    </Tag>
-                ))
-            }
+            <Flex gap={3} direction={"column"} alignItems={"center"}>
+                {
+                    certifications.map((certif: string) => (
+                        <Tag color={"brand.500"} alignItems={"center"} padding={"1%"} bg={"None"} textShadow={"0.1px 0.1px"}>
+                            {certif}
+                        </Tag>
+                    ))
+                }
+            </Flex>
         </Flex>
     );
 }
