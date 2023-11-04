@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 
 import {
     EnterpriseInformations,
-    EnterpriseTitle
 } from "@/components/enterprise/EnterpriseInformations";
 
 import CertificationLayout from "@/components/enterprise/certificationsLayout";
@@ -32,7 +31,7 @@ export default function Enterprise(): React.JSX.Element{
                     size={"3xl"}
                     margin={"2%"}
                 >
-                    <EnterpriseTitle />
+                    Depuis <Heading size={"3xl"} as={"span"} color={"brand.500"}>1960</Heading>
                 </Heading>
             </Flex>
             <Flex

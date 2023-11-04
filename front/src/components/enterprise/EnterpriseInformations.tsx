@@ -20,39 +20,3 @@ export function EnterpriseInformations(): React.JSX.Element {
         </>
     );
 }
-
-export function EnterpriseCatchPhrase(): React.JSX.Element {
-    return (
-        <>
-            <p className="has-line-data" data-line-start="0" data-line-end="3">
-                CONFIEZ-NOUS VOS TRAVAUX EXTÉRIEURS OU
-                INTÉRIEURS.<br/>
-                UNE SEULE ÉQUIPE VOUS EST DÉDIÉE TOUT AU LONG DE VOTRE CHANTIER:<br/>
-                AUCUN CHANGEMENT, AUCUN ARRÊT DU CHANTIER</p>
-        </>
-    );
-}
-
-export function EnterpriseLabel(): React.JSX.Element {
-    return (
-        <>
-            <h2>
-                Votre chantier de <strong style={{
-                color: 'brand.500'
-            }}>A</strong> à <strong style={{
-                color: 'brand.500'
-            }}>Z</strong>
-            </h2>
-        </>
-    );
-}
-
-export function EnterpriseTitle(): React.JSX.Element {
-    return (
-        <>
-            <p>Depuis <strong style={{
-                color: 'brand.500'
-            }}>1960</strong></p>
-        </>
-    );
-}
