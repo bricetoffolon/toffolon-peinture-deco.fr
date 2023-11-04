@@ -10,7 +10,13 @@ import ContactButton from "@/components/layout/Button/contactButton";
 
 function PageButton(): React.JSX.Element {
     return (
-        <Flex gap={6}>
+        <Flex
+            gap={6}
+            direction={{
+                base: "column",
+                xl: "row"
+            }}
+        >
             <NextLink
                 href={"/notre-entreprise"}
                 passHref
