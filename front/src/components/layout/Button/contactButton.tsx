@@ -18,9 +18,11 @@ export default function ContactButton({fontSize}: {fontSize?: string}): React.JS
                 leftIcon={fontSize ? undefined : <Icon as={FaEnvelope} />}
                 _hover={{
                     bg: "brand.250",
-                    shadow: "base"
+                    shadow: "base",
+                    color: "black",
                 }}
                 fontSize={fontSize}
+                color={"white"}
                 padding={fontSize}
                 textShadow={"2px 2px 4px rgba(0,0,0,0.4)"}
             >
