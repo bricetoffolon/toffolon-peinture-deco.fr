@@ -37,7 +37,6 @@ export class PostController {
 
     }
 
-    @UseGuards(IsAuthenticatedGuard)
     @Get('/')
     async getPosts() {
         return this.postService.posts({});

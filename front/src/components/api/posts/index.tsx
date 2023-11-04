@@ -7,13 +7,13 @@ import {hookAPICallDataResp} from "@/hook/hookAPICall";
 
 export default function Posts() {
     const [user, setUser] = useState<any>('');
-    const [response, setResponse] = useState<any>(null);
+    const [response, setResponse] = useState({'data': [{}, {}, {}, {}]});
 
     hookAPICallDataResp("get", "/user", {}, user, setUser);
 
     return (
         <Flex
-            justify={"center"}
+            justifyContent={"center"}
             m={"1%"}
             direction={"column"}
         >

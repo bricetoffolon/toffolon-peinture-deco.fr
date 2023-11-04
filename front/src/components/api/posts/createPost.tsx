@@ -76,7 +76,7 @@ export default function CreatePost({email, setResponse}: {email: string, setResp
                         <Button color={"brand.500"}
                                 onClick={() => {
                                     setIsSubmit(true);
-                                    setResponse(null);
+                                    setResponse({'data': [{}, {}, {}, {}]});
                                     onClose();
                                 }}
                         >Submit</Button>

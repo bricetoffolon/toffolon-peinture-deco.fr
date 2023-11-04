@@ -35,13 +35,17 @@ export default function PostModal({ data, isOpen, onClose, admin, setReload }: {
             onClose={onClose}
         >
             <ModalOverlay />
-            <ModalContent>
+            <ModalContent
+                padding={"1%"}
+            >
                 <ModalCloseButton />
                 <ModalHeader>
-                    <Heading>{data.title}</Heading>
-                    <Text>
-                        {data.content}
-                    </Text>
+                    <Heading
+                        color={"brand.500"}
+                        textShadow={"0.1px 0.1px"}
+                        alignItems={"center"}
+                    >
+                        {data.title}</Heading>
                 </ModalHeader>
                 <ModalBody>
                     <div className={"embla"} ref={emblaRef}>
@@ -57,6 +61,7 @@ export default function PostModal({ data, isOpen, onClose, admin, setReload }: {
                                                     backgroundRepeat={"no-repeat"}
                                                     backgroundSize={"cover"}
                                                     backgroundImage={`url(${img.url})`}
+                                                    borderRadius={"1.5%"}
                                                 />
                                             </AspectRatio>
                                         </div>
@@ -65,6 +70,21 @@ export default function PostModal({ data, isOpen, onClose, admin, setReload }: {
                             }
                         </div>
                     </div>
+                    <Box
+                        mt={"5%"}
+                        boxShadow={"xl"}
+                        borderRadius={"lg"}
+                        border={"lg"}
+                        borderWidth={"1px"}
+                        padding={"5%"}
+                    >
+                        <Text
+                            textAlign={"center"}
+                            color={"brand.400"}
+                        >
+                            <strong>{data.content}</strong>
+                        </Text>
+                    </Box>
                 </ModalBody>
                 {
                     admin ? (
