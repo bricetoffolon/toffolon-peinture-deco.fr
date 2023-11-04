@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import instance from "@/hook/instance";
 
 import { useToast } from "@chakra-ui/react";
