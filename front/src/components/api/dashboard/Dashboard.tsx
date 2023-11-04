@@ -3,6 +3,7 @@ import {
     Button,
     Flex,
     Heading,
+    Box
 } from "@chakra-ui/react";
 
 import NextLink from "next/link";
@@ -27,43 +28,61 @@ export default function Dashboard(): React.JSX.Element {
             {
                 response !== "error" ? (
                     <Flex
-                        align={"center"}
-                        justify={"center"}
+                        alignItems={"center"}
+                        justifyContent={"center"}
                         direction={"column"}
                         mt={"1%"}
                     >
                         {
                             response.data && response.data.email ?
                                 (
-                                    <Heading>Welcome {response.data.email}</Heading>
+                                    <Heading
+                                        textShadow={"2px 2px 4px rgba(0, 0, 0, 0.2)"}
+                                    >
+                                        Welcome <Heading as={"span"} color={"brand.500"}>{response.data.email}</Heading>
+                                    </Heading>
                                 ) : null
                         }
-                        <Flex
+                        <Box
                             margin={"10%"}
-                            align={"center"}
+                            alignItems={"center"}
                             gap={6}
+                            background={"gray.200"}
+                            padding={"5%"}
+                            borderRadius={"lg"}
+                            boxShadow={"xl"}
                         >
-                            <Heading
-                                color={"brand.500"}
+                            <Flex
+                                direction={"column"}
+                                gap={6}
                             >
-                                Do you want to manage your posts ?
-                            </Heading>
-                            <NextLink
-                                href={"redondo/posts"}
-                                passHref
-                            >
-                                <Button
-                                    size={"lg"}
+                                <Heading
+                                    textShadow={"2px 2px 4px rgba(0, 0, 0, 0.2)"}
                                 >
-                                    Manage posts
-                                </Button>
-                            </NextLink>
-                        </Flex>
+                                    Manage your <Heading as={"span"} color={"brand.400"}>posts</Heading> ?
+                                </Heading>
+                                <NextLink
+                                    href={"redondo/posts"}
+                                    passHref
+                                >
+                                    <Button
+                                        size={"lg"}
+                                        boxShadow={"xl"}
+                                        color={"brand.400"}
+                                        _hover={{
+                                            color: "brand.500"
+                                        }}
+                                    >
+                                        Manage posts
+                                    </Button>
+                                </NextLink>
+                            </Flex>
+                        </Box>
                     </Flex>
                 ) :
                     <Flex
-                        align={"center"}
-                        justify={"center"}
+                        alignItems={"center"}
+                        justifyContent={"center"}
                         direction={"column"}
                         m={"10%"}
                     >
