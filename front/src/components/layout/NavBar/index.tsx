@@ -30,7 +30,7 @@ function NavBar(): React.JSX.Element {
                 top={"1rem"}
                 right={"1rem"}
                 margin={"1%"}
-                align={"center"}
+                alignItems={"center"}
             >
                 <NextLink
                     href={"/"}
@@ -46,7 +46,7 @@ function NavBar(): React.JSX.Element {
                     >
                         <Flex>
                             <Image
-                                align={"center"}
+                                alignItems={"center"}
                                 src={"https://toffolon-website.s3.eu-west-3.amazonaws.com/Toffolon-Icon.png"}
                             />
                         </Flex>
@@ -69,6 +69,7 @@ function NavBar(): React.JSX.Element {
                     base: 'flex',
                     xl: 'none'
                 }}
+                mb={"1%"}
             >
                 <IconButton
                     aria-label={"Open menu"}

@@ -67,7 +67,7 @@ export default function ServiceDrawer({service}: {service: any}): React.JSX.Elem
                     {service.content ?
                         (
                             <DrawerBody>
-                                <Flex align={"center"} direction={{base: "column"}} gap={10} paddingLeft={"10%"} paddingRight={"10%"}>
+                                <Flex alignItems={"center"} direction={{base: "column"}} gap={10} paddingLeft={"10%"} paddingRight={"10%"}>
                                     <Heading color={"brand.500"} size={{base: "lg", xl:"xl"}}>
                                         {service.content.label}
                                     </Heading>

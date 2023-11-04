@@ -20,8 +20,8 @@ export default function AddUser(): React.JSX.Element {
 
     return (
         <Flex
-            align={"center"}
-            justify={"center"}
+            alignItems={"center"}
+            justifyContent={"center"}
             direction={"column"}
             m={"10%"}
         >

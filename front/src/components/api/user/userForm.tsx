@@ -26,30 +26,38 @@ export default function UserForm({title, inputs, formValues, setFormValues, setI
 
     return (
         <Box
-            align={"center"}
-            bg={"brand.500"}
-            padding={"2%"}
+            alignItems={"center"}
+            padding={"5%"}
             borderRadius={"lg"}
+            boxShadow={"2xl"}
+            background={"brand.400"}
         >
-            <Heading>
+            <Heading mb={"10%"}  color={"white"}>
                 {title}
             </Heading>
             <FormControl>
                 {
                     inputs.map((input: string) => {
                         return (
-                            <>
-                                <FormLabel>
+                            <Flex
+                                margin={"2%"}
+                                direction={"column"}
+                            >
+                                <FormLabel
+                                    color={"white"}
+                                    textShadow={"2px 2px 4px rgba(0, 0, 0, 0.2)"}
+                                >
                                     {input}
                                 </FormLabel>
                                 {
                                     input.includes("password") ? (
-                                        <Flex
-                                            direction={"row"}
-                                            gap={6}
-                                        >
-                                            <InputGroup>
-                                                <Input type={showPass ? undefined : "password"} value={formValues[input]} onChange={(e) => handleValueChange(input, e.target.value)}/>
+                                        <>
+                                            <InputGroup
+                                                boxShadow={"xl"}
+                                                background={"white"}
+                                                borderRadius={"2xl"}
+                                            >
+                                                <Input boxShadow={"2xl"} type={showPass ? undefined : "password"} value={formValues[input]} onChange={(e) => handleValueChange(input, e.target.value)}/>
                                                 <InputRightElement mr={"1%"}>
                                                     <Button
                                                         size={"sm"}
@@ -60,13 +68,13 @@ export default function UserForm({title, inputs, formValues, setFormValues, setI
                                                 </InputRightElement>
                                             </InputGroup>
 
-                                        </Flex>
+                                        </>
                                     ) :
                                         (
-                                            <Input value={formValues[input]} onChange={(e) => handleValueChange(input, e.target.value)}/>
+                                            <Input background={"white"} borderRadius={"md"} boxShadow={"xl"} value={formValues[input]} onChange={(e) => handleValueChange(input, e.target.value)}/>
                                         )
                                 }
-                            </>
+                            </Flex>
                         );
                     })
                 }
@@ -74,6 +82,7 @@ export default function UserForm({title, inputs, formValues, setFormValues, setI
             <Button
                 m={"3%"}
                 onClick={() => setIsSubmit(true)}
+                boxShadow={"xl"}
             >
                 Submit
             </Button>

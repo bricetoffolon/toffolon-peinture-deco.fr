@@ -13,8 +13,8 @@ export default function VerifyUser(): React.JSX.Element {
 
     return (
         <Flex
-            align={"center"}
-            justify={"center"}
+            alignItems={"center"}
+            justifyContent={"center"}
             m={"1%"}
             direction={"column"}
         >
