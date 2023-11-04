@@ -14,15 +14,20 @@ export default function Footer(): React.JSX.Element {
             }}
             as={"footer"}
         >
-            <Flex alignItems={"center"} justifyContent={"center"} mb={"0.5%"}>
+            <Flex justifyContent={"center"} alignItems={"center"} mb={"0.5%"}>
                 <Stack
-                    direction={{
-                        base: 'column',
-                        xl: 'row'
-                    }}
+                    direction={"row"}
                     spacing={{
-                        base: 2,
+                        base: 3,
                         md:6
+                    }}
+                    wrap={{
+                        base: "wrap",
+                        xl: "nowrap"
+                    }}
+                    justifyContent={{
+                        base: "center",
+                        xl: "flex-start"
                     }}
                 >
                     <NextLink
@@ -55,7 +60,10 @@ export default function Footer(): React.JSX.Element {
             <Flex
                 justifyContent={"center"}
             >
-                <Text as={"b"} textShadow={"2px 2px 4px rgba(0,0,0,0.4)"}>
+                <Text mt={{
+                    base: "5%",
+                    xl: "1%"
+                }} as={"b"} textShadow={"2px 2px 4px rgba(0,0,0,0.4)"}>
                     Toffolon © 2023
                 </Text>
             </Flex>
