@@ -8,12 +8,9 @@ export default function ContactForm(): React.JSX.Element {
     return (
         <Box
             padding={"2%"}
-            borderWidth={"1px"}
             borderRadius={"lg"}
-            boxShadow={"lg"}
-            bg={"whiteAlpha.900"}
-            width={{ base: "90%", sm: "80%", md: "70%", lg: "60%" }}
-            height={"100%"}
+            w={"50%"}
+            height={"90%"}
             mx="auto"
         >
             <Flex
@@ -31,24 +28,26 @@ export default function ContactForm(): React.JSX.Element {
                                     <InputLeftElement pointerEvents='none'>
                                         {input.icon}
                                     </InputLeftElement>
-                                    <Input height={input.field == "Message" ? "30vh" :  undefined} verticalAlign="top" size={'md'} boxShadow={"lg"} borderColor="brand.500" borderRadius={"lg"} borderWidth={"1%"}/>
+                                    <Input height={input.field == "Message" ? "30vh" :  undefined} verticalAlign="top" size={'md'} boxShadow={"2xl"} borderColor="brand.500" borderRadius={"lg"} borderWidth={"1%"}/>
                                 </InputGroup>
                             </FormControl>
                         );
                     })
                 }
-                <Button
-                    boxShadow={"lg"}
-                    textColor={"whiteAlpha.900"}
-                    bg={"brand.500"}
-                    borderRadius={"lg"}
-                    _hover={{
-                        bg: "brand.600"
-                    }}
-                >
-                    Envoyer
-                </Button>
             </Flex>
+            <Button
+                boxShadow={"2xl"}
+                textColor={"whiteAlpha.900"}
+                bg={"brand.600"}
+                borderRadius={"lg"}
+                _hover={{
+                    bg: "brand.600"
+                }}
+                mt={"5%"}
+                size={"lg"}
+            >
+                Envoyer
+            </Button>
         </Box>
     );
 }

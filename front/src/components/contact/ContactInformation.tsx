@@ -9,12 +9,11 @@ export default function ContactInformation(): React.JSX.Element {
            direction={"column"}
        >
            <Heading size="2xl" color={"whiteAlpha.900"}>Contact</Heading>
-           <Text mt="5%" fontSize="2xl" color={"whiteAlpha.800"}>Contactez nous dés <Text as={"b"}>maintenant !</Text></Text>
+           <Text mt="5%" fontSize="2xl" color={"whiteAlpha.800"}>Contactez nous dés <Text as={"b"}>maintenant !</Text></Text>’
            <Flex
                direction={"column"}
-               gap={"6"}
+               gap={"10"}
                align={"flex-start"}
-               mt={"15%"}
            >
                {
                    informationData().map((data, key) => {

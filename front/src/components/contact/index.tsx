@@ -1,30 +1,33 @@
 import React from "react";
-import {Box, Container, Flex} from "@chakra-ui/react";
+import { Container, Flex, Heading, Text} from "@chakra-ui/react";
 import ContactForm from "@/components/contact/ContactForm";
 import ContactInformation from "@/components/contact/ContactInformation";
 
 export default function Contact(): React.JSX.Element {
     return (
-        <Container maxW={"full"} centerContent overflow={"hidden"} h={'100vh'}>
+        <Container maxW={"full"} overflow={"hidden"} h={'100vh'} padding={"3%"}>
             <Flex
-                padding={"1%"}
+                direction={"column"}
+                gap={"10%"}
             >
-                <Box
-                    borderRadius={"lg"}
-                    boxShadow={"lg"}
-                    bg={"brand.500"}
-                    m={{ sm: 4, md: 16, lg: 10 }}
-                    p={{sm: 4, md: 8, lg: 10}}
-                    w={"50vw"}
-                    h={"70vh"}
+               <Flex
+                   direction={"column"}
+                   alignSelf={"center"}
+                   alignItems={"center"}
+               >
+                   <Heading
+                       size={"4xl"}
+                   >
+                       Contactez-nous dès <Heading size={"4xl"} as={"span"} color={"brand.500"}>maintenant !</Heading>
+                   </Heading>
+                   <Text mt="2%" as="b" fontSize="4xl" color={"gray.400"}>Pour un devis gratuit et personnalisé, <br/>n'hésitez pas à prendre contact avec nous</Text>
+               </Flex>
+                <Flex
+                    gap={"justify-space"}
                 >
-                    <Flex
-                        gap={"6"}
-                    >
-                        <ContactInformation />
-                        <ContactForm />
-                    </Flex>
-                </Box>
+                    <ContactForm />
+                    <ContactInformation/>
+                </Flex>
             </Flex>
         </Container>
     );

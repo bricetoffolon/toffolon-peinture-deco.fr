@@ -1,22 +1,29 @@
 import React from "react";
-import {Button} from "@chakra-ui/react";
+import {Box, Flex, Icon, Heading} from "@chakra-ui/react";
 
-export default function InformationButton({Icon, text, content}): React.JSX.Element {
+interface buttonProps {
+    Icon: string,
+    text: string,
+    content: string,
+}
+
+export default function InformationButton(props: buttonProps): React.JSX.Element {
     return (
-        <Button
-            bg={"brand.300"}
-            borderRadius={"lg"}
-            borderWidth={"2px"}
-            borderColor={"brand.500"}
-            _hover={{
-                borderColor: "whiteAlpha.900",
-                boxShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)'
-            }}
-            color={"whiteAlpha.900"}
-            leftIcon={Icon}
-            size={"lg"}
+        <Flex
+            direction={"column"}
+            alignSelf={"center"}
+            w={"10vw"}
         >
-            {text}
-        </Button>
+                <Box
+                        as={"button"}
+                        borderRadius={"lg"}
+                        bg={"brand.400"}
+                        boxShadow={"2xl"}
+                        h={"15vh"}
+                >
+                    <Icon as={props.Icon} boxSize={"4em"} color={"brand.600"}/>
+                </Box>
+                <Heading alignSelf={"center"} size={"lg"} mt={"10%"}>{props.text}</Heading>
+        </Flex>
     );
 }
