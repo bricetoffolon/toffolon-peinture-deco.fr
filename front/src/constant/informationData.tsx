@@ -1,16 +1,18 @@
-import {FaBuilding, FaPhoneAlt} from "react-icons/fa";
+import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 
 export default function informationData() {
     const informationData = [
         {
             'Icon': FaPhoneAlt,
             'text': 'Téléphone',
-            'content': '+33 1 46 71 84 19'
+            'content': '+33 1 46 71 84 19',
+            'catchPhrase': 'Une question ? Appelez-nous !'
         },
         {
-            'Icon': FaBuilding,
+            'Icon': FaMapMarkerAlt,
             'text': 'Addresse',
-            'content': '25 allée gabriel, 93250, Les pavillons-sous-bois'
+            'content': '25 allée gabriel, 93250, Les pavillons-sous-bois',
+            'catchPhrase': 'Où nous sommes ?'
         }
     ]
 
