@@ -11,10 +11,11 @@ interface step {
 interface content {
     title: string,
     label: string,
+    description: string,
     steps: step[]
 }
 
-interface service {
+export interface service {
     name: string,
     imageUrl: string,
     content?: content
@@ -44,6 +45,7 @@ export const serviceInformation: service[] =
             content: {
                 title: 'Isolation Thermique',
                 label: 'Notre entreprise est certifiée QUALIBAT RGE depuis 2015 pour la réalisation des travaux d’isolation thermique exté- rieure sur les pavillons, im- meubles, magasins...',
+                description: "Nous fournissons et posons les matériaux nécessaires à l’isolation thermique extérieure. En premier lieu, nous plaquons un isolant, recouvert par un enduit armé, ceci protège votre bâtiment et imperméabilise les façades. L’enduit décoratif représente la touche finale de la façade, tout en isolant les bâtiments.\nL’isolation permet d’alléger vos factures d’énergie, de bénéficier d’avantages fiscaux et de prétendre à des subventions. Pour cela les matériaux doivent avoir les certifications ACERMI et avis techniques spécifiques.",
                 steps: [
                     {
                         title: 'Analyse',

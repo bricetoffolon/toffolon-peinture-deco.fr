@@ -5,13 +5,14 @@ import ServiceCardInfo from "@/components/services/serviceCardInfo";
 
 import {AnimatePresence, motion} from 'framer-motion';
 
-export default function ServiceCard({service}: {service: any}) : React.JSX.Element {
+import {service} from "@/constant/serviceInformation";
+
+export default function ServiceCard({service}: {service: service}) : React.JSX.Element {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const cardVariants = {
         initial: {
             opacity: 0,
-            y: 50,
             transition: { duration: 0.5 },
         },
         animate: {
@@ -28,8 +29,6 @@ export default function ServiceCard({service}: {service: any}) : React.JSX.Eleme
 
     return (
         <>
-            <button onClick={() => setIsOpen(!isOpen)}>Toggle Card</button>
-
             <AnimatePresence mode={"wait"}>
                 {isOpen ? (
                     <motion.div

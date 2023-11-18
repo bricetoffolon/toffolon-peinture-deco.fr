@@ -8,9 +8,9 @@ import {
     Image,
     Button,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, {SetStateAction} from 'react';
 
-export default function ServiceCardLanding({ service, isOpen, setIsOpen }) {
+export default function ServiceCardLanding({service, isOpen, setIsOpen}: { service: service, isOpen: boolean, setIsOpen: React.Dispatch<SetStateAction<boolean>> }) {
     return (
         <Card
             style={{

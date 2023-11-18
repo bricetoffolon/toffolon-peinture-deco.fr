@@ -23,6 +23,7 @@ export default function Services(): React.JSX.Element {
                         scrollSnapType: "y mandatory",
                     }}
                     alignItems={"center"}
+                    w={"100vw"}
                 >
                     {serviceInformation.map((element: any, index: number) => (
                         <ServiceCard
