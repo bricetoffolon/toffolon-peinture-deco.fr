@@ -1,109 +1,72 @@
 import React from "react";
 
-import {
-    Card,
-    CardBody,
-    CardHeader,
-    Text,
-    Heading,
-    CardFooter,
-    Flex,
-    Image,
-    useBreakpointValue,
-    Box,
-} from "@chakra-ui/react";
+import {useBreakpointValue, useDisclosure} from "@chakra-ui/react";
 
-import ServiceDrawer from "@/components/services/serviceDrawer";
+import {AnimatePresence, motion} from 'framer-motion';
 
-export default function ServiceCard({service}: {service: any}) : React.JSX.Element {
-    const displayMode = useBreakpointValue({base: "Card", xl: "Box"});
+import ServiceCardLanding from "@/components/services/serviceCardLanding";
+import ServiceCardInfo from "@/components/services/serviceCardInfo";
+
+import {service} from "@/constant/serviceInformation";
+import DrawerInfo from "@/components/services/drawerInfo";
+
+export default function ServiceCard({service}: {service: service}) : React.JSX.Element {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const isSmallDevice = useBreakpointValue({base: true, xl: false});
+
+    const cardVariants = {
+        initial: {
+            opacity: 0,
+            transition: { duration: 0.5 },
+        },
+        animate: {
+            opacity: 1,
+            transition: { duration: 0.5 },
+            filter: "blur(0px)",
+        },
+        exit: {
+            opacity: 0,
+            transition: { duration: 0.5 },
+            filter: "blur(8px)",
+        },
+    };
 
     return (
         <>
             {
-                displayMode == "Card" ? (
-                    <Card
-                        _hover={{
-                            transition: "0.4s",
-                            color: "brand.500",
-                            transform: 'scale(1.03)',
-                        }}
-                        maxW={{
-                            base: "md",
-                            xl: "xl"
-                        }}
-                        style={{
-                            scrollSnapAlign: "start",
-                        }}
-                        height={"100%"}
-                        borderColor={"whiteAlpha.500"}
-                    >
-                        <CardHeader
-                        >
-                            <Flex
-                                justifyContent={"center"}
-                            >
-                                <Heading
-                                    color={"brand.500"}
-                                    size={"xl"}
-                                >
-                                    {service.name}
-                                </Heading>
-                            </Flex>
-                        </CardHeader>
-                        <CardBody>
-                            <Image
-                                src={service.imageUrl}
-                                alt={service.name}
-                                borderRadius='lg'
-                            />
-                            <Flex
-                                mt={"2%"}
-                            >
-                                <Text
-                                    as={"b"}
-                                    color={"brand.400"}
-                                >
-                                    {service.description}
-                                </Text>
-                            </Flex>
-                        </CardBody>
-                        <CardFooter>
-                            <ServiceDrawer
-                                service={service}
-                            />
-                        </CardFooter>
-                    </Card>
+                isSmallDevice ? (
+                    <>
+                        <DrawerInfo service={service} isOpen={isOpen} onClose={onClose}/>
+                        <ServiceCardLanding service={service} onOpen={onOpen}/>
+                    </>
                 ) : (
-                    <Flex style={{scrollSnapAlign: "start"}}>
-                        <Box
-                            position={"relative"}
-                            backgroundPosition={"center"}
-                            backgroundRepeat={"no-repeat"}
-                            backgroundSize={"cover"}
-                            backgroundImage={service.imageUrl}
-                            width={"100vw"}
-                            height={"100vh"}
-                        >
-                            <Flex
-                                alignItems={"center"}
-                                margin={"1%"}
-                                direction={"column"}
+                    <AnimatePresence mode={"wait"}>
+                        {isOpen ? (
+                            <motion.div
+                                key="serviceCardInfo"
+                                initial="initial"
+                                animate="animate"
+                                exit="exit"
+                                variants={cardVariants}
                             >
-                                <Heading size="2xl" color={"brand.500"}>{service.name}</Heading>
-                                <Text as={"b"}>{service.description}</Text>
-                                <Flex
-                                    mt={"50vh"}
-                                >
-                                    <ServiceDrawer
-                                        service={service}
-                                    />
-                                </Flex>
-                            </Flex>
-                        </Box>
-                    </Flex>
+                                <ServiceCardInfo service={service} onClose={onClose}/>
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key="serviceCardLanding"
+                                initial="initial"
+                                animate="animate"
+                                exit="exit"
+                                variants={cardVariants}
+                            >
+                                <ServiceCardLanding service={service} onOpen={onOpen}/>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 )
             }
         </>
     );
+
 }
