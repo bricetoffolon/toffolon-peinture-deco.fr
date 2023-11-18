@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react';
+import {step} from "@/constant/serviceInformation";
 
-export default function StepsIcon({ step }) {
+export default function StepsIcon({ step }: {step: step}) {
     return (
-        <Flex direction="column" gap={2} align="left">
+        <Flex direction="column" gap={2} alignItems={{base: "center", xl: "left"}}>
             <Flex>
                 <Box
                     m="5%"

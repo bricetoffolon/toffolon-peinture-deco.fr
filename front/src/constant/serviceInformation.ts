@@ -2,7 +2,7 @@ import React from "react";
 
 import { FaCalendarCheck, FaCogs, FaFileContract, FaTruck } from 'react-icons/fa';
 
-interface step {
+export interface step {
     title: string,
     label: string,
     Icon: React.ElementType

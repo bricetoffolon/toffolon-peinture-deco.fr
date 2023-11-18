@@ -1,14 +1,19 @@
-import React, {useState} from "react";
+import React from "react";
+
+import {useBreakpointValue, useDisclosure} from "@chakra-ui/react";
+
+import {AnimatePresence, motion} from 'framer-motion';
 
 import ServiceCardLanding from "@/components/services/serviceCardLanding";
 import ServiceCardInfo from "@/components/services/serviceCardInfo";
 
-import {AnimatePresence, motion} from 'framer-motion';
-
 import {service} from "@/constant/serviceInformation";
+import DrawerInfo from "@/components/services/drawerInfo";
 
 export default function ServiceCard({service}: {service: service}) : React.JSX.Element {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const isSmallDevice = useBreakpointValue({base: true, xl: false});
 
     const cardVariants = {
         initial: {
@@ -29,29 +34,38 @@ export default function ServiceCard({service}: {service: service}) : React.JSX.E
 
     return (
         <>
-            <AnimatePresence mode={"wait"}>
-                {isOpen ? (
-                    <motion.div
-                        key="serviceCardInfo"
-                        initial="initial"
-                        animate="animate"
-                        exit="exit"
-                        variants={cardVariants}
-                    >
-                        <ServiceCardInfo service={service} isOpen={isOpen} setIsOpen={setIsOpen}/>
-                    </motion.div>
+            {
+                isSmallDevice ? (
+                    <>
+                        <DrawerInfo service={service} isOpen={isOpen} onClose={onClose}/>
+                        <ServiceCardLanding service={service} onOpen={onOpen}/>
+                    </>
                 ) : (
-                    <motion.div
-                        key="serviceCardLanding"
-                        initial="initial"
-                        animate="animate"
-                        exit="exit"
-                        variants={cardVariants}
-                    >
-                        <ServiceCardLanding service={service} isOpen={isOpen} setIsOpen={setIsOpen}/>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    <AnimatePresence mode={"wait"}>
+                        {isOpen ? (
+                            <motion.div
+                                key="serviceCardInfo"
+                                initial="initial"
+                                animate="animate"
+                                exit="exit"
+                                variants={cardVariants}
+                            >
+                                <ServiceCardInfo service={service} onClose={onClose}/>
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key="serviceCardLanding"
+                                initial="initial"
+                                animate="animate"
+                                exit="exit"
+                                variants={cardVariants}
+                            >
+                                <ServiceCardLanding service={service} onOpen={onOpen}/>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                )
+            }
         </>
     );
 

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
     Card,
     CardBody,
@@ -8,9 +10,10 @@ import {
     Image,
     Button,
 } from '@chakra-ui/react';
-import React, {SetStateAction} from 'react';
 
-export default function ServiceCardLanding({service, isOpen, setIsOpen}: { service: service, isOpen: boolean, setIsOpen: React.Dispatch<SetStateAction<boolean>> }) {
+import {service} from "@/constant/serviceInformation";
+
+export default function ServiceCardLanding({service, onOpen}: {service: service, onOpen: () => void}) {
     return (
         <Card
             style={{
@@ -28,7 +31,7 @@ export default function ServiceCardLanding({service, isOpen, setIsOpen}: { servi
                     <Heading color="brand.500" size="xl">
                         {service.name}
                     </Heading>
-                    <Button onClick={() => setIsOpen(!isOpen)}>En savoirs plus</Button>
+                    <Button onClick={onOpen}>En savoirs plus</Button>
                 </Flex>
             </CardHeader>
             <CardBody>
