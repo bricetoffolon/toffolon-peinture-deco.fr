@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import instance from "@/hook/instance";
 
-import { useToast } from "@chakra-ui/react";
+import {useBreakpointValue, useToast} from "@chakra-ui/react";
 import { AxiosResponse } from "axios";
 
 async function apiCall(method: string, endpoint: string, data: JSON): Promise<AxiosResponse<any, any> | undefined> {
@@ -16,13 +16,18 @@ async function apiCall(method: string, endpoint: string, data: JSON): Promise<Ax
 export function hookAPICallToastResp(method: string, endpoint: string, data: any, isSubmit: boolean, setIsSubmit: any): void {
     const toast = useToast();
 
+    const toastPosition = useBreakpointValue({base: 'top', xl: 'bottom'})
+
     useEffect((): void => {
         if (isSubmit) {
             apiCall(method, endpoint, data).then(response => {
                 toast({
+                    // @ts-ignore
+                    position: toastPosition,
                     status: "success",
                     duration: 9000,
                     isClosable: true,
+                    title: response && response.data && response.data.message ? response.data.message : null
                 });
             }).catch(error => {
                 toast({
