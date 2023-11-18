@@ -1,4 +1,4 @@
-import React  from "react";
+import React, {useState} from "react";
 import {
     Box,
     Flex,
@@ -8,7 +8,7 @@ import {
     useDisclosure,
     ModalOverlay,
     ModalContent,
-    ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, Text
+    ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, Text, Input
 } from "@chakra-ui/react";
 import {FaCopy} from "react-icons/fa";
 
@@ -21,6 +21,8 @@ interface buttonProps {
 
 export default function InformationButton(props: buttonProps): React.JSX.Element {
     const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const [isBot, setIsBot] = useState<boolean>(false);
 
     return (
         <Flex
@@ -64,35 +66,44 @@ export default function InformationButton(props: buttonProps): React.JSX.Element
             >
                 {props.catchPhrase}
             </Text>
-            <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>{props.text}</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                        <Box
-                            boxShadow={"2xl"}
-                            borderRadius={"lg"}
-                            borderWidth={"1px"}
-                            padding={"5%"}
-                        >
-                            <Heading textAlign="center" color={"brand.500"}>{props.content}</Heading>
-                        </Box>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button
-                            leftIcon={<FaCopy />}
-                            boxShadow={"lg"}
-                            onClick={() => {navigator.clipboard.writeText(props.content)}}
-                        >
-                            Copier
-                        </Button>
-                        <Button boxShadow={"lg"} ml={3} onClick={onClose}>
-                            Fermer
-                        </Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
+
+            <div style={{ display: 'none' }}>
+                <Input name="botField" onChange={() => setIsBot(true)} tabIndex={-1} />
+            </div>
+
+            {
+                !isBot ? (
+                    <Modal isOpen={isOpen} onClose={onClose}>
+                        <ModalOverlay />
+                        <ModalContent>
+                            <ModalHeader>{props.text}</ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody>
+                                <Box
+                                    boxShadow={"2xl"}
+                                    borderRadius={"lg"}
+                                    borderWidth={"1px"}
+                                    padding={"5%"}
+                                >
+                                    <Heading textAlign="center" color={"brand.500"}>{props.content}</Heading>
+                                </Box>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button
+                                    leftIcon={<FaCopy />}
+                                    boxShadow={"lg"}
+                                    onClick={() => {navigator.clipboard.writeText(props.content)}}
+                                >
+                                    Copier
+                                </Button>
+                                <Button boxShadow={"lg"} ml={3} onClick={onClose}>
+                                    Fermer
+                                </Button>
+                            </ModalFooter>
+                        </ModalContent>
+                    </Modal>
+                ) : null
+            }
         </Flex>
     );
 }

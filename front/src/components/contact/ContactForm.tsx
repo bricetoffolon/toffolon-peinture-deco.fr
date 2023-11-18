@@ -15,10 +15,10 @@ import { inputsContact } from "@/constant/inputsContact";
 import {hookAPICallToastResp} from "@/hook/hookAPICall";
 
 interface FormData {
-    last_name: string,
-    first_name: string,
-    email: string,
-    message: string,
+    last_name: string | null,
+    first_name: string | null
+    ,email: string | null,
+    message: string | null,
 }
 
 export default function ContactForm(): React.JSX.Element {
@@ -26,14 +26,18 @@ export default function ContactForm(): React.JSX.Element {
         'last_name': null, 'first_name': null, 'email': null, 'message': null
         });
 
+    const [isBot, setIsBot] = useState<boolean>(false);
+
     const isFormComplete = (): boolean => {
         const complete =  Object.values(formData).every(value => value !== '');
 
         const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-        console.log(complete && regex.test(formData.email));
+        if (isBot) {
+            return false
+        }
 
-        return complete && regex.test(formData.email);
+        return complete && regex.test(formData.email as string);
     };
 
     const [submit, setSubmit] = useState<boolean>(false);
@@ -100,6 +104,9 @@ export default function ContactForm(): React.JSX.Element {
                                             </InputGroup>
                                         )
                                 }
+                                <div style={{ display: 'none' }}>
+                                    <Input name="botField" onChange={() => setIsBot(true)} tabIndex={-1} />
+                                </div>
                             </FormControl>
                         );
                     })
