@@ -15,11 +15,13 @@ export class ContactController {
     }
 
     @Post('/')
-    async putInContact( @Body() createContactDto: CreateContactDto) {
-        const { last_name, first_name, email, phone_number, which_benefit, how_you_heard_about_us, message } = createContactDto;
+    async putInContact( @Body() createContactDto: CreateContactDto): Promise<{ message: string }> {
+        const { last_name, first_name, email, message } = createContactDto;
 
-        await this.mailService.sendEmail(email, which_benefit, `New contact from <br/><strong>${first_name} ${last_name}<br/><br/></strong>phone number: <br><strong>${phone_number}<br/><br/></strong><br/>email: <br/><strong>${email}</strong><br/><br/> This person heard about you by: <br/><strong>${how_you_heard_about_us}</strong><br/><br/>Contact message:<strong><br/>${message}</strong>`)
+        await this.mailService.sendEmail(email, "New contact !", `New contact from <br/><strong>${first_name} ${last_name}</strong><br/>email: <br/><strong>${email}</strong>Contact message:<br/>${message}</strong>`)
 
         await this.mailService.sendEmail(email, `Update on your inquiry`, 'Hey, we successfully received your contact demand, we will come back to you soon');
+
+        return {"message": "Votre message a été envoyé"}
     }
 }
