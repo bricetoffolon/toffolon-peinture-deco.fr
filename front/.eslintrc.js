@@ -5,8 +5,11 @@ module.exports = {
         'airbnb/hooks',
         'prettier',
         'plugin:prettier/recommended',
+        'plugin:@typescript-eslint/recommended',
     ],
-    plugins: ['prettier'],
+    plugins: ['prettier', '@typescript-eslint'],
+    parser: '@typescript-eslint/parser',
+    root: true,
     rules: {
         // you can modify some rules manually
         'react/jsx-filename-extension': [
