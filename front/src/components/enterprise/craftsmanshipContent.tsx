@@ -3,6 +3,7 @@ import { Flex, Heading, Text, Icon } from '@chakra-ui/react';
 
 import { FaSeedling } from 'react-icons/fa';
 import { entrepriseInformation } from '@/constant/entrepriseInformation';
+import { animateText, AddAnimation } from '@/components/enterprise/animations';
 
 export default function CraftsmanshipContent(): React.JSX.Element {
     return (
@@ -17,9 +18,11 @@ export default function CraftsmanshipContent(): React.JSX.Element {
                 />
                 <Heading size={{ base: 'lg', xl: '2xl' }}>{entrepriseInformation[2].title}</Heading>
             </Flex>
-            <Text as="b" color="gray.500" fontSize={{ base: '2xl', xl: '3xl' }} maxW="80vw">
-                {entrepriseInformation[2].paragraph}
-            </Text>
+            <AddAnimation motionOptions={animateText({ timing: 0.5 })}>
+                <Text as="b" color="gray.500" fontSize={{ base: '2xl', xl: '3xl' }} maxW="80vw">
+                    {entrepriseInformation[2].paragraph}
+                </Text>
+            </AddAnimation>
         </Flex>
     );
 }

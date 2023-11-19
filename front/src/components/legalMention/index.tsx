@@ -27,7 +27,7 @@ export default function LegalMention(): React.JSX.Element {
             </Flex>
             <Flex m="1%" alignItems="center" direction="column" gap={6}>
                 <Heading>Des questions ?</Heading>
-                <ContactButton fontSize="20px" />
+                <ContactButton props={{ fontSize: '20px' }} />
             </Flex>
         </>
     );

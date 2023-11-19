@@ -4,6 +4,7 @@ import { Flex, Heading, Text } from '@chakra-ui/react';
 
 import { entrepriseInformation } from '@/constant/entrepriseInformation';
 import PersonPresentation from '@/components/enterprise/personPresentation';
+import { AddAnimation, animateText } from '@/components/enterprise/animations';
 
 export default function FamilyContent(): React.JSX.Element {
     return (
@@ -30,19 +31,21 @@ export default function FamilyContent(): React.JSX.Element {
                 justifyContent="center"
                 alignItems="center"
             >
-                <Flex direction="column">
-                    <Heading size={{ base: 'lg', xl: '2xl' }}>
-                        {entrepriseInformation[0].title}
-                    </Heading>
-                    <Text
-                        as="b"
-                        color="gray.500"
-                        fontSize={{ base: '2xl', xl: '3xl' }}
-                        maxW={{ base: '80vw', xl: '30vw' }}
-                    >
-                        {entrepriseInformation[0].paragraph}
-                    </Text>
-                </Flex>
+                <AddAnimation motionOptions={animateText({ timing: 0.5 })}>
+                    <Flex direction="column">
+                        <Heading size={{ base: 'lg', xl: '2xl' }}>
+                            {entrepriseInformation[0].title}
+                        </Heading>
+                        <Text
+                            as="b"
+                            color="gray.500"
+                            fontSize={{ base: '2xl', xl: '3xl' }}
+                            maxW={{ base: '80vw', xl: '30vw' }}
+                        >
+                            {entrepriseInformation[0].paragraph}
+                        </Text>
+                    </Flex>
+                </AddAnimation>
                 <PersonPresentation
                     name="Alfred Toffolon"
                     picture="https://toffolon-website.s3.eu-west-3.amazonaws.com/contact/previous-owner.png"

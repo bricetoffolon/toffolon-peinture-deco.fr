@@ -7,26 +7,26 @@ import ContactButton from '@/components/layout/Button/contactButton';
 import FamilyContent from '@/components/enterprise/familyContent';
 import KnowHowContent from '@/components/enterprise/knowHowContent';
 import CraftsmanshipContent from '@/components/enterprise/craftsmanshipContent';
-import Section from '@/components/enterprise/section';
+import { AddAnimation, animateLayout, animateButton } from '@/components/enterprise/animations';
 
 export default function Enterprise(): React.JSX.Element {
     return (
         <Flex w="100%" padding="2%" direction="column" gap={20}>
             <FamilyContent />
-            <Section>
+            <AddAnimation motionOptions={animateLayout({ timing: 0.5 })}>
                 <KnowHowContent />
-            </Section>
-            <Section>
+            </AddAnimation>
+            <AddAnimation motionOptions={animateLayout({ timing: 0.5 })}>
                 <CraftsmanshipContent />
-            </Section>
-            <Section>
+            </AddAnimation>
+            <AddAnimation motionOptions={animateLayout({ timing: 0.5 })}>
                 <CertificationLayout />
-            </Section>
-            <Section>
-                <Flex>
-                    <ContactButton fontSize="3xl" padding="10%" />
-                </Flex>
-            </Section>
+            </AddAnimation>
+            <Flex alignSelf="center">
+                <AddAnimation motionOptions={animateButton({ timing: 0.5 })}>
+                    <ContactButton props={{fontSize: "3xl", padding: "10%"}} />
+                </AddAnimation>
+            </Flex>
         </Flex>
     );
 }
