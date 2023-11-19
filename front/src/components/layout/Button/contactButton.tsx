@@ -1,30 +1,37 @@
-import React from "react";
+import React from 'react';
 
-import NextLink from "next/link";
+import NextLink from 'next/link';
 
-import { Button, Icon } from "@chakra-ui/react";
+import { Button, Icon } from '@chakra-ui/react';
 
-import { FaEnvelope } from "react-icons/fa";
+import { FaEnvelope } from 'react-icons/fa';
 
-export default function ContactButton({fontSize}: {fontSize?: string}): React.JSX.Element {
+export default function ContactButton({
+    fontSize,
+    padding,
+    addIcon,
+}: {
+    fontSize?: string;
+    padding: string;
+    addIcon: boolean;
+}): React.JSX.Element {
     return (
-        <NextLink
-            href={"/contact"}
-            passHref
-        >
+        <NextLink href="/contact" passHref>
             <Button
-                bg={"brand.500"}
-                shadow={"xl"}
-                leftIcon={fontSize ? undefined : <Icon as={FaEnvelope} />}
+                bg="brand.500"
+                boxShadow="2xl"
+                leftIcon={addIcon || addIcon == undefined ? <Icon as={FaEnvelope} /> : undefined}
+                transition="transform 0.3s"
                 _hover={{
-                    bg: "brand.250",
-                    shadow: "base",
-                    color: "black",
+                    transform: 'scale(1.1)',
+                }}
+                _active={{
+                    transform: 'scale(0.8)',
                 }}
                 fontSize={fontSize}
-                color={"white"}
-                padding={fontSize}
-                textShadow={"2px 2px 4px rgba(0,0,0,0.4)"}
+                color="white"
+                padding={padding}
+                textShadow="2px 2px 4px rgba(0,0,0,0.4)"
             >
                 Nous contacter
             </Button>

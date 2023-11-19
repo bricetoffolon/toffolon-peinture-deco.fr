@@ -1,80 +1,32 @@
-import React from "react";
+import React from 'react';
 
-import { Flex, Grid, GridItem, Heading } from "@chakra-ui/react";
+import { Flex } from '@chakra-ui/react';
 
-import { motion } from "framer-motion";
+import CertificationLayout from '@/components/enterprise/certificationsLayout';
+import ContactButton from '@/components/layout/Button/contactButton';
+import FamilyContent from '@/components/enterprise/familyContent';
+import KnowHowContent from '@/components/enterprise/knowHowContent';
+import CraftsmanshipContent from '@/components/enterprise/craftsmanshipContent';
+import Section from '@/components/enterprise/section';
 
-import {
-    EnterpriseInformations,
-} from "@/components/enterprise/EnterpriseInformations";
-
-import CertificationLayout from "@/components/enterprise/certificationsLayout";
-
-
-export default function Enterprise(): React.JSX.Element{
+export default function Enterprise(): React.JSX.Element {
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 100 }}
-            animate={{
-                opacity: 1,
-                translateY: -100
-            }}
-            transition={{
-                duration: 1.5,
-            }}
-        >
-            <Flex
-                alignItems={"center"}
-                justifyContent={"center"}
-            >
-                <Heading
-                    size={"3xl"}
-                    margin={"2%"}
-                >
-                    Depuis <Heading size={"3xl"} as={"span"} color={"brand.500"}>1960</Heading>
-                </Heading>
-            </Flex>
-            <Flex
-                direction={{
-                    base: 'column',
-                    xl: 'row'
-                }}
-            >
-                <Grid
-                    h={"100vh"}
-                    w={"100vw"}
-                >
-                    <GridItem
-                        bg={"papayawhip"}
-                    />
-                </Grid>
-                <Grid
-                    h={{
-                        base: "none",
-                        xl: "100vh"
-                    }}
-                    w={"100vw"}
-                >
-                    <GridItem
-                        padding={"2%"}
-                    >
-                        <Flex
-                            mt={"2%"}
-                            fontSize={{
-                                base: 'sm',
-                                xl: 'xl',
-                                '2xl': "3xl"
-                            }}
-                            color={"brand.500"}
-                            direction={"column"}
-                            gap={6}
-                        >
-                            <EnterpriseInformations />
-                        </Flex>
-                        <CertificationLayout />
-                    </GridItem>
-                </Grid>
-            </Flex>
-        </motion.div>
+        <Flex w="100%" padding="2%" direction="column" gap={20}>
+            <FamilyContent />
+            <Section>
+                <KnowHowContent />
+            </Section>
+            <Section>
+                <CraftsmanshipContent />
+            </Section>
+            <Section>
+                <CertificationLayout />
+            </Section>
+            <Section>
+                <Flex>
+                    <ContactButton fontSize="3xl" padding="10%" />
+                </Flex>
+            </Section>
+        </Flex>
     );
 }
