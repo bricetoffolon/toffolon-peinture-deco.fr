@@ -17,19 +17,29 @@ export default function FamilyContent(): React.JSX.Element {
                     damping: 20,
                 }}
             >
-                <Heading size={{ base: 'lg', xl: '4xl' }}>
+                <Heading size={{ base: '2xl', xl: '4xl' }}>
                     Depuis{' '}
-                    <Heading as="span" color="brand.400" size={{ base: 'lg', xl: '4xl' }}>
+                    <Heading as="span" color="brand.400" size={{ base: '2xl', xl: '4xl' }}>
                         1960
                     </Heading>
                 </Heading>
             </motion.div>
-            <Flex gap={6} justifyContent="center" alignItems="center">
+            <Flex
+                gap={6}
+                direction={{ base: 'column-reverse', xl: 'row' }}
+                justifyContent="center"
+                alignItems="center"
+            >
                 <Flex direction="column">
                     <Heading size={{ base: 'lg', xl: '2xl' }}>
                         {entrepriseInformation[0].title}
                     </Heading>
-                    <Text as="b" color="gray.500" fontSize={{ base: 'lg', xl: '2xl' }} maxW="30vw">
+                    <Text
+                        as="b"
+                        color="gray.500"
+                        fontSize={{ base: '2xl', xl: '3xl' }}
+                        maxW={{ base: '80vw', xl: '30vw' }}
+                    >
                         {entrepriseInformation[0].paragraph}
                     </Text>
                 </Flex>

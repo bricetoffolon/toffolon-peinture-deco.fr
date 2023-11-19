@@ -12,7 +12,7 @@ export default function PersonPresentation({
 }): React.JSX.Element {
     return (
         <Flex alignItems="center" direction="column">
-            <Img src={picture} w={{ base: '10vw', xl: '25vw' }} borderRadius="lg" alt="owner" />
+            <Img src={picture} w={{ base: '60vw', xl: '25vw' }} borderRadius="lg" alt="owner" />
             <Heading mt="1%" color="brand.500" size={{ base: 'lg', xl: '2xl' }}>
                 {name}
             </Heading>
