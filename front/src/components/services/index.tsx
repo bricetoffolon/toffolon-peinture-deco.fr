@@ -15,6 +15,7 @@ export default function Services(): React.JSX.Element {
         >
             <GridItem rowSpan={1} colSpan={3}>
                 <Flex
+
                     direction={"column"}
                     gap={6}
                     overflowY="scroll"
@@ -23,8 +24,7 @@ export default function Services(): React.JSX.Element {
                         scrollSnapType: "y mandatory",
                     }}
                     alignItems={"center"}
-                    w={"100vw"}
-                >
+                    w={"100vw"}                >
                     {serviceInformation.map((element: any, index: number) => (
                         <ServiceCard
                             key={index}
