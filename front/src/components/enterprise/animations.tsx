@@ -49,6 +49,26 @@ export const animateText = ({ timing }: { timing: number }): motionProps => {
     };
 };
 
+export const animateText1 = (): motionProps => {
+    return {
+        initial: {
+            y: -150,
+            filter: 'blur(2px)',
+        },
+        inView: {
+            y: 0,
+            filter: 'blur(0px)',
+        },
+    };
+};
+
+export const animateText2 = (): motionProps => {
+    return {
+        initial: { x: -50, filter: 'blur(2px)' },
+        inView: { x: 0, filter: 'blur(0px)' },
+    };
+};
+
 export const animateLayout = ({ timing }: { timing: number }): motionProps => {
     return {
         initial: {

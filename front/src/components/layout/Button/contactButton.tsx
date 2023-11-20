@@ -6,9 +6,15 @@ import { Button, Icon } from '@chakra-ui/react';
 
 import { FaEnvelope } from 'react-icons/fa';
 
-interface buttonProps {
+export interface buttonProps {
     fontSize?: string;
     padding?: string;
+    href?: string;
+    name?: string;
+    icon?: React.ElementType;
+    variant?: string;
+    rounded?: boolean;
+    info?: string;
 }
 
 export default function ContactButton({ props }: { props: buttonProps }): React.JSX.Element {
@@ -25,6 +31,7 @@ export default function ContactButton({ props }: { props: buttonProps }): React.
                 _active={{
                     transform: 'scale(0.8)',
                 }}
+                rounded={props && props.rounded ? 'full' : undefined}
                 textShadow="2px 2px 4px rgba(0,0,0,0.4)"
                 fontSize={props && props.fontSize ? props.fontSize : undefined}
                 color="white"

@@ -10,12 +10,17 @@ module.exports = {
     plugins: ['prettier', '@typescript-eslint'],
     parser: '@typescript-eslint/parser',
     root: true,
+    settings: {
+        'import/resolver': {
+            typescript: {},
+        },
+    },
     rules: {
         // you can modify some rules manually
         'react/jsx-filename-extension': [
             1,
             {
-                extensions: ['.js', '.jsx'],
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
             },
         ],
         'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
