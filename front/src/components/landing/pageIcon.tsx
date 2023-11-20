@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, Box, Flex, Text, Heading, useBreakpointValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import { AddAnimation, animateButton, animateText } from '@/components/enterprise/animations';
+import { AddAnimation, animateButton, animateText } from '@/components/layout/animations';
 
 export default function PageIcon({
     // eslint-disable-next-line no-shadow

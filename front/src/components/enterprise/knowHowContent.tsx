@@ -3,7 +3,7 @@ import React from 'react';
 import { Flex, Heading, Icon, Img, Text } from '@chakra-ui/react';
 import { FaHammer } from 'react-icons/fa';
 import { entrepriseInformation } from '@/constant/entrepriseInformation';
-import { AddAnimation, animateText } from '@/components/enterprise/animations';
+import { AddAnimation, animateText } from '@/components/layout/animations';
 
 export default function KnowHowContent(): React.JSX.Element {
     return (

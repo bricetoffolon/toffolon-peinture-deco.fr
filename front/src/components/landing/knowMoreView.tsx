@@ -8,7 +8,7 @@ import {
     animateButton,
     animateLayout,
     animateText,
-} from '@/components/enterprise/animations';
+} from '@/components/layout/animations';
 
 export default function KnowMoreView(): React.JSX.Element {
     const isSmallDevice = useBreakpointValue({ base: true, xl: false });
