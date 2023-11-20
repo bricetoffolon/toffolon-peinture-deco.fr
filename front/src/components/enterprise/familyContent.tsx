@@ -4,7 +4,7 @@ import { Flex, Heading, Text } from '@chakra-ui/react';
 
 import { entrepriseInformation } from '@/constant/entrepriseInformation';
 import PersonPresentation from '@/components/enterprise/personPresentation';
-import { AddAnimation, animateText } from '@/components/enterprise/animations';
+import { AddAnimation, animateText } from '@/components/layout/animations';
 
 export default function FamilyContent(): React.JSX.Element {
     return (

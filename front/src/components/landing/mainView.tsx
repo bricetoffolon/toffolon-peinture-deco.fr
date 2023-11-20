@@ -7,7 +7,7 @@ import {
     animateButton,
     animateText1,
     animateText2,
-} from '@/components/enterprise/animations';
+} from '@/components/layout/animations';
 
 export default function MainView(): React.JSX.Element {
     return (

@@ -7,7 +7,7 @@ import ContactButton from '@/components/layout/Button/contactButton';
 import FamilyContent from '@/components/enterprise/familyContent';
 import KnowHowContent from '@/components/enterprise/knowHowContent';
 import CraftsmanshipContent from '@/components/enterprise/craftsmanshipContent';
-import { AddAnimation, animateLayout, animateButton } from '@/components/enterprise/animations';
+import { AddAnimation, animateLayout, animateButton } from '@/components/layout/animations';
 
 export default function Enterprise(): React.JSX.Element {
     return (

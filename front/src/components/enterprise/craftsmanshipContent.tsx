@@ -3,7 +3,7 @@ import { Flex, Heading, Text, Icon } from '@chakra-ui/react';
 
 import { FaSeedling } from 'react-icons/fa';
 import { entrepriseInformation } from '@/constant/entrepriseInformation';
-import { animateText, AddAnimation } from '@/components/enterprise/animations';
+import { animateText, AddAnimation } from '@/components/layout/animations';
 
 export default function CraftsmanshipContent(): React.JSX.Element {
     return (
