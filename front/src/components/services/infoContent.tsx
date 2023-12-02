@@ -69,7 +69,7 @@ export default function InfoContent({
                         <Flex
                             mt="2%"
                             direction="column"
-                            alignItems={{
+                            alignContent={{
                                 base: 'center',
                                 xl: 'left',
                             }}
@@ -78,7 +78,7 @@ export default function InfoContent({
                             <Heading color="brand.500" size={{ base: 'md', xl: '2xl' }}>
                                 Que faisons-nous ?
                             </Heading>
-                            <Text fontSize={{ base: 'md', xl: '2xl' }} as="b">
+                            <Text fontSize={{ base: 'md', xl: '2xl' }} as="b" color="gray.500">
                                 {service.content.description}
                             </Text>
                             <Flex
