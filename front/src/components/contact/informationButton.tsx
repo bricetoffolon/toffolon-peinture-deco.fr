@@ -19,10 +19,10 @@ import {
 import { FaCopy } from 'react-icons/fa';
 
 interface buttonProps {
-    Icon: string;
+    Icon?: string;
     text: string;
     content: string;
-    catchPhrase: string;
+    catchPhrase?: string;
 }
 
 export default function InformationButton(props: buttonProps): React.JSX.Element {
@@ -31,46 +31,54 @@ export default function InformationButton(props: buttonProps): React.JSX.Element
     const [isBot, setIsBot] = useState<boolean>(false);
 
     return (
-        <Flex
-            direction="column"
-            alignSelf="center"
-            w={{
-                base: '35vw',
-                xl: '10vw',
-            }}
-            mt={{
-                base: '20%',
-                xl: '0%',
-            }}
-        >
-            <Box
-                as="button"
-                borderRadius="lg"
-                bg="brand.500"
-                boxShadow="2xl"
-                h="15vh"
-                transition="transform 0.3s"
-                _hover={{
-                    transform: 'scale(1.1)',
-                }}
-                _active={{
-                    transform: 'scale(0.8)',
-                }}
-                onClick={onOpen}
-            >
-                <Icon
-                    // @ts-ignore
-                    as={props.Icon}
-                    boxSize="4em"
-                    color="blue.300"
-                />
-            </Box>
-            <Heading alignSelf="center" size="lg" mt="10%">
-                {props.text}
-            </Heading>
-            <Text as="b" textAlign="center" color="gray.500">
-                {props.catchPhrase}
-            </Text>
+        <Flex>
+            {props.Icon ? (
+                <Flex
+                    direction="column"
+                    alignSelf="center"
+                    w={{
+                        base: '35vw',
+                        xl: '10vw',
+                    }}
+                    mt={{
+                        base: '20%',
+                        xl: '0%',
+                    }}
+                >
+                    <Box
+                        as="button"
+                        borderRadius="lg"
+                        bg="brand.500"
+                        boxShadow="2xl"
+                        h="15vh"
+                        transition="transform 0.3s"
+                        _hover={{
+                            transform: 'scale(1.1)',
+                        }}
+                        _active={{
+                            transform: 'scale(0.8)',
+                        }}
+                        onClick={onOpen}
+                    >
+                        <Icon
+                            // @ts-ignore
+                            as={props.Icon}
+                            boxSize="4em"
+                            color="blue.300"
+                        />
+                    </Box>
+                    <Heading alignSelf="center" size="lg" mt="10%">
+                        {props.text}
+                    </Heading>
+                    {props.catchPhrase ? (
+                        <Text as="b" textAlign="center" color="gray.500">
+                            {props.catchPhrase}
+                        </Text>
+                    ) : null}
+                </Flex>
+            ) : (
+                <Button onClick={onOpen}>{props.text}</Button>
+            )}
 
             <div style={{ display: 'none' }}>
                 <Input name="botField" onChange={() => setIsBot(true)} tabIndex={-1} />
