@@ -17,10 +17,14 @@ module.exports = {
     },
     rules: {
         // you can modify some rules manually
-        'react/jsx-filename-extension': [
-            1,
+        'import/extensions': [
+            'error',
+            'ignorePackages',
             {
-                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                js: 'never',
+                jsx: 'never',
+                ts: 'never',
+                tsx: 'never',
             },
         ],
         'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
