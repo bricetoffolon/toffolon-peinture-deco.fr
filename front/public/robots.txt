@@ -1,0 +1,12 @@
+User-agent: *
+
+# Disallow crawling of specific directories:
+Disallow: /mention-legales/
+Disallow: /contact/
+Disallow: /redondo/
+
+# Allow crawling of specific directories and the root
+Allow: /nos-realisations/
+Allow: /nos-prestations/
+Allow: /notre-entreprise/
+Allow: /
