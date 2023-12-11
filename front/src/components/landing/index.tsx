@@ -22,7 +22,7 @@ export default function Landing(): React.JSX.Element {
                     w="100vw"
                 >
                     {views.map((view) => (
-                        <React.Fragment>{view}</React.Fragment>
+                        <>{view}</> // eslint-disable-line
                     ))}
                 </Flex>
             </GridItem>

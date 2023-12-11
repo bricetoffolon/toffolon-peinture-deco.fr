@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import NavBar from "@/components/layout/NavBar";
-import Enterprise from "../components/enterprise";
-import Footer from "@/components/layout/Footer";
+import NavBar from '@/components/layout/NavBar';
+import Footer from '@/components/layout/Footer';
+import Enterprise from '../components/enterprise';
 
 export default function EnterprisePage(): React.JSX.Element {
     return (

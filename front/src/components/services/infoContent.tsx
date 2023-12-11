@@ -10,20 +10,21 @@ import {
     useBreakpointValue,
 } from '@chakra-ui/react';
 import StepsIcon from '@/components/services/stepsIcon';
-import { step } from '@/constant/serviceInformation';
+import { step, service } from '@/constant/serviceInformation';
 
 export default function InfoContent({
-    service,
+    serviceElement,
     onClose,
 }: {
-    service: service;
+    serviceElement: service;
     onClose: () => void;
 }): React.JSX.Element {
     const isSmallDevice = useBreakpointValue({ base: true, xl: false });
 
     return (
+        // eslint-disable-next-line react/jsx-no-useless-fragment
         <>
-            {service.content ? (
+            {serviceElement.content ? (
                 <Box
                     boxShadow={{
                         base: undefined,
@@ -44,8 +45,8 @@ export default function InfoContent({
                         <Flex alignItems="center" direction="row" gap={6}>
                             {isSmallDevice ? null : (
                                 <Image
-                                    src={service.imageUrl}
-                                    alt={service.name}
+                                    src={serviceElement.imageUrl}
+                                    alt={serviceElement.name}
                                     borderRadius="lg"
                                     w={{
                                         base: '15vw',
@@ -59,10 +60,10 @@ export default function InfoContent({
                             )}
                             <Flex direction="column">
                                 <Heading size={{ base: 'lg', xl: '2xl' }} color="brand.500">
-                                    {service.name}
+                                    {serviceElement.name}
                                 </Heading>
                                 <Text fontSize={{ base: 'sm', xl: '2xl' }} as="b" color="brand.400">
-                                    {service.content.label}
+                                    {serviceElement.content.label}
                                 </Text>
                             </Flex>
                         </Flex>
@@ -79,7 +80,7 @@ export default function InfoContent({
                                 Que faisons-nous ?
                             </Heading>
                             <Text fontSize={{ base: 'md', xl: '2xl' }} as="b" color="gray.500">
-                                {service.content.description}
+                                {serviceElement.content.description}
                             </Text>
                             <Flex
                                 gap={6}
@@ -89,8 +90,8 @@ export default function InfoContent({
                                     xl: 'row',
                                 }}
                             >
-                                {service.content.steps.map((step: step) => {
-                                    return <StepsIcon step={step} />;
+                                {serviceElement.content.steps.map((stepElement: step) => {
+                                    return <StepsIcon stepElement={stepElement} />;
                                 })}
                             </Flex>
                         </Flex>

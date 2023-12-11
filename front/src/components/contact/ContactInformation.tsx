@@ -27,8 +27,7 @@ export default function ContactInformation(): React.JSX.Element {
             {informationData().map((data) => {
                 return (
                     <InformationButton
-                        // @ts-ignore
-                        Icon={data.Icon}
+                        icon={data.Icon}
                         text={data.text}
                         content={data.content}
                         catchPhrase={data.catchPhrase}

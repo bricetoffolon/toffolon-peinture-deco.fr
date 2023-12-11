@@ -24,7 +24,7 @@ export default function Enterprise(): React.JSX.Element {
             </AddAnimation>
             <Flex alignSelf="center">
                 <AddAnimation motionOptions={animateButton({ timing: 0.5 })}>
-                    <ContactButton props={{fontSize: "3xl", padding: "10%"}} />
+                    <ContactButton props={{ fontSize: '3xl', padding: '10%' }} />
                 </AddAnimation>
             </Flex>
         </Flex>

@@ -3,7 +3,7 @@ interface entrepriseInfo {
     paragraph: string;
 }
 
-export const entrepriseInformation: entrepriseInfo[] = [
+const entrepriseInformation: entrepriseInfo[] = [
     {
         title: 'Une entreprise familiale',
         paragraph:
@@ -27,3 +27,5 @@ export const entrepriseInformation: entrepriseInfo[] = [
             'ce que chaque ouvrier soit dédié à un seul chantier à la fois.',
     },
 ];
+
+export default entrepriseInformation;

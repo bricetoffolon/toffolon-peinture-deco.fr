@@ -1,3 +1,3 @@
 export interface FormValue {
-    [key: string]: string
+    [key: string]: string;
 }

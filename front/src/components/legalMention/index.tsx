@@ -18,9 +18,11 @@ export default function LegalMention(): React.JSX.Element {
                 Mentions Légales
             </Heading>
             <Flex direction="column" mt="1%">
-                {legalNotice().legalNotice.map((element: any, index: number) => (
-                    <ParagraphLayout index={index} notice={element} />
-                ))}
+                {legalNotice().legalNotice.map((element: any, index: number) => ( // eslint-disable-line
+                    // eslint-disable-line
+                        <ParagraphLayout index={index} notice={element} />
+                    )
+                )}
             </Flex>
         </Flex>
     );
