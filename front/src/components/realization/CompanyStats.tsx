@@ -17,7 +17,7 @@ function StatCounter({ label, value }: { label: string; value: number }): React.
             <StatNumber>
                 +
                 <animated.span>
-                    {springProps.count.interpolate((value) => Math.floor(value))}
+                    {springProps.count.interpolate(() => Math.floor(value))}
                 </animated.span>
             </StatNumber>
         </Stat>

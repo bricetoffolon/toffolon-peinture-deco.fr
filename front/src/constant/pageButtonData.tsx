@@ -1,7 +1,7 @@
 import { FaClipboardCheck, FaInfoCircle, FaPaintBrush } from 'react-icons/fa';
 import { buttonProps } from '@/components/layout/Button/contactButton';
 
-export const buttonList: buttonProps[] = [
+const buttonList: buttonProps[] = [
     {
         href: '/notre-entreprise',
         name: 'Notre entreprise',
@@ -20,3 +20,5 @@ export const buttonList: buttonProps[] = [
         info: 'Voyez les résultats de nos travaux',
     },
 ];
+
+export default buttonList;

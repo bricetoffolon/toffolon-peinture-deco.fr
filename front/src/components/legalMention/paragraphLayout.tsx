@@ -8,7 +8,7 @@ export default function ParagraphLayout({
     notice,
 }: {
     index: number;
-    notice: any;
+    notice: any; // eslint-disable-line
 }): React.JSX.Element {
     return (
         <Flex>
@@ -19,13 +19,12 @@ export default function ParagraphLayout({
                     </Heading>
                     <Stack direction="column" spacing="5">
                         {notice.content
-                            ? Object.keys(notice.content).map((title, idx) => (
+                            ? Object.keys(notice.content).map((title) => (
                                   <Flex>
                                       {!title.includes('button') ? (
                                           <Text
                                               as="b"
                                               color="gray.500"
-                                              key={idx}
                                               fontSize={{ base: 'md', xl: 'xl' }}
                                           >
                                               {title !== 'description' ? (
@@ -44,7 +43,6 @@ export default function ParagraphLayout({
                                                       <Text
                                                           as="b"
                                                           color="brand.600"
-                                                          key={idx}
                                                           fontSize={{ base: 'md', xl: 'xl' }}
                                                       >
                                                           {notice.content[title].text}:

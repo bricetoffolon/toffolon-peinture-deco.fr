@@ -27,6 +27,7 @@ module.exports = {
                 tsx: 'never',
             },
         ],
+        'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }],
         'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
         'react/jsx-props-no-spreading': [
             0,

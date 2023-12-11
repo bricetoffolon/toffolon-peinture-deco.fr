@@ -1,24 +1,35 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import {Box, Button, Flex, Grid, GridItem, useBreakpointValue} from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, GridItem, useBreakpointValue } from '@chakra-ui/react';
 
-import Post from "@/components/api/posts/post";
+import Post from '@/components/api/posts/post';
 
-import { hookAPICallDataResp } from "@/hook/hookAPICall";
-import {AnimatePresence, motion} from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useApiCallDataResp } from '@/hook/useApiCall';
 
 const MotionGrid = motion(Grid);
 const MotionGridItem = motion(GridItem);
 
-export default function GetPosts({admin, response, setResponse}: {
+export default function GetPosts({
+    admin,
+    response,
+    setResponse,
+}: {
     admin: boolean;
-    response: any;
-    setResponse: any;
+    response: any; // eslint-disable-line
+    setResponse: any; // eslint-disable-line
 }): React.JSX.Element {
-    hookAPICallDataResp("get", "/post", null, response.data[0]['id'] == undefined ? null : response, setResponse);
+    useApiCallDataResp(
+        'get',
+        '/post',
+        null,
+        response.data[0].id === undefined ? null : response,
+        setResponse
+    );
 
     const [currentPage, setCurrentPage] = useState(0);
-    const postsPerPage: number | undefined = useBreakpointValue({base: 1, xl: 3, "2xl": 4})
+    const valueForSize = useBreakpointValue({ base: 1, xl: 3, '2xl': 4 });
+    const postsPerPage = valueForSize !== undefined ? valueForSize : 4;
 
     const totalPages = Math.ceil(response.data.length / postsPerPage);
 
@@ -30,29 +41,28 @@ export default function GetPosts({admin, response, setResponse}: {
     };
 
     const variants = {
-        enter: (direction: number) => ({
+        enter: () => ({
             x: direction > 0 ? 1000 : -1000,
             opacity: 0,
-            transition: { duration: 0.5, ease: "easeInOut" }
+            transition: { duration: 0.5, ease: 'easeInOut' },
         }),
         center: {
             x: 0,
             opacity: 1,
-            transition: { duration: 0.5, ease: "easeInOut" }
+            transition: { duration: 0.5, ease: 'easeInOut' },
         },
-        exit: (direction: number) => ({
+        exit: () => ({
             zIndex: 0,
             x: direction < 0 ? 1000 : -1000,
             opacity: [1, 1, 0],
-            transition: { duration: 0.5, ease: "easeInOut", times: [0, 0.48, 1] }
+            transition: { duration: 0.5, ease: 'easeInOut', times: [0, 0.48, 1] },
         }),
     };
-
 
     return (
         <>
             <AnimatePresence initial={false} custom={direction}>
-                <Box whiteSpace={"nowrap"} padding={"1%"}>
+                <Box whiteSpace="nowrap" padding="1%">
                     <MotionGrid
                         templateColumns={`repeat(${postsPerPage}, 1fr)`}
                         gap={6}
@@ -61,24 +71,30 @@ export default function GetPosts({admin, response, setResponse}: {
                         animate="center"
                         exit="exit"
                         key={currentPage}
-                        align={"center"}
+                        align="center"
                     >
                         {response.data
                             .slice(currentPage * postsPerPage, (currentPage + 1) * postsPerPage)
-                            .map((post) => (
-                                <MotionGridItem key={post.id}  variants={variants} custom={direction}>
-                                    <Post
-                                        data={{
-                                            id: post.id,
-                                            title: post.title,
-                                            content: post.content,
-                                            image: post.image,
-                                        }}
-                                        admin={admin}
-                                        setResponse={setResponse}
-                                    />
-                                </MotionGridItem>
-                            ))}
+                            .map((post: any) => ( // eslint-disable-line
+                                // eslint-disable-line
+                                    <MotionGridItem
+                                        key={post.id}
+                                        variants={variants}
+                                        custom={direction}
+                                    >
+                                        <Post
+                                            data={{
+                                                id: post.id,
+                                                title: post.title,
+                                                content: post.content,
+                                                image: post.image,
+                                            }}
+                                            admin={admin}
+                                            setResponse={setResponse}
+                                        />
+                                    </MotionGridItem>
+                                )
+                            )}
                     </MotionGrid>
                 </Box>
             </AnimatePresence>
@@ -90,11 +106,11 @@ export default function GetPosts({admin, response, setResponse}: {
                             <Button
                                 key={index}
                                 h={{
-                                    base: "1em",
-                                    xl: "0.5em"
+                                    base: '1em',
+                                    xl: '0.5em',
                                 }}
                                 onClick={() => paginate(index)}
-                                isActive={index == currentPage}
+                                isActive={index === currentPage}
                                 _active={{
                                     bg: 'brand.500',
                                 }}

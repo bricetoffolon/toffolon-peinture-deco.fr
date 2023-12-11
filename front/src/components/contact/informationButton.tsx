@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
     Box,
     Flex,
-    Icon,
     Heading,
     Modal,
     useDisclosure,
@@ -15,24 +14,29 @@ import {
     Button,
     Text,
     Input,
+    Icon,
 } from '@chakra-ui/react';
 import { FaCopy } from 'react-icons/fa';
+import { IconType } from 'react-icons';
 
-interface buttonProps {
-    Icon?: string;
+export default function InformationButton({
+    icon,
+    text,
+    content,
+    catchPhrase,
+}: {
+    icon?: IconType;
     text: string;
     content: string;
     catchPhrase?: string;
-}
-
-export default function InformationButton(props: buttonProps): React.JSX.Element {
+}): React.JSX.Element {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const [isBot, setIsBot] = useState<boolean>(false);
 
     return (
         <Flex>
-            {props.Icon ? (
+            {icon !== undefined ? (
                 <Flex
                     direction="column"
                     alignSelf="center"
@@ -60,24 +64,19 @@ export default function InformationButton(props: buttonProps): React.JSX.Element
                         }}
                         onClick={onOpen}
                     >
-                        <Icon
-                            // @ts-ignore
-                            as={props.Icon}
-                            boxSize="4em"
-                            color="blue.300"
-                        />
+                        <Icon as={icon} boxSize="4em" color="blue.300" />
                     </Box>
                     <Heading alignSelf="center" size="lg" mt="10%">
-                        {props.text}
+                        {text}
                     </Heading>
-                    {props.catchPhrase ? (
+                    {catchPhrase !== 'default' ? (
                         <Text as="b" textAlign="center" color="gray.500">
-                            {props.catchPhrase}
+                            {catchPhrase}
                         </Text>
                     ) : null}
                 </Flex>
             ) : (
-                <Button onClick={onOpen}>{props.text}</Button>
+                <Button onClick={onOpen}>{text}</Button>
             )}
 
             <div style={{ display: 'none' }}>
@@ -88,12 +87,12 @@ export default function InformationButton(props: buttonProps): React.JSX.Element
                 <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
                     <ModalContent>
-                        <ModalHeader>{props.text}</ModalHeader>
+                        <ModalHeader>{text}</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
                             <Box boxShadow="2xl" borderRadius="lg" borderWidth="1px" padding="5%">
                                 <Heading textAlign="center" color="brand.500">
-                                    {props.content}
+                                    {content}
                                 </Heading>
                             </Box>
                         </ModalBody>
@@ -102,7 +101,7 @@ export default function InformationButton(props: buttonProps): React.JSX.Element
                                 leftIcon={<FaCopy />}
                                 boxShadow="lg"
                                 onClick={() => {
-                                    navigator.clipboard.writeText(props.content);
+                                    navigator.clipboard.writeText(content);
                                 }}
                             >
                                 Copier
@@ -117,3 +116,8 @@ export default function InformationButton(props: buttonProps): React.JSX.Element
         </Flex>
     );
 }
+
+InformationButton.defaultProps = {
+    icon: undefined,
+    catchPhrase: 'default',
+};

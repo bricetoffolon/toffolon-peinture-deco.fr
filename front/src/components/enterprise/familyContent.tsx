@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Flex, Heading, Text } from '@chakra-ui/react';
 
-import { entrepriseInformation } from '@/constant/entrepriseInformation';
+import entrepriseInformation from '@/constant/entrepriseInformation';
 import PersonPresentation from '@/components/enterprise/personPresentation';
 import { AddAnimation, animateText } from '@/components/layout/animations';
 

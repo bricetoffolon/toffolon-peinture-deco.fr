@@ -39,6 +39,7 @@ interface content {
 }
 
 export interface service {
+    id: number;
     name: string;
     imageUrl: string;
     content?: content;
@@ -46,6 +47,7 @@ export interface service {
 
 export const serviceInformation: service[] = [
     {
+        id: 0,
         name: 'Ravalement',
         imageUrl:
             'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/DALL%C2%B7E+2023-11-18+13.28.55+-+A+16_9+format+full-frame+image+featuring+a+flat+vector+design+of+a+building+renovation%2C+centered+on+a+white+background.+The+design+is+simple+and+effic.png',
@@ -84,6 +86,7 @@ export const serviceInformation: service[] = [
         },
     },
     {
+        id: 1,
         name: 'Peinture',
         imageUrl:
             'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/DALL%C2%B7E+2023-11-18+13.32.09+-+A+16_9+format+full-frame+image+with+a+white+background%2C+featuring+a+simple+and+efficient+flat+vector+design+of+painting+work+on+a+building%2C+centered+i.png',
@@ -127,6 +130,7 @@ export const serviceInformation: service[] = [
         },
     },
     {
+        id: 2,
         name: 'Rénovation',
         imageUrl:
             'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/DALL%C2%B7E+2023-11-18+13.34.51+-+A+16_9+format+full-frame+image+with+a+white+background%2C+featuring+a+flat+vector+design+of+renovation+work+inside+a+building%2C+including+painting%2C+cente.png',
@@ -170,6 +174,7 @@ export const serviceInformation: service[] = [
         },
     },
     {
+        id: 3,
         name: 'Isolation thermique',
         imageUrl:
             'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/DALL%C2%B7E+2023-11-18+13.30.02+-+A+16_9+format+full-frame+image+with+a+white+background%2C+featuring+a+flat+vector+design+centered+on+building+thermal+insulation.+The+design+is+simple+a.png',
@@ -203,6 +208,7 @@ export const serviceInformation: service[] = [
         },
     },
     {
+        id: 4,
         name: 'Revêtements de sols',
         imageUrl:
             'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/DALL%C2%B7E+2023-11-18+13.31.07+-+A+16_9+format+full-frame+image+with+a+white+background%2C+featuring+a+centered+flat+vector+design+of+a+building+floor+renovation.+The+design+is+simple+a.png',
