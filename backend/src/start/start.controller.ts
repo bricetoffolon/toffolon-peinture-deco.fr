@@ -2,7 +2,7 @@ import { Controller, Post } from '@nestjs/common';
 import { ConfigService } from "@nestjs/config";
 import { UsersService } from "../users/users.service";
 import MailService from "../mail/mail.service";
-import { AuthTokenService } from "../JwtToken/JWTToken.service";
+import { AuthTokenService } from "../JwtToken/jwtToken.service";
 
 
 @Controller('start')

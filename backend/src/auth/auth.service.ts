@@ -1,7 +1,7 @@
 import {Injectable, InternalServerErrorException, UnauthorizedException} from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from "../users/users.service";
-import { User} from "@prisma/client";
+import { User } from "@prisma/client";
 
 @Injectable()
 export class AuthService {
