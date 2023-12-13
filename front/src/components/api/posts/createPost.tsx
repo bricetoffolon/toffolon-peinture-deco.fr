@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from 'react';
 import {
     Button,
     Modal,
@@ -12,74 +12,72 @@ import {
     Input,
     useDisclosure,
     ModalFooter,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import { FileUploader } from "react-drag-drop-files";
-import hookAddPost from "@/hook/hookAddPost";
+import { FileUploader } from 'react-drag-drop-files';
+import useAddPost from '@/hook/useAddPost';
 
-export default function CreatePost({email, setResponse}: {email: string, setResponse: any}): React.JSX.Element {
+export default function CreatePost({
+    email,
+    setResponse,
+}: {
+    email: string;
+    setResponse: any; // eslint-disable-line
+}): React.JSX.Element {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const fileType: string[] = ["JPEG", "PNG"];
+    const fileType: string[] = ['JPEG', 'PNG'];
 
-    const [files, setFiles]: [any, any] = useState([]);
+    const [files, setFiles]: [any, any] = useState([]); // eslint-disable-line
 
     const [title, setTitle] = useState<string>('');
     const [content, setContent] = useState<string>('');
     const [isSubmit, setIsSubmit] = useState<boolean>(false);
 
-    hookAddPost("/post", {"title": title, authorEmail: email, "content": content}, isSubmit, setIsSubmit, files);
+    useAddPost('/post', { title, authorEmail: email, content }, isSubmit, setIsSubmit, files);
 
-    const handleValueChange = (setter: any, e: any): void => {
+    const handleValueChange = (setter: any, e: any): void => { // eslint-disable-line
         setter(e.target.value);
-    }
+    };
 
     return (
         <>
-            <Button
-                onClick={onOpen}
-                size={"lg"}
-                color={"brand.500"}
-            >
+            <Button onClick={onOpen} size="lg" color="brand.500">
                 Create a new post
             </Button>
-            <Modal
-                isOpen={isOpen}
-                onClose={onClose}
-            >
-                <ModalOverlay/>
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>
-                        Create a new post
-                    </ModalHeader>
-                    <ModalCloseButton/>
+                    <ModalHeader>Create a new post</ModalHeader>
+                    <ModalCloseButton />
                     <ModalBody>
-                        <FormControl
-                        >
-                            <FormLabel>
-                                Post title
-                            </FormLabel>
-                            <Input value={title} onChange={(e) => handleValueChange(setTitle, e)}/>
-                            <FormLabel>
-                                Post Description
-                            </FormLabel>
-                            <Input value={content} onChange={(e) => handleValueChange(setContent, e)}/>
+                        <FormControl>
+                            <FormLabel>Post title</FormLabel>
+                            <Input value={title} onChange={(e) => handleValueChange(setTitle, e)} />
+                            <FormLabel>Post Description</FormLabel>
+                            <Input
+                                value={content}
+                                onChange={(e) => handleValueChange(setContent, e)}
+                            />
                         </FormControl>
                         <FileUploader
-                            handleChange={(e: any) => setFiles([...files, ...e])}
+                            handleChange={(e: any) => setFiles([...files, ...e])} // eslint-disable-line
                             name="file"
                             types={fileType}
-                            multiple={true}
+                            multiple
                         />
                     </ModalBody>
-                    <ModalFooter gap={"2"}>
-                        <Button color={"brand.500"}
-                                onClick={() => {
-                                    setIsSubmit(true);
-                                    setResponse({'data': [{}, {}, {}, {}]});
-                                    onClose();
-                                }}
-                        >Submit</Button>
+                    <ModalFooter gap="2">
+                        <Button
+                            color="brand.500"
+                            onClick={() => {
+                                setIsSubmit(true);
+                                setResponse({ data: [{}, {}, {}, {}] });
+                                onClose();
+                            }}
+                        >
+                            Submit
+                        </Button>
                         <Button onClick={onClose}>Cancel</Button>
                     </ModalFooter>
                 </ModalContent>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Heading, Text, Image, useBreakpointValue, Card, CardBody } from '@chakra-ui/react';
-import { buttonList } from '@/constant/pageButtonData';
+import buttonList from '@/constant/pageButtonData';
 import PageIcon from '@/components/landing/pageIcon';
 import ContactButton from '@/components/layout/Button/contactButton';
 import {
@@ -32,7 +32,7 @@ export default function KnowMoreView(): React.JSX.Element {
                                 size={{ base: 'xl', xl: '4xl' }}
                                 maxW={{ base: '80vw', xl: undefined }}
                             >
-                                Besoin d'en savoir plus ?
+                                Besoin d&apos;en savoir plus ?
                             </Heading>
                         </AddAnimation>
                         <AddAnimation motionOptions={animateText({ timing: 0.8 })}>
@@ -42,7 +42,7 @@ export default function KnowMoreView(): React.JSX.Element {
                                 fontSize={{ base: 'xl', xl: '4xl' }}
                                 maxW={{ base: '80vw', xl: undefined }}
                             >
-                                L'entreprise Toffolon vous proprose plusieurs types de services
+                                L&apos;entreprise Toffolon vous proprose plusieurs types de services
                             </Text>
                         </AddAnimation>
                     </Flex>

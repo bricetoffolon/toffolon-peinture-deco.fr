@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AuthTokenService } from "./JWTToken.service";
+import { AuthTokenService } from "./jwtToken.service";
 import { tokenGuard } from "./token-auth/token.guard";
 
 

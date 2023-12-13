@@ -4,7 +4,7 @@ import { Flex } from '@chakra-ui/react';
 
 import ContactButton from '@/components/layout/Button/contactButton';
 import ButtonBasic from '@/components/layout/Button/buttonBasic';
-import { buttonList } from '@/constant/pageButtonData';
+import buttonList from '@/constant/pageButtonData';
 
 function PageButton(): React.JSX.Element {
     return (
@@ -20,7 +20,7 @@ function PageButton(): React.JSX.Element {
                       return <ButtonBasic props={element} />;
                   })
                 : null}
-            <ContactButton />
+            <ContactButton props={{}} />
         </Flex>
     );
 }

@@ -11,9 +11,15 @@ import {
     Button,
 } from '@chakra-ui/react';
 
-import {service} from "@/constant/serviceInformation";
+import { service } from '@/constant/serviceInformation';
 
-export default function ServiceCardLanding({service, onOpen}: {service: service, onOpen: () => void}) {
+export default function ServiceCardLanding({
+    serviceElement,
+    onOpen,
+}: {
+    serviceElement: service;
+    onOpen: () => void;
+}) {
     return (
         <Card
             style={{
@@ -29,15 +35,15 @@ export default function ServiceCardLanding({service, onOpen}: {service: service,
             <CardHeader>
                 <Flex alignItems="center" direction="column" gap={6} m="1%">
                     <Heading color="brand.500" size="xl">
-                        {service.name}
+                        {serviceElement.name}
                     </Heading>
                     <Button onClick={onOpen}>En savoirs plus</Button>
                 </Flex>
             </CardHeader>
             <CardBody>
                 <Image
-                    src={service.imageUrl}
-                    alt={service.name}
+                    src={serviceElement.imageUrl}
+                    alt={serviceElement.name}
                     borderRadius="lg"
                     w={{
                         base: '100vw',

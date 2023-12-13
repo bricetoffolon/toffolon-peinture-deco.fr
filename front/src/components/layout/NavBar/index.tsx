@@ -19,7 +19,7 @@ import { useRouter } from 'next/router';
 import PageButton from '@/components/layout/Button/PageButton';
 
 function NavBar(): React.JSX.Element {
-    const { isOpen, onToggle }: { isOpen: boolean; onToggle: any } = useDisclosure();
+    const { isOpen, onToggle } = useDisclosure();
 
     const router = useRouter();
 

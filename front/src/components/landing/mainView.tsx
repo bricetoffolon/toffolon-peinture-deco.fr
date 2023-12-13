@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import ButtonBasic from '@/components/layout/Button/buttonBasic';
-import { buttonList } from '@/constant/pageButtonData';
+import buttonList from '@/constant/pageButtonData';
 import {
     AddAnimation,
     animateButton,

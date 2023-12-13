@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import NavBar from "@/components/layout/NavBar";
-import Services from "../components/services";
-import Footer from "@/components/layout/Footer";
+import NavBar from '@/components/layout/NavBar';
+import Footer from '@/components/layout/Footer';
+import Services from '../components/services';
 
 export default function ServicesPage(): React.JSX.Element {
     return (

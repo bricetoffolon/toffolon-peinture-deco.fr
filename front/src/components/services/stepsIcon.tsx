@@ -3,7 +3,7 @@ import React from 'react';
 import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 import { step } from '@/constant/serviceInformation';
 
-export default function StepsIcon({ step }: { step: step }) {
+export default function StepsIcon({ stepElement }: { stepElement: step }) {
     return (
         <Flex direction="column" gap={2} textAlign="center" alignItems="center">
             <Flex mb="1%">
@@ -20,15 +20,15 @@ export default function StepsIcon({ step }: { step: step }) {
                     alignItems="center"
                     rounded="full"
                 >
-                    <Icon as={step.Icon} boxSize="70%" color="white" />
+                    <Icon as={stepElement.Icon} boxSize="70%" color="white" />
                 </Box>
             </Flex>
             <Flex direction="column" gap={2}>
                 <Heading size="lg" color="brand.400">
-                    {step.title}
+                    {stepElement.title}
                 </Heading>
                 <Text fontSize="lg" as="b" color="gray.500">
-                    {step.label}
+                    {stepElement.label}
                 </Text>
             </Flex>
         </Flex>

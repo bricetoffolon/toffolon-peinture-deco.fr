@@ -12,7 +12,7 @@ import {
 import { UsersService } from "./users.service";
 import { User } from "@prisma/client";
 import * as bcrypt from 'bcrypt';
-import { AuthTokenService } from "../JwtToken/JWTToken.service";
+import { AuthTokenService } from "../JwtToken/jwtToken.service";
 import MailService from "../mail/mail.service";
 import { tokenGuard } from "../JwtToken/token-auth/token.guard";
 import { IsAuthenticatedGuard } from "../auth/guards/is-authenticated/is-authenticated.guard";
