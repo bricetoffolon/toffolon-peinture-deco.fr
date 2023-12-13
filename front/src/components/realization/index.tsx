@@ -6,7 +6,7 @@ import CompanyStat from '@/components/realization/CompanyStats';
 import CompanyAward from '@/components/realization/CompanyAward';
 
 export default function Realization(): React.JSX.Element {
-    const [response, setResponse] = useState({ data: [{}, {}, {}, {}] });
+    const [response, setResponse] = useState({ data: [{'id': undefined}, {}, {}, {}] })
 
     return (
         <Flex direction="column" padding="1%">

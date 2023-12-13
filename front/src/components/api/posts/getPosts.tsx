@@ -19,20 +19,23 @@ export default function GetPosts({
     response: any; // eslint-disable-line
     setResponse: any; // eslint-disable-line
 }): React.JSX.Element {
+    console.log(response.data);
+
     useApiCallDataResp(
         'get',
         '/post',
         null,
-        response.data[0].id === undefined ? null : response,
+        response && response.data && response.data[0].id === undefined ? null : response,
         setResponse
     );
 
     const [currentPage, setCurrentPage] = useState(0);
     const valueForSize = useBreakpointValue({ base: 1, xl: 3, '2xl': 4 });
     const postsPerPage = valueForSize !== undefined ? valueForSize : 4;
-
-    const totalPages = Math.ceil(response.data.length / postsPerPage);
-
+    //
+    const totalPages =
+        response && response.data ? Math.ceil(response.data.length / postsPerPage) : 1;
+    //
     const [direction, setDirection] = useState<number>(0);
 
     const paginate = (newPage: number) => {
@@ -63,39 +66,41 @@ export default function GetPosts({
         <>
             <AnimatePresence initial={false} custom={direction}>
                 <Box whiteSpace="nowrap" padding="1%">
-                    <MotionGrid
-                        templateColumns={`repeat(${postsPerPage}, 1fr)`}
-                        gap={6}
-                        variants={variants}
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        key={currentPage}
-                        align="center"
-                    >
-                        {response.data
-                            .slice(currentPage * postsPerPage, (currentPage + 1) * postsPerPage)
-                            .map((post: any) => ( // eslint-disable-line
-                                // eslint-disable-line
-                                    <MotionGridItem
-                                        key={post.id}
-                                        variants={variants}
-                                        custom={direction}
-                                    >
-                                        <Post
-                                            data={{
-                                                id: post.id,
-                                                title: post.title,
-                                                content: post.content,
-                                                image: post.image,
-                                            }}
-                                            admin={admin}
-                                            setResponse={setResponse}
-                                        />
-                                    </MotionGridItem>
-                                )
-                            )}
-                    </MotionGrid>
+                    {response && response.data && response.data[0] && response.data[0].id ? (
+                        <MotionGrid
+                            templateColumns={`repeat(${postsPerPage}, 1fr)`}
+                            gap={6}
+                            variants={variants}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            key={currentPage}
+                            align="center"
+                        >
+                            {response.data
+                                .slice(currentPage * postsPerPage, (currentPage + 1) * postsPerPage)
+                                    .map((post: any) => ( // eslint-disable-line
+                                            // eslint-disable-line
+                                        <MotionGridItem
+                                            key={post.id}
+                                            variants={variants}
+                                            custom={direction}
+                                        >
+                                            <Post
+                                                data={{
+                                                    id: post.id,
+                                                    title: post.title,
+                                                    content: post.content,
+                                                    image: post.image,
+                                                }}
+                                                admin={admin}
+                                                setResponse={setResponse}
+                                            />
+                                        </MotionGridItem>
+                                    )
+                                )}
+                        </MotionGrid>
+                    ) : null}
                 </Box>
             </AnimatePresence>
 
