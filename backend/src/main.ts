@@ -10,7 +10,7 @@ async function bootstrap(): Promise<void> {
   const config = new ConfigService();
 
   app.enableCors({
-    origin: "http://localhost:3000",
+    origin: config.get<string>("ALLOWED_ORIGIN"),
     credentials: true,
   });
   await app.listen(config.get<number>("PORT"));
