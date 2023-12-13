@@ -19,7 +19,8 @@ export default function CompanyAward(): React.JSX.Element {
                 <Heading textShadow="0.1px 0.1px" textAlign="center">
                     Notre société est fière d&apos;être
                     <Heading as="span" color="brand.500">
-                         reconnu
+                        {' '}
+                        reconnu
                     </Heading>
                 </Heading>
                 <CertificationLayout />

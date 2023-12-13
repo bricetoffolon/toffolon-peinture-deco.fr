@@ -66,6 +66,7 @@ export default function ContactForm(): React.JSX.Element {
                 xl: '60%',
             }}
             height="90%"
+            mt={"1%"}
         >
             <Flex direction="column" gap="6">
                 {inputsContact.map((input) => {

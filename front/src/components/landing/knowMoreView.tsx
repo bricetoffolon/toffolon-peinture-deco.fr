@@ -54,7 +54,7 @@ export default function KnowMoreView(): React.JSX.Element {
                         <AddAnimation motionOptions={animateLayout({ timing: 0.8 })}>
                             <Image
                                 src="https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/landing2.png"
-                                w={{ base: '80vw', xl: '50vw' }}
+                                w={{ base: '80vw', xl: '45vw' }}
                             />
                         </AddAnimation>
                         <Flex
