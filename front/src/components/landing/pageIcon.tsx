@@ -54,7 +54,7 @@ export default function PageIcon({
                                     as="b"
                                     textAlign="center"
                                     color="gray.500"
-                                    fontSize={{ base: 'lg', xl: '2xl' }}
+                                    fontSize="lg"
                                     maxW={{ base: '90vw', xl: '20vw' }}
                                 >
                                     {info}

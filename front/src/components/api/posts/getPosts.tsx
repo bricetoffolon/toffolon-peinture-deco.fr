@@ -19,8 +19,6 @@ export default function GetPosts({
     response: any; // eslint-disable-line
     setResponse: any; // eslint-disable-line
 }): React.JSX.Element {
-    console.log(response.data);
-
     useApiCallDataResp(
         'get',
         '/post',
@@ -30,7 +28,7 @@ export default function GetPosts({
     );
 
     const [currentPage, setCurrentPage] = useState(0);
-    const valueForSize = useBreakpointValue({ base: 1, xl: 3, '2xl': 4 });
+    const valueForSize = useBreakpointValue({ base: 1, xl: 4 });
     const postsPerPage = valueForSize !== undefined ? valueForSize : 4;
     //
     const totalPages =
@@ -105,7 +103,7 @@ export default function GetPosts({
             </AnimatePresence>
 
             <Flex justifyContent="center" mt="1%">
-                <Box borderRadius="2xl" padding="2%" bg="gray.300" mt="1%">
+                <Box borderRadius="2xl" padding="1%" bg="gray.300" mt="1%">
                     <Flex gap={6}>
                         {[...Array(totalPages).keys()].map((index) => (
                             <Button

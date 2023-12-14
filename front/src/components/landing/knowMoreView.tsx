@@ -14,18 +14,10 @@ export default function KnowMoreView(): React.JSX.Element {
     const isSmallDevice = useBreakpointValue({ base: true, xl: false });
 
     return (
-        <Card
-            style={{
-                scrollSnapAlign: 'start',
-            }}
-            h="100vh"
-            variant="unstyled"
-            paddingLeft={{ base: '5%', xl: '0%' }}
-            paddingRight={{ base: '5%', xl: '0%' }}
-        >
+        <Card h="100vh" variant="unstyled" alignItems="center">
             <CardBody>
                 <Flex direction="column">
-                    <Flex direction="column" alignItems="center">
+                    <Flex direction="column" alignItems="center" padding="1%">
                         <AddAnimation motionOptions={animateText({ timing: 0.5 })}>
                             <Heading
                                 color="brand.400"
@@ -36,12 +28,7 @@ export default function KnowMoreView(): React.JSX.Element {
                             </Heading>
                         </AddAnimation>
                         <AddAnimation motionOptions={animateText({ timing: 0.8 })}>
-                            <Text
-                                as="b"
-                                color="gray.500"
-                                fontSize={{ base: 'xl', xl: '4xl' }}
-                                maxW={{ base: '80vw', xl: undefined }}
-                            >
+                            <Text as="b" color="gray.500" fontSize={{ base: 'xl', xl: '4xl' }}>
                                 L&apos;entreprise Toffolon vous proprose plusieurs types de services
                             </Text>
                         </AddAnimation>
@@ -54,7 +41,7 @@ export default function KnowMoreView(): React.JSX.Element {
                         <AddAnimation motionOptions={animateLayout({ timing: 0.8 })}>
                             <Image
                                 src="https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/landing2.png"
-                                w={{ base: '80vw', xl: '45vw' }}
+                                h={{ base: '50vh', md: '60vh', xl: '65vh' }}
                             />
                         </AddAnimation>
                         <Flex

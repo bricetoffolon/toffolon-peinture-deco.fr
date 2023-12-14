@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Flex, GridItem, Grid } from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 import MainView from '@/components/landing/mainView';
 import KnowMoreView from '@/components/landing/knowMoreView';
 
@@ -8,24 +8,27 @@ export default function Landing(): React.JSX.Element {
     const views: React.JSX.Element[] = [<MainView />, <KnowMoreView />];
 
     return (
-        <Grid mt="1%" w="100vw" templateRows="repeat(1, 1fr)" templateColumns="repeat(1, 1fr)">
-            <GridItem rowSpan={1} colSpan={3}>
-                <Flex
-                    direction="column"
-                    gap={6}
-                    overflowY="scroll"
+        <Flex
+            mt="1%"
+            direction="column"
+            overflowY="scroll"
+            height="100vh"
+            style={{
+                scrollSnapType: 'y mandatory',
+                overflowX: 'hidden', // Hides horizontal overflow
+            }}
+            alignItems="center"
+        >
+            {views.map((view) => (
+                <Box
+                    width="100%"
                     height="100vh"
-                    style={{
-                        scrollSnapType: 'y mandatory',
-                    }}
-                    alignItems="center"
-                    w="100vw"
+                    scrollSnapAlign="start"
+                    style={{ boxSizing: 'border-box' }} // Ensure padding and borders are included in the height
                 >
-                    {views.map((view) => (
-                        <>{view}</> // eslint-disable-line
-                    ))}
-                </Flex>
-            </GridItem>
-        </Grid>
+                    {view}
+                </Box>
+            ))}
+        </Flex>
     );
 }

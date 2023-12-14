@@ -14,7 +14,7 @@ export default function CompanyAward(): React.JSX.Element {
                 borderRadius="lg"
                 gap={10}
                 direction="column"
-                minW="50%"
+                minW="70%"
             >
                 <Heading textShadow="0.1px 0.1px" textAlign="center">
                     Notre société est fière d&apos;être

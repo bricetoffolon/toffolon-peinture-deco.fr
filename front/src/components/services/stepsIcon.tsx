@@ -9,7 +9,7 @@ export default function StepsIcon({ stepElement }: { stepElement: step }) {
             <Flex mb="1%">
                 <Box
                     m="5%"
-                    boxSize="8em"
+                    boxSize="5em"
                     bg="brand.500"
                     padding="10%"
                     color="blue.200"
@@ -24,10 +24,10 @@ export default function StepsIcon({ stepElement }: { stepElement: step }) {
                 </Box>
             </Flex>
             <Flex direction="column" gap={2}>
-                <Heading size="lg" color="brand.400">
+                <Heading size="md" color="brand.400">
                     {stepElement.title}
                 </Heading>
-                <Text fontSize="lg" as="b" color="gray.500">
+                <Text fontSize="md" as="b" color="gray.500">
                     {stepElement.label}
                 </Text>
             </Flex>

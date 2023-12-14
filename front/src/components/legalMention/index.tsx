@@ -10,8 +10,8 @@ export default function LegalMention(): React.JSX.Element {
         <Flex direction="column" padding={{ base: '5%', xl: '2%' }}>
             <Heading
                 size={{
-                    base: 'xl',
-                    xl: '2xl',
+                    base: 'lg',
+                    xl: 'xl',
                 }}
                 color="brand.500"
             >

@@ -21,7 +21,7 @@ export default function KnowHowContent(): React.JSX.Element {
                     justifyContent="center"
                     alignItems="center"
                 />
-                <Heading size={{ base: 'lg', xl: '2xl' }}>{entrepriseInformation[1].title}</Heading>
+                <Heading size={{ base: 'lg', xl: 'xl' }}>{entrepriseInformation[1].title}</Heading>
             </Flex>
             <Flex alignItems="center" direction={{ base: 'column', xl: 'row' }}>
                 <Img

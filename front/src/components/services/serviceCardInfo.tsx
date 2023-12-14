@@ -23,7 +23,7 @@ export default function ServiceCardInfo({
                 base: 'elevated',
                 xl: 'unstyled',
             }}
-            h="90vh"
+            h="100vh"
         >
             <InfoContent serviceElement={serviceElement} onClose={onClose} />
         </Card>
