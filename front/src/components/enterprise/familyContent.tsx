@@ -33,13 +33,13 @@ export default function FamilyContent(): React.JSX.Element {
             >
                 <AddAnimation motionOptions={animateText({ timing: 0.5 })}>
                     <Flex direction="column">
-                        <Heading size={{ base: 'lg', xl: '2xl' }}>
+                        <Heading size={{ base: 'lg', xl: 'xl' }}>
                             {entrepriseInformation[0].title}
                         </Heading>
                         <Text
                             as="b"
                             color="gray.500"
-                            fontSize={{ base: '2xl', xl: '3xl' }}
+                            fontSize={{ base: '2xl', xl: '2xl' }}
                             maxW={{ base: '80vw', xl: '30vw' }}
                         >
                             {entrepriseInformation[0].paragraph}

@@ -16,7 +16,7 @@ export default function CraftsmanshipContent(): React.JSX.Element {
                     justifyContent="center"
                     alignItems="center"
                 />
-                <Heading size={{ base: 'lg', xl: '2xl' }}>{entrepriseInformation[2].title}</Heading>
+                <Heading size={{ base: 'lg', xl: 'xl' }}>{entrepriseInformation[2].title}</Heading>
             </Flex>
             <AddAnimation motionOptions={animateText({ timing: 0.5 })}>
                 <Text as="b" color="gray.500" fontSize={{ base: '2xl', xl: '3xl' }} maxW="80vw">
