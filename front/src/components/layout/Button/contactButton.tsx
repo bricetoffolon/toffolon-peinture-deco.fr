@@ -15,6 +15,7 @@ export interface buttonProps {
     variant?: string;
     rounded?: boolean;
     info?: string;
+    align?: boolean;
 }
 
 export default function ContactButton({ props }: { props: buttonProps }): React.JSX.Element {

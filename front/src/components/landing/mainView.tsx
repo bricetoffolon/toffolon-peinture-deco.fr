@@ -11,14 +11,7 @@ import {
 
 export default function MainView(): React.JSX.Element {
     return (
-        <Card
-            style={{
-                scrollSnapAlign: 'start',
-            }}
-            h="100vh"
-            variant="unstyled"
-            align="center"
-        >
+        <Card h="100vh" variant="unstyled" alignItems="center">
             <CardHeader
                 mt="1%"
                 transition="transform 0.3s"
@@ -33,7 +26,7 @@ export default function MainView(): React.JSX.Element {
                     />
                 </AddAnimation>
                 <AddAnimation motionOptions={animateText2()}>
-                    <Text as="b" fontSize={{ base: 'lg', xl: '3xl' }} color="gray.500">
+                    <Text as="b" fontSize={{ base: 'lg', md: '2xl', xl: '2xl' }} color="gray.500">
                         Entreprise de peinture et de rénovations
                     </Text>
                 </AddAnimation>
@@ -51,6 +44,7 @@ export default function MainView(): React.JSX.Element {
                                 size={{ base: '2xl', xl: '4xl' }}
                                 color="brand.400"
                                 mt={{ base: '5vh', xl: 0 }}
+                                textAlign={{ base: 'center', xl: 'left' }}
                             >
                                 Entreprise familliale depuis 1960
                             </Heading>
@@ -60,7 +54,7 @@ export default function MainView(): React.JSX.Element {
                                 props={{
                                     ...buttonList[0],
                                     variant: 'solid',
-                                    fontSize: '3xl',
+                                    fontSize: '2xl',
                                     padding: '10%',
                                     rounded: true,
                                 }}
@@ -70,8 +64,7 @@ export default function MainView(): React.JSX.Element {
                     <AddAnimation motionOptions={animateButton({ timing: 0.8 })}>
                         <Image
                             src="https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/landing1.png"
-                            maxW={{ base: '50vh', xl: '90vh' }}
-                            maxH={{ base: '50vh', xl: '90vh' }}
+                            maxH={{ base: '50vh', xl: '60vh' }}
                             mt={{ base: '10%', xl: undefined }}
                         />
                     </AddAnimation>
