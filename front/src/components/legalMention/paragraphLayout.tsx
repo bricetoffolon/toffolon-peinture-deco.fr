@@ -14,7 +14,7 @@ export default function ParagraphLayout({
         <Flex>
             {notice ? (
                 <Flex direction="column" margin="1%" gap={6}>
-                    <Heading color="brand.500">
+                    <Heading color="brand.500" size={"lg"}>
                         {index + 1}. {notice.title}
                     </Heading>
                     <Stack direction="column" spacing="5">
@@ -25,7 +25,7 @@ export default function ParagraphLayout({
                                           <Text
                                               as="b"
                                               color="gray.500"
-                                              fontSize={{ base: 'md', xl: 'xl' }}
+                                              fontSize={{ base: 'sm', xl: 'lg' }}
                                           >
                                               {title !== 'description' ? (
                                                   <Text color="brand.600" as="b">
