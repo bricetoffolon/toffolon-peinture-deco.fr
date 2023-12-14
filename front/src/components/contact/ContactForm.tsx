@@ -65,8 +65,7 @@ export default function ContactForm(): React.JSX.Element {
                 base: '100%',
                 xl: '60%',
             }}
-            height="90%"
-            mt={"1%"}
+            mt="1%"
         >
             <Flex direction="column" gap="6">
                 {inputsContact.map((input) => {
@@ -77,7 +76,7 @@ export default function ContactForm(): React.JSX.Element {
                                 <Textarea
                                     name="message"
                                     placeholder={input.placeholder}
-                                    rows={12}
+                                    rows={9}
                                     resize="none"
                                     borderColor="brand.500"
                                     borderRadius="lg"
@@ -116,7 +115,7 @@ export default function ContactForm(): React.JSX.Element {
             <Button
                 boxShadow="2xl"
                 textColor="whiteAlpha.900"
-                bg="brand.600"
+                bg="brand.500"
                 borderRadius="lg"
                 _hover={{
                     bg: 'brand.600',

@@ -9,10 +9,6 @@ export default function Contact(): React.JSX.Element {
     return (
         <Container
             maxW="full"
-            overflow={{
-                base: undefined,
-                xl: 'hidden',
-            }}
             h={{
                 base: undefined,
                 xl: '100vh',
@@ -31,11 +27,11 @@ export default function Contact(): React.JSX.Element {
                         <Heading
                             size={{
                                 base: 'xl',
-                                xl: '4xl',
+                                xl: '2xl',
                             }}
                         >
                             Contactez-nous dès{' '}
-                            <Heading size={{ base: 'xl', xl: '4xl' }} as="span" color="brand.500">
+                            <Heading size={{ base: 'xl', xl: '2xl' }} as="span" color="brand.500">
                                 maintenant !
                             </Heading>
                         </Heading>
@@ -48,7 +44,7 @@ export default function Contact(): React.JSX.Element {
                             animate={{ x: 0, filter: 'blur(0px)' }}
                             transition={{ duration: 0.8, ease: 'easeOut' }}
                         >
-                            <Text as="b" fontSize={{ base: 'xl', xl: '4xl' }} color="brand.400">
+                            <Text as="b" fontSize={{ base: 'xl', xl: '2xl' }} color="brand.400">
                                 Pour un devis gratuit et personnalisé, <br />
                                 n&apos;hésitez pas à prendre contact avec nous
                             </Text>
