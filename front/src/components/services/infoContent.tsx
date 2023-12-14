@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-    Box,
-    Button,
-    Flex,
-    Heading,
-    Image,
-    Stack,
-    Text,
-    useBreakpointValue,
-} from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react';
 import StepsIcon from '@/components/services/stepsIcon';
 import { step, service } from '@/constant/serviceInformation';
 
@@ -19,8 +10,6 @@ export default function InfoContent({
     serviceElement: service;
     onClose: () => void;
 }): React.JSX.Element {
-    const isSmallDevice = useBreakpointValue({ base: true, xl: false });
-
     return (
         // eslint-disable-next-line react/jsx-no-useless-fragment
         <>
@@ -42,27 +31,29 @@ export default function InfoContent({
                         Retour
                     </Button>
                     <Stack>
-                        <Flex alignItems="center" direction="row" gap={6}>
-                            {isSmallDevice ? null : (
-                                <Image
-                                    src={serviceElement.imageUrl}
-                                    alt={serviceElement.name}
-                                    borderRadius="lg"
-                                    w={{
-                                        base: '15vw',
-                                        xl: '15vw',
-                                    }}
-                                    h={{
-                                        base: '15vh',
-                                        xl: '15vh',
-                                    }}
-                                />
-                            )}
+                        <Flex
+                            alignItems="center"
+                            direction={{ base: 'column-reverse', xl: 'row' }}
+                            gap={6}
+                        >
+                            <Image
+                                src={serviceElement.imageUrl}
+                                alt={serviceElement.name}
+                                borderRadius="lg"
+                                w={{
+                                    base: '100vw',
+                                    xl: '15vw',
+                                }}
+                                h={{
+                                    base: '25vh',
+                                    xl: '15vh',
+                                }}
+                            />
                             <Flex direction="column">
-                                <Heading size={{ base: 'lg', xl: '2xl' }} color="brand.500">
+                                <Heading size={{ base: 'xl', xl: 'xl' }} color="brand.500">
                                     {serviceElement.name}
                                 </Heading>
-                                <Text fontSize={{ base: 'sm', xl: '2xl' }} as="b" color="brand.400">
+                                <Text fontSize={{ base: 'lg', xl: 'xl' }} as="b" color="brand.400">
                                     {serviceElement.content.label}
                                 </Text>
                             </Flex>
@@ -76,10 +67,10 @@ export default function InfoContent({
                             }}
                             gap="6"
                         >
-                            <Heading color="brand.500" size={{ base: 'md', xl: '2xl' }}>
+                            <Heading color="brand.500" size={{ base: 'xl', xl: 'xl' }}>
                                 Que faisons-nous ?
                             </Heading>
-                            <Text fontSize={{ base: 'md', xl: '2xl' }} as="b" color="gray.500">
+                            <Text fontSize={{ base: 'lg', xl: 'lg' }} as="b" color="gray.500">
                                 {serviceElement.content.description}
                             </Text>
                             <Flex

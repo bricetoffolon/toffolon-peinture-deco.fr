@@ -53,7 +53,7 @@ export const serviceInformation: service[] = [
             'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/DALL%C2%B7E+2023-11-18+13.28.55+-+A+16_9+format+full-frame+image+featuring+a+flat+vector+design+of+a+building+renovation%2C+centered+on+a+white+background.+The+design+is+simple+and+effic.png',
         content: {
             title: 'Ravalement',
-            label: 'Expert en ravalement de façades, QUALIBAT RGE depuis 2015, pour maisons, immeubles, commerces...',
+            label: 'Expert en ravalement de façades, QUALIBAT RGE, pour maisons, immeubles, commerces...',
             description:
                 "Notre service de ravalement de façade inclut la préparation de la surface, le traitement des fissures, l'application de revêtements et peintures de protection. Ceci améliore non seulement l'aspect esthétique de votre bâtiment, mais contribue également à sa protection contre les éléments. Le ravalement de façade peut aussi aider à améliorer l'isolation thermique de votre bâtiment.\nEn choisissant notre service, vous bénéficiez de l'expertise d'une équipe certifiée, de matériaux de qualité et d'un résultat durable. En plus, nos travaux peuvent vous aider à réaliser des économies d'énergie et à accéder à des avantages fiscaux.",
             steps: [
@@ -92,7 +92,7 @@ export const serviceInformation: service[] = [
             'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/DALL%C2%B7E+2023-11-18+13.32.09+-+A+16_9+format+full-frame+image+with+a+white+background%2C+featuring+a+simple+and+efficient+flat+vector+design+of+painting+work+on+a+building%2C+centered+i.png',
         content: {
             title: 'Peinture',
-            label: 'Service professionnel de peinture, QUALIBAT RGE depuis 2015, spécialisé en peinture intérieure et extérieure pour maisons, bureaux, et bâtiments commerciaux.',
+            label: 'Service professionnel de peinture, QUALIBAT RGE, spécialisé en peinture intérieure et extérieure pour maisons, bureaux, et bâtiments commerciaux.',
             description:
                 "Nous offrons un service complet de peinture, y compris la préparation des surfaces, l'application de peintures et revêtements de haute qualité, et les finitions décoratives. Nos services de peinture améliorent non seulement l'esthétique de votre propriété, mais protègent également vos surfaces contre les intempéries et l'usure. Nous utilisons des peintures écologiques et durables, et nos travaux peuvent contribuer à une meilleure isolation et efficacité énergétique de votre bâtiment.\nEn choisissant notre service, vous bénéficiez d'une expertise reconnue, d'un travail soigné, et d'un résultat esthétique et durable.",
             steps: [
@@ -136,7 +136,7 @@ export const serviceInformation: service[] = [
             'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/DALL%C2%B7E+2023-11-18+13.34.51+-+A+16_9+format+full-frame+image+with+a+white+background%2C+featuring+a+flat+vector+design+of+renovation+work+inside+a+building%2C+including+painting%2C+cente.png',
         content: {
             title: 'Rénovation',
-            label: 'Spécialiste de la rénovation, QUALIBAT RGE depuis 2015, pour la rénovation de maisons, appartements, et locaux commerciaux.',
+            label: 'Spécialiste de la rénovation, QUALIBAT RGE, pour la rénovation de maisons, appartements, et locaux commerciaux.',
             description:
                 "Notre service de rénovation couvre tous les aspects de la rénovation intérieure et extérieure. Cela inclut la rénovation de cuisines, salles de bains, la remise à neuf des façades, l'aménagement de nouveaux espaces et l'optimisation énergétique des bâtiments. Nous utilisons des matériaux de qualité et des techniques modernes pour garantir une rénovation durable et esthétique. La rénovation permet d'améliorer le confort, d'augmenter la valeur de votre propriété et de bénéficier d'avantages fiscaux et de subventions pour les travaux d'efficacité énergétique.",
             steps: [
@@ -180,7 +180,7 @@ export const serviceInformation: service[] = [
             'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/DALL%C2%B7E+2023-11-18+13.30.02+-+A+16_9+format+full-frame+image+with+a+white+background%2C+featuring+a+flat+vector+design+centered+on+building+thermal+insulation.+The+design+is+simple+a.png',
         content: {
             title: 'Isolation Thermique',
-            label: 'Notre entreprise est certifiée QUALIBAT RGE depuis 2015 pour la réalisation des travaux d’isolation thermique exté- rieure sur les pavillons, im- meubles, magasins...',
+            label: 'Notre entreprise est certifiée QUALIBAT RGE pour la réalisation des travaux d’isolation thermique exté- rieure sur les pavillons, im- meubles, magasins...',
             description:
                 'Nous fournissons et posons les matériaux nécessaires à l’isolation thermique extérieure. En premier lieu, nous plaquons un isolant, recouvert par un enduit armé, ceci protège votre bâtiment et imperméabilise les façades. L’enduit décoratif représente la touche finale de la façade, tout en isolant les bâtiments.\nL’isolation permet d’alléger vos factures d’énergie, de bénéficier d’avantages fiscaux et de prétendre à des subventions. Pour cela les matériaux doivent avoir les certifications ACERMI et avis techniques spécifiques.',
             steps: [
@@ -214,7 +214,7 @@ export const serviceInformation: service[] = [
             'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/DALL%C2%B7E+2023-11-18+13.31.07+-+A+16_9+format+full-frame+image+with+a+white+background%2C+featuring+a+centered+flat+vector+design+of+a+building+floor+renovation.+The+design+is+simple+a.png',
         content: {
             title: 'Revêtements de sols',
-            label: "Expert en revêtements de sols, QUALIBAT RGE depuis 2015, spécialisé en parquets, carrelages, et revêtements modernes pour tous types d'espaces.",
+            label: "Expert en revêtements de sols, QUALIBAT RGE, spécialisé en parquets, carrelages, et revêtements modernes pour tous types d'espaces.",
             description:
                 "Notre service de revêtements de sols offre une gamme complète de solutions pour votre intérieur. Cela inclut l'installation de parquet, carrelage, moquette, et sols vinyles. Nous fournissons une expertise dans le choix des matériaux, la préparation du sol, et l'installation soignée pour garantir durabilité et esthétique. Nos revêtements de sols améliorent l'esthétique de votre espace, offrent un confort accru et peuvent contribuer à l'isolation acoustique et thermique de vos pièces.",
             steps: [
