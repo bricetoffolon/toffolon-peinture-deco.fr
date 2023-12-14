@@ -19,14 +19,14 @@ export default function CertificationElement({ props }: { props: certification }
                 justifyContent="center"
                 alignItems="center"
             />
-            <Heading textAlign="center" size="lg" maxW={{ base: '90vw', xl: '25vw' }}>
+            <Heading textAlign="center" size="md" maxW={{ base: '90vw', xl: '50vw' }}>
                 {props.name}
             </Heading>
             <Text
                 textAlign="center"
                 as="b"
                 color="gray.500"
-                fontSize={{ base: 'md', xl: 'lg' }}
+                fontSize={{ base: 'md', xl: 'sm' }}
                 maxW={{ base: '90vw', xl: '30vw' }}
             >
                 {props.description}
