@@ -91,9 +91,9 @@ export default function InformationButton({
                         <ModalCloseButton />
                         <ModalBody>
                             <Box boxShadow="2xl" borderRadius="lg" borderWidth="1px" padding="5%">
-                                <Heading textAlign="center" color="brand.500">
+                                <Text textAlign="center" color="brand.500">
                                     {content}
-                                </Heading>
+                                </Text>
                             </Box>
                         </ModalBody>
                         <ModalFooter>
