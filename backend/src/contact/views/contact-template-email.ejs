@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Confirmation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            max-width: 600px;
+            background: white;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        .email-header {
+            background-color: #108BDDCC; /* This is a light blue color */
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+        }
+        .email-body {
+            padding: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+            line-height: 1.5;
+        }
+        .email-footer {
+            background-color: white;
+            color: #666666;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 12px;
+        }
+        .email-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #108BDDCC;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        .logo-container img {
+            width: 50%;
+            height: auto;
+        }
+        .placeholder {
+            color: #108BDD;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="email-header">
+        <div class="logo-container">
+            <img src="https://toffolon-website.s3.eu-west-3.amazonaws.com/Toffolon-Icon.png" alt="Logo">
+        </div>
+        <h3>Entreprise de peinture et de rénovations</h3>
+    </div>
+    <div class="email-body">
+        <h2>Confirmation de réception</h2>
+        <p>Bonjour <span class="placeholder"><%= username %></span></p>
+        <p>Nous avons bien reçu votre demande et tenons à vous remercier de nous avoir contactés.</p>
+        <p>Notre équipe est en train de traiter votre message et nous vous répondrons dans les plus brefs délais.</p>
+        <a href="https://toffolon-peinture-deco.fr" class="email-button">Visitez notre site</a>
+    </div>
+    <div class="email-footer">
+        <p>Cordialement,</p>
+        <p>L'équipe de Toffolon Peinture & Déco</p>
+    </div>
+</div>
+</body>
+</html>

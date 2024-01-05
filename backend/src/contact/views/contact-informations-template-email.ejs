@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Confirmation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            max-width: 600px;
+            background: white;
+            margin: 20px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        .email-header {
+            background-color: #108BDDCC; /* Light blue color */
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+        }
+        .email-body {
+            padding: 20px;
+            text-align: left; /* Align text to the left for the body content */
+            background-color: #f9f9f9;
+            line-height: 1.5;
+        }
+        .email-footer {
+            background-color: white;
+            color: #666666;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 12px;
+        }
+        .logo-container img {
+            width: 50%;
+            height: auto;
+            display: block; /* Ensure the logo is centered within its container */
+            margin: 0 auto; /* Center the logo horizontally */
+        }
+        .info-section {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .info-title {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .placeholder {
+            color: #108BDD;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="email-header">
+        <div class="logo-container">
+            <img src="https://toffolon-website.s3.eu-west-3.amazonaws.com/Toffolon-Icon.png" alt="Logo">
+        </div>
+        <h3>Entreprise de peinture et de rénovations</h3>
+    </div>
+    <div class="email-body">
+        <h2>Demande de contact</h2>
+        <h2>Par <span class="placeholder"><%= username %></span>,</h2>
+        <p>Voici le récapitulatif de son message :</p>
+        <div class="info-section">
+            <p class="info-title">Message :</p>
+            <p class="placeholder"><%= message %></p>
+        </div>
+        <p>Cette personne souhaite être recontactée à l'adresse mail suivante:</p>
+        <p> <span class="placeholder"><%= email %></span></p>
+    </div>
+    <div class="email-footer">
+        <p>Cordialement,</p>
+        <p>L'équipe de Toffolon Peinture & Déco</p>
+    </div>
+</div>
+</body>
+</html>

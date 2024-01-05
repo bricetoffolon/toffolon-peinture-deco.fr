@@ -2,6 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 import MailService from "../mail/mail.service";
 import { CreateContactDto } from "./create-contact.dto";
 import { ConfigService } from "@nestjs/config";
+import * as ejs from 'ejs';
 
 @Controller('contact')
 export class ContactController {
@@ -18,9 +19,21 @@ export class ContactController {
     async putInContact( @Body() createContactDto: CreateContactDto): Promise<{ message: string }> {
         const { last_name, first_name, email, message } = createContactDto;
 
-        await this.mailService.sendEmail(email, "New contact !", `New contact from <br/><strong>${first_name} ${last_name}</strong><br/>email: <br/><strong>${email}</strong>Contact message:<br/>${message}</strong>`)
+        const username = `${first_name} ${last_name}`
 
-        await this.mailService.sendEmail(email, `Update on your inquiry`, 'Hey, we successfully received your contact demand, we will come back to you soon');
+        const informationHtml = await ejs.renderFile(
+            "src/contact/views/contact-informations-template-email.ejs",
+            {"username": username, "message": message, "email": email }
+        )
+
+        await this.mailService.sendEmail(this.serverEmail, "Toffolon - Nouveau contact !", informationHtml)
+
+        const confirmationHtml = await ejs.renderFile(
+            "./src/contact/views/contact-template-email.ejs",
+            {"username": username},
+        );
+
+        await this.mailService.sendEmail(email, `Toffolon - Prise de contact`, confirmationHtml);
 
         return {"message": "Votre message a été envoyé"}
     }

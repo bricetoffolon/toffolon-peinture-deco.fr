@@ -13,7 +13,7 @@ async function bootstrap(): Promise<void> {
     origin: config.get<string>("ALLOWED_ORIGIN"),
     credentials: true,
   });
-  await app.listen(config.get<number>("PORT"));
+  await app.listen(config.get<number>("PORT"), '0.0.0.0');
   const primaService = app.get(PrismaService);
   await primaService.enableShutdownHooks(app);
 }
