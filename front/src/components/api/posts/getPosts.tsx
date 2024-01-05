@@ -19,21 +19,27 @@ export default function GetPosts({
     response: any; // eslint-disable-line
     setResponse: any; // eslint-disable-line
 }): React.JSX.Element {
+
     useApiCallDataResp(
         'get',
         '/post',
         null,
-        response && response.data && response.data[0].id === undefined ? null : response,
+        response &&
+            response.data &&
+            response.data.length > 0 &&
+            !Object.prototype.hasOwnProperty.call(response.data[0], 'id')
+            ? null
+            : response,
         setResponse
     );
 
     const [currentPage, setCurrentPage] = useState(0);
     const valueForSize = useBreakpointValue({ base: 1, xl: 4 });
     const postsPerPage = valueForSize !== undefined ? valueForSize : 4;
-    //
+
     const totalPages =
         response && response.data ? Math.ceil(response.data.length / postsPerPage) : 1;
-    //
+
     const [direction, setDirection] = useState<number>(0);
 
     const paginate = (newPage: number) => {
@@ -64,7 +70,11 @@ export default function GetPosts({
         <>
             <AnimatePresence initial={false} custom={direction}>
                 <Box whiteSpace="nowrap" padding="1%">
-                    {response && response.data && response.data[0] && response.data[0].id ? (
+                    {response &&
+                    response.data &&
+                    response.data[0] &&
+                    response.data.length > 0 &&
+                    Object.prototype.hasOwnProperty.call(response.data[0], 'id') ? (
                         <MotionGrid
                             templateColumns={`repeat(${postsPerPage}, 1fr)`}
                             gap={6}
