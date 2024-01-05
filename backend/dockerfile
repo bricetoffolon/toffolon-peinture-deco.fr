@@ -1,27 +1,25 @@
-# Base image
-FROM node:18-alpine
+# Build Stage
 
-# Create app directory
-WORKDIR /usr/src/app
+FROM node:21-alpine
 
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
+WORKDIR /app
+
+RUN chown node:node /app
+
+USER node
+
 COPY package.json ./
 
-# Install app dependencies
-RUN yarn
+RUN yarn install
 
-COPY . .
+COPY --chown=node:node . /app
 
-COPY src/prisma ./prisma
+COPY --chown=node:node src/prisma ./prisma
+
 RUN npx prisma generate
 
-# Creates a "dist" folder with the production build
-RUN yarn run build
+RUN yarn build
 
-# Add this line to check the contents of the /usr/src/app/dist directory
+ENTRYPOINT ["yarn"]
 
-# Expose the port on which the app will run
-EXPOSE 3002
-
-# Start the server using the production build
-CMD ["yarn", "run", "start:prod"]
+CMD ["start:prod"]

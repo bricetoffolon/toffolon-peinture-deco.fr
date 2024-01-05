@@ -5,10 +5,10 @@ services:
       context: backend
       dockerfile: dockerfile
     ports:
-      - 3002:3002
+      - "3002:3002"
   front:
     build:
       context: front
       dockerfile: dockerfile
     ports:
-      - 3000:3000
+      - "3000:3000"
