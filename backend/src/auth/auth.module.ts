@@ -19,7 +19,7 @@ import { tokenGuard } from "../JwtToken/token-auth/token.guard";
       JwtModule.register({
           global: true,
           secret: jwtConstants.secret,
-          signOptions: { 'expiresIn': '60s' },
+          signOptions: { 'expiresIn': '600s' },
       })
   ],
   controllers: [AuthController],
