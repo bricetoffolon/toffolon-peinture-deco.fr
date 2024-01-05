@@ -9,6 +9,7 @@ async function bootstrap(): Promise<void> {
 
   const config = new ConfigService();
 
+  app.setGlobalPrefix('api');
   app.enableCors({
     origin: config.get<string>("ALLOWED_ORIGIN"),
     credentials: true,
