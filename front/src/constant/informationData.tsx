@@ -5,7 +5,7 @@ export default function informationData() {
         {
             Icon: FaPhoneAlt,
             text: 'Téléphone',
-            content: '+33 1 46 71 84 19',
+            content: '+33 1 48 50 24 55',
             catchPhrase: 'Une question ? Appelez-nous !',
         },
         {
