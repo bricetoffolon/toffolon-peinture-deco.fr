@@ -47,11 +47,6 @@ export default function FamilyContent(): React.JSX.Element {
                     </Flex>
                 </AddAnimation>
                 <PersonPresentation
-                    name="Alfred Toffolon"
-                    picture="https://toffolon-website.s3.eu-west-3.amazonaws.com/contact/previous-owner.png"
-                    title={"Fondateur et Gérant jusqu'en 1991"}
-                />
-                <PersonPresentation
                     name="Jean-Marc Toffolon"
                     picture="https://toffolon-website.s3.eu-west-3.amazonaws.com/contact/owner.png"
                     title="Gérant depuis 1991"

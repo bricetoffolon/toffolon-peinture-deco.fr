@@ -22,9 +22,7 @@ export default function legalNotice() {
             {
                 title: 'Hébergement',
                 content: {
-                    Nom: "Le site toffolon-peinture-deco est hébergé par [Nom de l'hébergeur]",
-                    Adresse: 'Unknow',
-                    Téléphone: 'Unknow',
+                    Nom: "Le site toffolon-peinture-deco est hébergé par Scalaway",
                 },
             },
             {

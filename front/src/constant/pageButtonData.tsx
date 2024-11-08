@@ -11,13 +11,13 @@ const buttonList: buttonProps[] = [
         href: '/nos-prestations',
         name: 'Nos prestations',
         icon: FaPaintBrush,
-        info: 'Pour connaître les services que nous proponsons',
+        info: 'Découvrer Nos Services',
     },
     {
         href: '/nos-realisations',
         name: 'Nos réalisations',
         icon: FaClipboardCheck,
-        info: 'Voyez les résultats de nos travaux',
+        info: 'Nos Réalisations en Images',
     },
 ];
 

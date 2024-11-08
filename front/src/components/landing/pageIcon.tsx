@@ -19,7 +19,7 @@ export default function PageIcon({
 
     return (
         <Flex>
-            {Icon && href && info && name ? (
+            {Icon && href && name ? (
                 <Flex direction="column" alignItems="center">
                     <AddAnimation motionOptions={animateButton({ timing: 0.5 })}>
                         <NextLink href={href} passHref>

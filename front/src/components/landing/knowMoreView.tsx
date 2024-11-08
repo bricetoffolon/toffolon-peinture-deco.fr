@@ -41,7 +41,7 @@ export default function KnowMoreView(): React.JSX.Element {
                         <AddAnimation motionOptions={animateLayout({ timing: 0.8 })}>
                             <Image
                                 src="https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/landing2.png"
-                                h={{ base: '50vh', md: '60vh', xl: '65vh' }}
+                                h={{ base: '50vh', md: '60vh', xl: '50vh' }}
                             />
                         </AddAnimation>
                         <Flex
@@ -63,7 +63,7 @@ export default function KnowMoreView(): React.JSX.Element {
                                 : null}
                         </Flex>
                     </Flex>
-                    <Flex alignSelf="center" mt={{ base: '10%', xl: '0%' }}>
+                    <Flex justifyContent="center" mt={{ base: '10%', xl: '2%' }}>
                         <AddAnimation motionOptions={animateButton({ timing: 0.5 })}>
                             <ContactButton
                                 props={{
