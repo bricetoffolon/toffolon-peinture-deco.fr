@@ -6,6 +6,9 @@ import { AppProps } from 'next/app';
 
 import '@/styles/carousel.css';
 
+import Head from 'next/head';
+
+
 const theme = extendTheme({
     colors: {
         brand: {
@@ -20,9 +23,15 @@ const theme = extendTheme({
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <ChakraProvider theme={theme}>
-            <Component {...pageProps} />
-        </ChakraProvider>
+        <>
+            <Head>
+                <title>Toffolon - Entreprise Générale de Peintures et de Décoration</title>
+                <link rel="icon" href="/favicon.png" type="image/png"/>
+            </Head>
+            <ChakraProvider theme={theme}>
+                <Component {...pageProps} />
+            </ChakraProvider>
+        </>
     );
 }
 
