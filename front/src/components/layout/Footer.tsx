@@ -51,6 +51,17 @@ export default function Footer(): React.JSX.Element {
                     Toffolon © {currentYear}
                 </Text>
             </Flex>
+            <Flex justifyContent="center" mt="1%">
+                <Text
+                    as="b"
+                    fontSize="sm"
+                    textAlign="center"
+                    textShadow="1px 1px 3px rgba(0,0,0,0.4)"
+                    aria-label="Footer attribution to Brice Toffolon"
+                >
+                    Made by <span>Brice Toffolon</span>
+                </Text>
+            </Flex>
         </Box>
     );
 }
