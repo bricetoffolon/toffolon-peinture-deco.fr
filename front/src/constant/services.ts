@@ -1,15 +1,15 @@
 export interface imageContent {
-    imageUrl: string,
-    imageAlt: string
-};
+    imageUrl: string;
+    imageAlt: string;
+}
 
 export interface service {
     id: number;
     title: string;
     description: string;
-    image: string;
+    image: imageContent;
     callToAction: string;
-};
+}
 
 export const servicesContent: service[] = [
     {
@@ -24,7 +24,7 @@ export const servicesContent: service[] = [
             'ations ACERMI\n    et avis techniques spécifiques.',
         image: {
             imageUrl: 'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/ravalement.JPG',
-            imageAlt: 'Ravalement de façade - Maison le Raincy'
+            imageAlt: 'Ravalement de façade - Maison le Raincy',
         }, // Replace with the actual image path
         callToAction: 'Contactez-nous pour un devis',
     },
@@ -39,8 +39,9 @@ export const servicesContent: service[] = [
             'ges fiscaux\n    et de prétendre à des subventions. Pour cela, les matériaux doivent avoir les certific' +
             'ations ACERMI\n    et avis techniques spécifiques.',
         image: {
-            imageUrl: 'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/isolation-thermique.jpg',
-            imageAlt: 'Isolation thermique - Maison les Pavillons-sous-bois'
+            imageUrl:
+                'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/isolation-thermique.jpg',
+            imageAlt: 'Isolation thermique - Maison les Pavillons-sous-bois',
         },
         callToAction: 'Contactez-nous pour un devis',
     },
@@ -55,8 +56,9 @@ export const servicesContent: service[] = [
             'ges fiscaux\n    et de prétendre à des subventions. Pour cela, les matériaux doivent avoir les certific' +
             'ations ACERMI\n    et avis techniques spécifiques.',
         image: {
-            imageUrl: 'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/renovation-exte%CC%81rieur-inte%CC%81rieur.png',
-            imageAlt: 'Rénovation Extérieur Château - Rénovation Intérieur Appartement Paris 16'
+            imageUrl:
+                'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/renovation-exte%CC%81rieur-inte%CC%81rieur.png',
+            imageAlt: 'Rénovation Extérieur Château - Rénovation Intérieur Appartement Paris 16',
         },
         callToAction: 'Contactez-nous pour un devis',
     },
@@ -71,8 +73,9 @@ export const servicesContent: service[] = [
             'ges fiscaux\n    et de prétendre à des subventions. Pour cela, les matériaux doivent avoir les certific' +
             'ations ACERMI\n    et avis techniques spécifiques.',
         image: {
-            imageUrl: 'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/revetement-de-sols.jpeg', // Replace with the actual image path
-            imageAlt: 'Revetement de sols commerce'
+            imageUrl:
+                'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/revetement-de-sols.jpeg', // Replace with the actual image path
+            imageAlt: 'Revetement de sols commerce',
         },
         callToAction: 'Contactez-nous pour un devis',
     },
