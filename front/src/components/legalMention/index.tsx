@@ -1,11 +1,4 @@
-import {
-    Box,
-    Flex,
-    Heading,
-    Text,
-    VStack,
-    useBreakpointValue,
-} from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, VStack, useBreakpointValue } from '@chakra-ui/react';
 import Head from 'next/head';
 import React from 'react';
 
@@ -33,13 +26,7 @@ export default function MentionsLegales() {
                 scrollBehavior="smooth"
             >
                 <Box>
-                    <Flex
-                        align="center"
-                        justify="center"
-                        direction="column"
-                        gap={8}
-                        p={6}
-                    >
+                    <Flex align="center" justify="center" direction="column" gap={8} p={6}>
                         {/* Content */}
                         <Flex
                             direction="column"
@@ -63,13 +50,13 @@ export default function MentionsLegales() {
                                         ravalement, isolation thermique et peinture.
                                     </Text>
                                     <Text>
-                                        Siège social : [Adresse complète de l’entreprise]
+                                        Siège social : 25 allée Gabriel, 93320, Les
+                                        Pavillons-sous-Bois
                                         <br />
-                                        SIRET : [Numéro SIRET de l’entreprise]
+                                        SIRET : 38102749900015
                                         <br />
-                                        Téléphone : [Numéro de téléphone]
+                                        Téléphone : +33 1 48 50 24 55
                                         <br />
-                                        Email : [Adresse email]
                                     </Text>
                                 </Box>
 
@@ -77,10 +64,7 @@ export default function MentionsLegales() {
                                     <Heading as="h2" size="md" mb={2}>
                                         Responsable de la Publication
                                     </Heading>
-                                    <Text>
-                                        Responsable de la publication : [Nom et prénom du
-                                        responsable]
-                                    </Text>
+                                    <Text>Responsable de la publication : Toffolon Patricia</Text>
                                 </Box>
 
                                 <Box>
@@ -90,11 +74,7 @@ export default function MentionsLegales() {
                                     <Text>
                                         Le site est hébergé par :
                                         <br />
-                                        [Nom de l’hébergeur]
-                                        <br />
-                                        Adresse : [Adresse de l’hébergeur]
-                                        <br />
-                                        Téléphone : [Numéro de téléphone de l’hébergeur]
+                                        Scaleway
                                     </Text>
                                 </Box>
 
@@ -123,8 +103,8 @@ export default function MentionsLegales() {
                                         suppression des données vous concernant.
                                     </Text>
                                     <Text>
-                                        Pour exercer ces droits, veuillez nous contacter par email
-                                        à : [Adresse email]
+                                        Pour exercer ces droits, veuillez nous contacter par email à
+                                        : contact@toffolon-peinture-deco.fr
                                     </Text>
                                 </Box>
 
