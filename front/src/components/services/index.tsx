@@ -1,35 +1,10 @@
-import {
-    Box,
-    Flex,
-    Heading,
-    Text,
-    Image,
-    VStack,
-    useBreakpointValue,
-    Stack,
-    Icon,
-    useColorModeValue,
-    extendTheme,
-    Button,
-} from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, Image, Stack, Icon, useColorModeValue } from '@chakra-ui/react';
 import Head from 'next/head';
 import React from 'react';
 import { IoAlarm, IoAccessibility, IoShapes } from 'react-icons/io5';
 import ServiceTemplate from '@/components/services/serviceTemplate';
 
 import { servicesContent } from '@/constant/services';
-
-const theme = extendTheme({
-    colors: {
-        brand: {
-            250: '#108BDD40',
-            400: '#108BDDCC',
-            500: '#108BDD',
-            600: '#0C6BAF',
-            900: '#0C5D89',
-        },
-    },
-});
 
 interface FeatureProps {
     text: string;
@@ -165,7 +140,11 @@ export default function Services() {
                     </Flex>
                 </Box>
                 {servicesContent.map((service, index) => (
-                    <Box height={{ base: undefined, xl: '93vh' }} scrollSnapAlign="start">
+                    <Box
+                        height={{ base: undefined, xl: '93vh' }}
+                        scrollSnapAlign="start"
+                        id={`service-${index}`}
+                    >
                         <ServiceTemplate
                             index={index}
                             title={service.title}
