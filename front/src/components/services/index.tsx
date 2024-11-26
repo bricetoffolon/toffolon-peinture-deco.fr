@@ -5,6 +5,7 @@ import { IoAlarm, IoAccessibility, IoShapes } from 'react-icons/io5';
 import ServiceTemplate from '@/components/services/serviceTemplate';
 
 import { servicesContent } from '@/constant/services';
+import SwipeDownButton from '@/components/services/swipeDownButton';
 
 interface FeatureProps {
     text: string;
@@ -45,11 +46,11 @@ export default function Services() {
 
             <Box
                 overflowY="scroll"
-                height={{ base: undefined, xl: '93vh' }}
-                scrollSnapType={{ base: undefined, xl: 'y mandatory' }}
+                height="100vh"
+                scrollSnapType="y mandatory"
                 scrollBehavior="smooth"
             >
-                <Box height={{ base: undefined, xl: '93vh' }} scrollSnapAlign="start">
+                <Box height="90vh" scrollSnapAlign="start">
                     {/* Section 1: Key Introduction */}
                     <Flex
                         align="center"
@@ -88,7 +89,7 @@ export default function Services() {
                             </Heading>
                             <Text fontSize="md" fontWeight="bold" color="brand.600">
                                 Depuis 2015, nous sommes spécialisés dans la réalisation des travaux
-                                d'isolation thermique extérieure sur les pavillons, immeubles,
+                                d&apos;isolation thermique extérieure sur les pavillons, immeubles,
                                 magasins, et plus encore.
                             </Text>
                             {/* Additional Key Information */}
@@ -96,8 +97,8 @@ export default function Services() {
                                 Nos ouvriers sont dédiés à un seul chantier : les délais de début et
                                 fin de chantier sont donc respectés dès lors que le devis est signé.
                                 À noter également que notre responsable technique suivra votre
-                                chantier depuis la première visite jusqu'à la signature du PV de
-                                réception.
+                                chantier depuis la première visite jusqu&apos;à la signature du PV
+                                de réception.
                             </Text>
 
                             {/* Features Section */}
@@ -137,13 +138,16 @@ export default function Services() {
                                 display={{ base: 'none', xl: 'block' }}
                             />
                         </Flex>
+                        <SwipeDownButton />
                     </Flex>
                 </Box>
                 {servicesContent.map((service, index) => (
                     <Box
-                        height={{ base: undefined, xl: '93vh' }}
+                        height="100vh"
                         scrollSnapAlign="start"
                         id={`service-${index}`}
+                        key={index}
+                        overflow="hidden"
                     >
                         <ServiceTemplate
                             index={index}
