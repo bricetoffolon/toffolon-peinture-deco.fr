@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 // pages/index.js
 
@@ -16,20 +16,28 @@ const slideWithPause = keyframes`
 
 export default function LandingPage() {
     // Image lists for different devices
-    const mobileImages = [
-        'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/maison-apre%CC%80s-travaux-vertical.jpeg',
-        'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/travaux-vertical-Paris.jpeg',
-        'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/re%CC%81novation-inte%CC%81rieure-vertical.jpeg',
-    ];
-    const tabletImages = [
-        'https://example.com/tablet-image1.jpg',
-        'https://example.com/tablet-image2.jpg',
-    ];
-    const desktopImages = [
-        'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/building_construction_site_Paris.JPG',
-        'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/maison-apre%CC%80s-travaux-horizontal.jpeg',
-        'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/maison-travaux-horizontal.jpeg',
-    ];
+    const mobileImages = useMemo(
+        () => [
+            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/maison-apre%CC%80s-travaux-vertical.jpeg',
+            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/travaux-vertical-Paris.jpeg',
+            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/re%CC%81novation-inte%CC%81rieure-vertical.jpeg',
+        ],
+        []
+    );
+
+    const tabletImages = useMemo(
+        () => ['https://example.com/tablet-image1.jpg', 'https://example.com/tablet-image2.jpg'],
+        []
+    );
+
+    const desktopImages = useMemo(
+        () => [
+            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/building_construction_site_Paris.JPG',
+            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/maison-apre%CC%80s-travaux-horizontal.jpeg',
+            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/maison-travaux-horizontal.jpeg',
+        ],
+        []
+    );
 
     // Responsive detection (basic implementation)
     const [currentImages, setCurrentImages] = useState(desktopImages);
@@ -56,7 +64,7 @@ export default function LandingPage() {
         updateImages();
         window.addEventListener('resize', updateImages);
         return () => window.removeEventListener('resize', updateImages);
-    });
+    }, [desktopImages, mobileImages, tabletImages]);
 
     // Automatic image slider
     useEffect(() => {
