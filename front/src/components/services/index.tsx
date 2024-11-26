@@ -131,7 +131,7 @@ export default function Services() {
                         {/* Optional Image */}
                         <Flex flex="1" justify="center" align="center" maxW="600px">
                             <Image
-                                src="https://toffolon-website.s3.eu-west-3.amazonaws.com/services/construction-site-house-with-truck.jpeg"
+                                src="https://toffolon-website.s3.eu-west-3.amazonaws.com/services/house-w-truck.webp"
                                 maxH="85vh"
                                 borderRadius="lg"
                                 objectFit="cover"
