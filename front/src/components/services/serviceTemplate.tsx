@@ -24,17 +24,16 @@ export default function ServiceTemplate({ index, title, description, image, call
             direction={direction}
             align="center"
             justify="center"
-            maxW="1200px"
-            padding="1%"
-            gap={{ base: 1, sm: 4, md: 8 }} // Remove gap for smaller screens, add for tablets/desktops
+            maxW="100vw"
+            m="1%"
+            gap={{ base: 1, sm: 4, md: 8 }} // Adjust gap for smaller screens
             minH="100vh"
         >
             {/* Image Section */}
-            <AspectRatio
-                maxW={{ base: '100%', md: '50%' }} // Full width on portrait, half width on tablets/desktops
+            <AspectRatio // Adjust for screen size
                 ratio={4 / 3}
                 w="100%"
-                flexShrink={0}
+                h="100%"
             >
                 <Image
                     src={image.imageUrl || 'https://via.placeholder.com/400'}
@@ -42,6 +41,7 @@ export default function ServiceTemplate({ index, title, description, image, call
                     borderRadius="md"
                     shadow="lg"
                     objectFit="cover"
+                    maxH="90%" // Dynamic max height
                 />
             </AspectRatio>
 
