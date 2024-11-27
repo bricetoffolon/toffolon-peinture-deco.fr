@@ -28,7 +28,7 @@ export default function Entreprise() {
                         Notre Entreprise
                     </Heading>
                     <Text fontSize="lg" maxWidth="800px" mx="auto">
-                        Découvrez l&pos;histoire et les valeurs de la SAS TOFFOLON, une entreprise
+                        Découvrez l&apos;histoire et les valeurs de la SAS TOFFOLON, une entreprise
                         familiale fondée en 1960, dédiée à fournir des services de qualité dans le
                         domaine de la peinture, de la décoration, et du ravalement.
                     </Text>
@@ -51,16 +51,16 @@ export default function Entreprise() {
                                 Une histoire de famille et de professionnalisme
                             </Heading>
                             <Text fontSize="md" mb={4}>
-                                Issue d&pos;une entreprise familiale créée en 1960, la SAS TOFFOLON
-                                est aujourd&pos;hui dirigée par Jean-Marc Toffolon depuis 1991.
-                                Forts de décennies d&pos;expérience, nous mettons notre expertise au
-                                service des professionnels et des particuliers, en Île-de-France et
-                                même en province pour les professionnels.
+                                Issue d&apos;une entreprise familiale créée en 1960, la SAS TOFFOLON
+                                est aujourd&apos;hui dirigée par Jean-Marc Toffolon depuis 1991.
+                                Forts de décennies d&apos;expérience, nous mettons notre expertise
+                                au service des professionnels et des particuliers, en Île-de-France
+                                et même en province pour les professionnels.
                             </Text>
                             <Text fontSize="md">
                                 Notre savoir-faire se reflète dans nos conseils techniques et dans
-                                notre capacité à gérer l&pos;intégralité de vos chantiers, de la
-                                planification à l&pos;exécution, avec une équipe dédiée et
+                                notre capacité à gérer l&apos;intégralité de vos chantiers, de la
+                                planification à l&apos;exécution, avec une équipe dédiée et
                                 qualifiée.
                             </Text>
                         </Box>
@@ -102,7 +102,7 @@ export default function Entreprise() {
                                 <li>Des conseils techniques personnalisés.</li>
                                 <li>
                                     Des matériaux de qualité provenant de grandes marques telles que
-                                    STO, Seigneurie, Tollens, et bien d&pos;autres.
+                                    STO, Seigneurie, Tollens, et bien d&apos;autres.
                                 </li>
                             </ul>
                         </Box>
