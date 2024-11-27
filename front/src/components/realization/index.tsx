@@ -55,7 +55,7 @@ export default function Realisations() {
 
             <Box
                 overflowY="scroll"
-                height={{ base: undefined, xl: '93vh' }}
+                height={{ base: '93vh', xl: '93vh' }}
                 scrollSnapType={{ base: undefined, xl: 'y mandatory' }}
                 scrollBehavior="smooth"
             >
@@ -83,8 +83,9 @@ export default function Realisations() {
                                     Nos Réalisations
                                 </Heading>
                                 <Text fontSize="md">
-                                    Cette page est en cours de création ! Découvrez bientôt une galerie complète de
-                                    nos meilleurs projets. Nous travaillons dur pour vous présenter nos réalisations.
+                                    Cette page est en cours de création ! Découvrez bientôt une
+                                    galerie complète de nos meilleurs projets. Nous travaillons dur
+                                    pour vous présenter nos réalisations.
                                 </Text>
                             </Flex>
                         </Flex>
@@ -97,7 +98,7 @@ export default function Realisations() {
                             maxW="600px"
                             order={isImageBelowHeading ? 0 : 1} // Image comes after heading on small screens
                         >
-                        <Image
+                            <Image
                                 src="https://toffolon-website.s3.eu-west-3.amazonaws.com/services/coming-soon-construction.jpeg"
                                 maxH="85vh"
                                 borderRadius="lg"
@@ -119,7 +120,9 @@ export default function Realisations() {
                                 {[
                                     {
                                         text: 'Une galerie dynamique',
-                                        icon: <Icon as={IoConstruct} color="orange.500" w={5} h={5} />,
+                                        icon: (
+                                            <Icon as={IoConstruct} color="orange.500" w={5} h={5} />
+                                        ),
                                         iconBg: useColorModeValue('orange.100', 'orange.900'),
                                     },
                                     {
