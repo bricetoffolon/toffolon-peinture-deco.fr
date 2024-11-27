@@ -34,29 +34,31 @@ function NavBar(): React.JSX.Element {
                             xl: 'flex',
                         }}
                         right="0"
+                        alignItems="center"
                     >
                         <NextLink href="/" passHref>
-                        <Button
-                            w="30%"
-                            mt="1%"
-                            transition="transform 0.3s"
-                            _hover={{
-                                transform: 'scale(1.1)',
-                            }}
-                            _active={{
-                                transform: 'scale(0.8)',
-                            }}
-                            isActive={!router.pathname}
-                            variant="link"
-                        >
-                            <Flex>
-                                <Image
-                                    alignItems="center"
-                                    src="https://toffolon-website.s3.eu-west-3.amazonaws.com/Toffolon-Icon.png"
-                                />
-                            </Flex>
-                        </Button>
-                    </NextLink>
+                            <Button
+                                w="30%"
+                                mt="1%"
+                                transition="transform 0.3s"
+                                _hover={{
+                                    transform: 'scale(1.1)',
+                                }}
+                                _active={{
+                                    transform: 'scale(0.8)',
+                                }}
+                                isActive={!router.pathname}
+                                variant="link"
+                            >
+                                <Flex>
+                                    <Image
+                                        alignItems="center"
+                                        src="https://toffolon-website.s3.eu-west-3.amazonaws.com/Toffolon-Icon.png"
+                                        maxW="60%"
+                                    />
+                                </Flex>
+                            </Button>
+                        </NextLink>
                         <PageButton />
                     </Flex>
                 </Flex>
