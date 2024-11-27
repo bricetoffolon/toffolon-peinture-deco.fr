@@ -7,40 +7,26 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 const slideWithPause = keyframes`
-  0% { transform: translateX(0); }
-  40% { transform: translateX(0); } /* Pause for 40% of the animation duration */
-  50% { transform: translateX(-100%); } /* Start sliding */
-  90% { transform: translateX(-100%); } /* Finish sliding */
-  100% { transform: translateX(-200%); } /* Prepare for the next slide */
+    0% { transform: translateX(0); } /* First image */
+    14% { transform: translateX(0); } /* Pause on the first image */
+    28% { transform: translateX(-100%); } /* Transition to second image */
+    42% { transform: translateX(-100%); } /* Pause on the second image */
+    56% { transform: translateX(-200%); } /* Transition to third image */
+    70% { transform: translateX(-200%); } /* Pause on the third image */
+    100% { transform: translateX(0); } /* Reset to first image */
 `;
 
 export default function LandingPage() {
-    // Image lists for different devices
-    const mobileImages = useMemo(
+    const images = useMemo(
         () => [
-            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/maison-apre%CC%80s-travaux-vertical.jpeg',
-            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/travaux-vertical-Paris.jpeg',
-            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/re%CC%81novation-inte%CC%81rieure-vertical.jpeg',
-        ],
-        []
-    );
-
-    const tabletImages = useMemo(
-        () => ['https://example.com/tablet-image1.jpg', 'https://example.com/tablet-image2.jpg'],
-        []
-    );
-
-    const desktopImages = useMemo(
-        () => [
-            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/building_construction_site_Paris.JPG',
-            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/maison-apre%CC%80s-travaux-horizontal.jpeg',
-            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/maison-travaux-horizontal.jpeg',
+            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/building_construction_site_Paris.webp',
+            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/pavillon-durant-travaux.webp',
+            'https://toffolon-website.s3.eu-west-3.amazonaws.com/landing/pavillon-en-cours-ravalement.webp',
         ],
         []
     );
 
     // Responsive detection (basic implementation)
-    const [currentImages, setCurrentImages] = useState(desktopImages);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const router = useRouter();
@@ -49,31 +35,15 @@ export default function LandingPage() {
         router.push(`/nos-prestations#service-${serviceIndex}`);
     };
 
-    useEffect(() => {
-        // Update the current images based on screen width
-        const updateImages = () => {
-            if (window.innerWidth < 768) {
-                setCurrentImages(mobileImages);
-            } else if (window.innerWidth < 1024) {
-                setCurrentImages(tabletImages);
-            } else {
-                setCurrentImages(desktopImages);
-            }
-        };
-
-        updateImages();
-        window.addEventListener('resize', updateImages);
-        return () => window.removeEventListener('resize', updateImages);
-    }, [desktopImages, mobileImages, tabletImages]);
-
     // Automatic image slider
     useEffect(() => {
+        const totalDuration = 20000; // Match the animation duration (20s)
         const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % currentImages.length);
-        }, 120000); // Match the animation duration (12 seconds)
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, totalDuration / images.length); // Adjust timing for 4 images
 
-        return () => clearInterval(interval); // Cleanup interval on unmount
-    }, [currentImages]);
+        return () => clearInterval(interval); // Cleanup on unmount
+    }, [images]);
 
     return (
         <>
@@ -96,22 +66,19 @@ export default function LandingPage() {
                 {/* Slider Container */}
                 <Box
                     display="flex"
-                    width={{
-                        base: `${desktopImages.length * 100}%`,
-                        xl: `${desktopImages.length * 50}%`,
-                    }}
-                    animation={`${slideWithPause} 16s cubic-bezier(0.4, 0.0, 0.2, 1) infinite`} // Slower, smoother transition
+                    animation={`${slideWithPause} 20s cubic-bezier(0.4, 0.0, 0.2, 1) infinite`} // Slower, smoother transition
                     transform={`translateX(-${currentImageIndex * 100}%)`}
                 >
-                    {currentImages.map((image, index) => (
+                    {images.map((image, index) => (
                         <Box
                             key={index}
                             flex="0 0 100%"
                             height="80vh"
                             position="relative"
                             backgroundImage={`url(${image})`}
-                            backgroundSize="cover"
-                            backgroundPosition="center"
+                            backgroundSize="cover" /* Ensures the image covers the entire box */
+                            backgroundPosition="center" /* Keeps the image centered */
+                            backgroundRepeat="no-repeat" /* Prevent tiling */
                         />
                     ))}
                 </Box>
@@ -173,12 +140,6 @@ export default function LandingPage() {
                             description:
                                 "Réduisez vos factures d'énergie grâce à notre expertise en isolation thermique.",
                             href: '/isolation-thermique',
-                        },
-                        {
-                            title: 'Renovation extérieure & intérieure',
-                            description:
-                                'Des sols résistants et élégants adaptés à tous vos besoins.',
-                            href: '/renovation',
                         },
                         {
                             title: 'Revêtements de sols',
