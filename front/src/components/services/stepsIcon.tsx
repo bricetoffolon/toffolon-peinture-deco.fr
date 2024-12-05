@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react';
-import { step } from '@/constant/serviceInformation';
+import { step } from '@/constant/steps';
 
 export default function StepsIcon({ stepElement }: { stepElement: step }) {
     return (

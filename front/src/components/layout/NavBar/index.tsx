@@ -26,10 +26,54 @@ function NavBar(): React.JSX.Element {
     return (
         <>
             <Flex shadow="base">
-                <Flex top="1rem" right="1rem" margin="1%" alignItems="center">
+                <Flex>
+                    <Flex
+                        margin="1%"
+                        display={{
+                            base: 'none',
+                            xl: 'flex',
+                        }}
+                        right="0"
+                        alignItems="center"
+                    >
+                        <NextLink href="/" passHref>
+                            <Button
+                                w="30%"
+                                mt="1%"
+                                transition="transform 0.3s"
+                                _hover={{
+                                    transform: 'scale(1.1)',
+                                }}
+                                _active={{
+                                    transform: 'scale(0.8)',
+                                }}
+                                isActive={!router.pathname}
+                                variant="link"
+                            >
+                                <Flex>
+                                    <Image
+                                        alignItems="center"
+                                        src="https://toffolon-website.s3.eu-west-3.amazonaws.com/Toffolon-Icon.png"
+                                        maxW="60%"
+                                    />
+                                </Flex>
+                            </Button>
+                        </NextLink>
+                        <PageButton />
+                    </Flex>
+                </Flex>
+                <Spacer />
+                <Flex
+                    display={{
+                        base: 'flex',
+                        xl: 'none',
+                    }}
+                    alignItems="center"
+                    ml="1%"
+                    mb="1%"
+                >
                     <NextLink href="/" passHref>
                         <Button
-                            opacity={router.pathname === '/' ? '0' : '1'}
                             w="30%"
                             mt="1%"
                             transition="transform 0.3s"
@@ -50,25 +94,6 @@ function NavBar(): React.JSX.Element {
                             </Flex>
                         </Button>
                     </NextLink>
-                    <Flex
-                        margin="1%"
-                        display={{
-                            base: 'none',
-                            xl: 'flex',
-                        }}
-                        right="0"
-                    >
-                        <PageButton />
-                    </Flex>
-                </Flex>
-                <Spacer />
-                <Flex
-                    display={{
-                        base: 'flex',
-                        xl: 'none',
-                    }}
-                    mb="1%"
-                >
                     <IconButton
                         aria-label="Open menu"
                         size="lg"

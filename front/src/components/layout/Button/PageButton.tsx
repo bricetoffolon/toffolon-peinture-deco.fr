@@ -16,8 +16,8 @@ function PageButton(): React.JSX.Element {
             }}
         >
             {buttonList
-                ? buttonList.map((element) => {
-                      return <ButtonBasic props={element} />;
+                ? buttonList.map((element, index) => {
+                      return <ButtonBasic key={index} props={element} />;
                   })
                 : null}
             <ContactButton props={{}} />
