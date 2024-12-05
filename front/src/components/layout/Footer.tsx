@@ -32,8 +32,8 @@ export default function Footer(): React.JSX.Element {
                         xl: 'flex-start',
                     }}
                 >
-                    <NextLink href="mention-legales">Mention Légales</NextLink>
-                    <NextLink href="notre-entreprise">Notre entreprise</NextLink>
+                    <NextLink href="/mention-legales">Mention Légales</NextLink>
+                    <NextLink href="/notre-entreprise">Notre entreprise</NextLink>
                     <NextLink href="/nos-prestations">Nos Prestations</NextLink>
                     <NextLink href="/nos-realisations">Nos Réalisations</NextLink>
                     <NextLink href="/contact">Nous Contacter</NextLink>
@@ -59,7 +59,7 @@ export default function Footer(): React.JSX.Element {
                     textShadow="1px 1px 3px rgba(0,0,0,0.4)"
                     aria-label="Footer attribution to Brice Toffolon"
                 >
-                    Made by <span>Brice Toffolon</span>
+                    Website made by <span>Brice Toffolon</span>
                 </Text>
             </Flex>
         </Box>
