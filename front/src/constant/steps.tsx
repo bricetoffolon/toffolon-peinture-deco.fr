@@ -1,4 +1,12 @@
-const steps = [
+import React from 'react';
+
+export interface step {
+    title: string;
+    label: string;
+    Icon: React.ElementType;
+}
+
+export const workStep = [
     {
         number: 1,
         title: 'Étude de votre projet & Conseils techniques',
@@ -32,5 +40,3 @@ const steps = [
             'https://toffolon-website.s3.eu-west-3.amazonaws.com/services/work-steps/Signature.png',
     },
 ];
-
-export default steps;

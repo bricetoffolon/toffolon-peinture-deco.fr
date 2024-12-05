@@ -17,7 +17,7 @@ import {
 import Head from 'next/head';
 import { MdOutlineEmail, MdPhone, MdLocationOn } from 'react-icons/md';
 import { BsPerson } from 'react-icons/bs';
-import steps from '@/constant/steps';
+import { workStep } from '@/constant/steps';
 import { useApiCallToastResp } from '@/hook/useApiCall';
 
 export default function Contact() {
@@ -169,7 +169,7 @@ export default function Contact() {
 
                 {/* Steps Section */}
                 <VStack spacing={8} w="full" maxW="1000px">
-                    {steps.map((step) => (
+                    {workStep.map((step) => (
                         <Flex
                             key={step.number}
                             direction={{ base: 'column', md: 'row' }}
