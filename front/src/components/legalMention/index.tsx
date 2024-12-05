@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text, VStack, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react';
 import Head from 'next/head';
 import React from 'react';
 
@@ -24,6 +24,7 @@ export default function MentionsLegales() {
                 overflowY="scroll"
                 scrollSnapType={{ base: undefined, xl: 'y mandatory' }}
                 scrollBehavior="smooth"
+                minH="100vh"
             >
                 <Box>
                     <Flex align="center" justify="center" direction="column" gap={8} p={6}>
@@ -45,8 +46,8 @@ export default function MentionsLegales() {
                                         Informations Générales
                                     </Heading>
                                     <Text>
-                                        Ce site internet est édité par l’entreprise **Toffolon
-                                        Peinture & Décoration**, spécialisée dans les travaux de
+                                        Ce site internet est édité par l’entreprise Toffolon
+                                        Peinture & Décoration, spécialisée dans les travaux de
                                         ravalement, isolation thermique et peinture.
                                     </Text>
                                     <Text>
@@ -97,10 +98,11 @@ export default function MentionsLegales() {
                                     </Heading>
                                     <Text>
                                         Conformément à la loi française n° 78-17 du 6 janvier 1978
-                                        relative à l'informatique, aux fichiers et aux libertés, et
-                                        au Règlement Général sur la Protection des Données (RGPD),
-                                        vous disposez d'un droit d'accès, de rectification et de
-                                        suppression des données vous concernant.
+                                        relative à l&apos;informatique, aux fichiers et aux
+                                        libertés, et au Règlement Général sur la Protection des
+                                        Données (RGPD), vous disposez d&apos;un droit d&apos;accès,
+                                        de rectification et de suppression des données vous
+                                        concernant.
                                     </Text>
                                     <Text>
                                         Pour exercer ces droits, veuillez nous contacter par email à
@@ -113,13 +115,13 @@ export default function MentionsLegales() {
                                         Cookies
                                     </Heading>
                                     <Text>
-                                        Ce site utilise des cookies pour améliorer l'expérience des
-                                        utilisateurs. En continuant à naviguer sur ce site, vous
-                                        acceptez l'utilisation des cookies.
+                                        Ce site utilise des cookies pour améliorer l&apos;expérience
+                                        des utilisateurs. En continuant à naviguer sur ce site, vous
+                                        acceptez l&apos;utilisation des cookies.
                                     </Text>
                                     <Text>
-                                        Pour plus d'informations, veuillez consulter notre politique
-                                        de confidentialité.
+                                        Pour plus d&apos;informations, veuillez consulter notre
+                                        politique de confidentialité.
                                     </Text>
                                 </Box>
                             </VStack>

@@ -1,5 +1,6 @@
 import { Box, Heading, Text, Image, Button, Flex, AspectRatio } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import NextLink from 'next/link';
 
 export default function ServiceTemplate({ index, title, description, image, callToAction }) {
     const [direction, setDirection] = useState('column');
@@ -70,16 +71,18 @@ export default function ServiceTemplate({ index, title, description, image, call
                 >
                     {description}
                 </Text>
-                <Button
-                    as="a"
-                    href="#contact"
-                    bg="brand.500"
-                    color="white"
-                    _hover={{ bg: 'brand.600' }}
-                    size="lg"
-                >
-                    {callToAction}
-                </Button>
+                <NextLink href="/contact" passHref>
+                    <Button
+                        as="a"
+                        href="#contact"
+                        bg="brand.500"
+                        color="white"
+                        _hover={{ bg: 'brand.600' }}
+                        size="lg"
+                    >
+                        {callToAction}
+                    </Button>
+                </NextLink>
             </Box>
         </Flex>
     );
