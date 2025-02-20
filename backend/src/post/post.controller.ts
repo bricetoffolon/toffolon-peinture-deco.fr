@@ -53,9 +53,9 @@ export class PostController {
             throw new NotFoundException();
         }
 
-        for (let i: number = 0; i < post.image.length; i += 1) {
-            await this.awsService.imageDelete(post.image[i])
+        await this.awsService.deleteImagesOfPost(post.id);
 
+        for (let i: number = 0; i < post.image.length; i += 1) {
             await this.imageService.deleteImage({"id": post.image[i].id});
         }
 
@@ -73,18 +73,16 @@ export class PostController {
     ) {
         const post = await this.postService.post({"id": Number(id)})
 
-        console.log(post)
-
         if (!post) {
             throw new InternalServerErrorException();
         }
 
-        console.log(files)
-
         for (let i: number = 0; i < files.length; i += 1) {
             const name: string = files[i].originalname
 
-            const url: string = await this.awsService.imageUpload(files[i].buffer, name);
+            const imageBuffer = await this.imageService.mergeCopyrightToImage(files[i].buffer);
+
+            const url: string = await this.awsService.imageUpload(post.id, imageBuffer, name);
 
             await this.imageService.createImage({name, url, Post: {connect: {id: post.id}}});
         }
