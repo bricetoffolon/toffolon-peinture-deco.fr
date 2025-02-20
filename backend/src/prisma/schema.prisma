@@ -14,15 +14,15 @@ model Image {
   id     Int     @id @default(autoincrement())
   name   String?
   url    String
-  Post   Post?   @relation(fields: [postId], references: [id])
-  postId Int?
+  post   Post   @relation(fields: [postId], references: [id])
+  postId Int
 }
 
 model Post {
   id       Int     @id @default(autoincrement())
   title    String
   content  String?
-  image    Image[]
+  images    Image[]
   author   User    @relation(fields: [authorId], references: [id])
   authorId Int
 }

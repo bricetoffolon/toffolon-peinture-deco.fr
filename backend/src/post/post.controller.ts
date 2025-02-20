@@ -9,11 +9,16 @@ import {
     Get,
     Delete,
     NotFoundException,
-    InternalServerErrorException,
+    InternalServerErrorException, Request,
 } from '@nestjs/common';
 import { IsAuthenticatedGuard } from "../auth/guards/is-authenticated/is-authenticated.guard";
 import { AwsService, ImageService, PostService } from "./post.service";
 import { FilesInterceptor } from "@nestjs/platform-express";
+import {CreatePostDto, PostResponseDto, PostsResponseDto} from "./post.dto";
+import {UsersService} from "../users/users.service";
+import {ImageResponseDto} from "./image.dto";
+import {Prisma} from "@prisma/client";
+
 
 @Controller('post')
 export class PostController {
@@ -21,25 +26,33 @@ export class PostController {
         private postService: PostService,
         private awsService: AwsService,
         private imageService: ImageService,
+        private readonly usersService: UsersService,
     ) {
     }
 
     @UseGuards(IsAuthenticatedGuard)
     @Post('/')
     async createPost(
-        @Body() postData: {title: string, content?:string, authorEmail: string},
+        @Request() req: any,
+        @Body() CreatePostDto: CreatePostDto,
     ) {
-        const { title, content, authorEmail } = postData;
+        const user = await this.usersService.user({
+            "email": req.session.passport.user,
+        });
 
-        return this.postService.createPost({title, content, author: {
-            connect: {email: authorEmail}
+        const post = await this.postService.createPost({title: CreatePostDto.title, content: CreatePostDto.content, author: {
+            connect: {id: user.id}
             }} )
 
+        return new PostResponseDto(post.id, post.title, post.content, []);
     }
 
     @Get('/')
     async getPosts() {
-        return this.postService.posts({});
+        type PostsWithImages = Prisma.PromiseReturnType<typeof this.postService.post>
+        const posts: PostsWithImages = await this.postService.posts({});
+        const postDtos = posts.map(post => new PostResponseDto(post.id, post.title, post.content, post.images.map(img => new ImageResponseDto(img.id, img.url))));
+        return new PostsResponseDto(postDtos);
     }
 
     @UseGuards(IsAuthenticatedGuard)
@@ -84,7 +97,7 @@ export class PostController {
 
             const url: string = await this.awsService.imageUpload(post.id, imageBuffer, name);
 
-            await this.imageService.createImage({name, url, Post: {connect: {id: post.id}}});
+            await this.imageService.createImage({name, url, post: {connect: {id: post.id}}});
         }
     }
 }

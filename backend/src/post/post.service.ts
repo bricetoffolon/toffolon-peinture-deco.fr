@@ -16,7 +16,7 @@ export class PostService {
         return this.prisma.post.findUnique({
             where: postWhereUniqueInput,
             include: {
-                image: true,
+                images: true,
             }
         })
     }
@@ -43,7 +43,7 @@ export class PostService {
             where,
             orderBy,
             include: {
-                image: true
+                images: true
             }
         });
     }
