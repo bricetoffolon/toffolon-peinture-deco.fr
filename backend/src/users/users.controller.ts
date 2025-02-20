@@ -11,11 +11,13 @@ import {
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { User } from "@prisma/client";
+import { CreateUserDto, UserResponseDto } from "./users.dto";
 import * as bcrypt from 'bcrypt';
 import { AuthTokenService } from "../JwtToken/jwtToken.service";
 import MailService from "../mail/mail.service";
 import { tokenGuard } from "../JwtToken/token-auth/token.guard";
 import { IsAuthenticatedGuard } from "../auth/guards/is-authenticated/is-authenticated.guard";
+
 
 @Controller('user')
 export class UsersController {
@@ -24,19 +26,21 @@ export class UsersController {
     @UseGuards(tokenGuard)
     @Post('/')
     async addUser(
-        @Body('password') userPassword: string,
-        @Body('email') userEmail: string,
-    ): Promise<User> {
+        @Body() CreateUserDto: CreateUserDto
+    ): Promise<UserResponseDto> {
 
-        const saltOrRounds = 10;
-        const hash = await bcrypt.hash(userPassword, saltOrRounds);
+        const saltOrRounds = 12;
+        const hash = await bcrypt.hash(CreateUserDto.password, saltOrRounds);
 
-        await this.mailService.sendVerificationMail(userEmail, await this.authTokenService.genAuthToken(userEmail, "0"));
+        await this.mailService.sendVerificationMail(CreateUserDto.email, await this.authTokenService.genAuthToken(CreateUserDto.email, "0"));
 
-        return await this.usersService.createUser({
-            email: userEmail,
+        const user = await this.usersService.createUser({
+            email: CreateUserDto.email,
+            name: CreateUserDto.name,
             password: hash,
         })
+
+        return new UserResponseDto(user.id, user.email, user.name, user.role);
     };
 
     @UseGuards(IsAuthenticatedGuard)
@@ -55,10 +59,12 @@ export class UsersController {
     @Get('/')
     async getUser(
         @Request() req: any
-    ): Promise<User> {
-        return await this.usersService.user({
+    ): Promise<UserResponseDto> {
+        const user = await this.usersService.user({
             "email": req.session.passport.user,
         });
+
+        return new UserResponseDto(user.id, user.email, user.name, user.role);
     }
 
     @UseGuards(tokenGuard)

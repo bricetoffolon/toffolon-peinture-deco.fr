@@ -2,14 +2,16 @@ import { Controller, Get, Post, UseGuards, Req, Session, InternalServerErrorExce
 import { LocalAuthGuard } from "./guards/local-auth/local-auth.guard";
 import { Session as ExpressSession } from 'express-session';
 import { IsAuthenticatedGuard } from "./guards/is-authenticated/is-authenticated.guard";
+import { UserResponseDto } from "../users/users.dto";
 import { Request } from "express";
 
 @Controller('auth')
 export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Post('login')
-    login(@Req() request: any, @Session() session: ExpressSession) {
-        return request.user;
+    login(@Req() request: any, @Session() session: ExpressSession): UserResponseDto {
+        const user = request.user;
+        return new UserResponseDto(user.id, user.email, user.name, user.role);
     }
 
     @UseGuards(IsAuthenticatedGuard)
