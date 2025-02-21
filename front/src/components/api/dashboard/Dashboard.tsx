@@ -1,40 +1,22 @@
 import React, { useState } from 'react';
-import {Button, Flex, Heading, Box, SimpleGrid, Icon, Badge, Text} from '@chakra-ui/react';
+import { Button, Flex, Heading, Box, SimpleGrid, Icon, Badge, Text } from '@chakra-ui/react';
 
 import NextLink from 'next/link';
 
-import { FormValue } from '@/components/api/user/interface';
-
-import UserForm from '@/components/api/user/userForm';
-import { useApiCallDataResp, useApiCallToastResp } from '@/hook/useApiCall';
-import {FaCog, FaNewspaper} from "react-icons/fa";
-import {ArrowForwardIcon, LockIcon} from "@chakra-ui/icons";
+import { useApiCallDataResp } from '@/hook/useApiCall';
+import { FaCog, FaNewspaper } from 'react-icons/fa';
+import { ArrowForwardIcon, LockIcon } from '@chakra-ui/icons';
 
 export default function Dashboard(): React.JSX.Element {
     const [response, setResponse] = useState<any>(''); // eslint-disable-line
 
-    const [isSubmit, setIsSubmit] = useState<boolean>(false);
-
-    const [formValues, setFormValues] = useState<FormValue>({});
-
     useApiCallDataResp('get', '/user', {}, response, setResponse);
-    useApiCallToastResp(
-        'post',
-        'auth/login',
-        { email: formValues.email, password: formValues.password },
-        isSubmit,
-        setIsSubmit
-    );
 
     return (
-        <Flex h={"100%"}>
+        <Flex h={'100%'}>
             {response !== 'error' ? (
                 <Flex alignItems="left" justifyContent="center" direction="column" mt="1%">
-                    <Box
-                        width="80%"
-                        padding="3%"
-                        borderRadius="lg"
-                    >
+                    <Box width="80%" padding="3%" borderRadius="lg">
                         <Flex direction="column" gap={8}>
                             <Heading size="xl" textShadow="2px 2px 4px rgba(0, 0, 0, 0.2)">
                                 Dashboard Services
@@ -46,11 +28,16 @@ export default function Dashboard(): React.JSX.Element {
                                     bg="gray.100"
                                     borderRadius="md"
                                     boxShadow="md"
-                                    _hover={{ transform: "translateY(-5px)", transition: "transform 0.2s" }}
+                                    _hover={{
+                                        transform: 'translateY(-5px)',
+                                        transition: 'transform 0.2s',
+                                    }}
                                 >
                                     <Flex direction="column" align="center" gap={4}>
                                         <Icon as={FaNewspaper} w={10} h={10} color="brand.400" />
-                                        <Heading size="md" color="gray.700">Manage Posts</Heading>
+                                        <Heading size="md" color="gray.700">
+                                            Manage Posts
+                                        </Heading>
                                         <Text color="gray.600" textAlign="center" mb={4}>
                                             Create, edit, and organize all your content in one place
                                         </Text>
@@ -78,11 +65,16 @@ export default function Dashboard(): React.JSX.Element {
                                     boxShadow="md"
                                     opacity={0.6}
                                     position="relative"
-                                    _hover={{ transform: "translateY(-5px)", transition: "transform 0.2s" }}
+                                    _hover={{
+                                        transform: 'translateY(-5px)',
+                                        transition: 'transform 0.2s',
+                                    }}
                                 >
                                     <Flex direction="column" align="center" gap={4}>
                                         <Icon as={FaCog} w={10} h={10} color="gray.400" />
-                                        <Heading size="md" color="gray.500">More Services</Heading>
+                                        <Heading size="md" color="gray.500">
+                                            More Services
+                                        </Heading>
                                         <Text color="gray.500" textAlign="center" mb={4}>
                                             Additional services will be available soon
                                         </Text>
@@ -110,17 +102,7 @@ export default function Dashboard(): React.JSX.Element {
                         </Flex>
                     </Box>
                 </Flex>
-            ) : (
-                <Flex alignItems="center" justifyContent="center" direction="column" w={"100%"} mt="1%">
-                    <UserForm
-                        title="Access settings"
-                        inputs={['email', 'password']}
-                        formValues={formValues}
-                        setFormValues={setFormValues}
-                        setIsSubmit={setIsSubmit}
-                    />
-                </Flex>
-            )}
+            ) : null}
         </Flex>
     );
 }
