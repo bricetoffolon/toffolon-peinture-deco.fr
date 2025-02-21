@@ -8,17 +8,20 @@ export default function useAddPost(
     data: any, // eslint-disable-line
     isSubmit: boolean,
     setIsSubmit: Dispatch<SetStateAction<boolean>>,
-    file: string
+    file: any
 ): void {
     const form: FormData = new FormData();
 
     const toast = useToast();
 
     useEffect((): void => {
-        if (isSubmit && data.authorEmail) {
+        if (isSubmit) {
             if (file) {
                 for (let i: number = 0; i < file.length; i += 1) {
-                    form.append('files', file[i]);
+                    const { file: fileProperty, name, size, type } = file[i];
+                    const blob = fileProperty instanceof Blob ? fileProperty : new Blob([fileProperty], { type });
+                    const convertToFile = new File([blob], name, {type: type});
+                    form.append('files', convertToFile);
                 }
             }
 
@@ -27,7 +30,7 @@ export default function useAddPost(
                 .then((response) => {
                     if (response && response.data && response.data.id) {
                         instance
-                            .post(`${endpoint}/${response.data.id}`, form)
+                            .post(`${endpoint}/${response.data.id}`, form, {timeout: 30000})
                             .then(() => {
                                 toast({
                                     status: 'success',
@@ -36,6 +39,7 @@ export default function useAddPost(
                                 });
                             })
                             .catch((error) => {
+                                console.log(error)
                                 toast({
                                     status: 'error',
                                     duration: 9000,
@@ -43,9 +47,11 @@ export default function useAddPost(
                                     isClosable: true,
                                 });
                             });
+                    } else {
                     }
                 })
                 .catch((error) => {
+                    console.log(error)
                     toast({
                         status: 'error',
                         duration: 9000,
@@ -56,5 +62,5 @@ export default function useAddPost(
         }
 
         setIsSubmit(false);
-    });
+    }, [isSubmit]);
 }
