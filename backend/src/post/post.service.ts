@@ -195,7 +195,7 @@ export class ImageService {
     async deleteImage(
         where: Prisma.ImageWhereUniqueInput
     ): Promise<Image> {
-        return this.prisma.image.delete({
+        return this.prisma.images.delete({
             where,
         })
     }

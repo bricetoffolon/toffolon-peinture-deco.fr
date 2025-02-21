@@ -18,6 +18,7 @@ import {CreatePostDto, PostResponseDto, PostsResponseDto} from "./post.dto";
 import {UsersService} from "../users/users.service";
 import {ImageResponseDto} from "./image.dto";
 import {Prisma} from "@prisma/client";
+import {Timeout} from "@fuse-autotech/nest-timeout";
 
 
 @Controller('post')
@@ -68,8 +69,10 @@ export class PostController {
 
         await this.awsService.deleteImagesOfPost(post.id);
 
-        for (let i: number = 0; i < post.image.length; i += 1) {
-            await this.imageService.deleteImage({"id": post.image[i].id});
+        if (post.images) {
+            for (let i: number = 0; i < post.images.length; i += 1) {
+                await this.imageService.deleteImage({"id": post.images[i].id});
+            }
         }
 
         await this.postService.deletePost({"id": post.id});
@@ -80,6 +83,7 @@ export class PostController {
     @UseGuards(IsAuthenticatedGuard)
     @Post('/:id')
     @UseInterceptors(FilesInterceptor('files'))
+    @Timeout(30000)
     async uploadPostImages(
         @Param ("id") id: string,
         @UploadedFiles() files: Array<Express.Multer.File>
