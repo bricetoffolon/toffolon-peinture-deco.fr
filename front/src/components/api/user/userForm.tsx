@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 
 import { FormValue } from './interface';
+import NextLink from "next/link";
 
 export default function UserForm({
     title,
@@ -80,9 +81,11 @@ export default function UserForm({
                     );
                 })}
             </FormControl>
-            <Button m="3%" onClick={() => setIsSubmit(true)} boxShadow="xl">
-                Submit
-            </Button>
+            <NextLink href={`/redondo`} passHref>
+                <Button m="3%" onClick={() => setIsSubmit(true)} boxShadow="xl">
+                    Submit
+                </Button>
+            </NextLink>
         </Box>
     );
 }
