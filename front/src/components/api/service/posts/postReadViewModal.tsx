@@ -18,7 +18,7 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 
-const PostReadViewModal = ({ isOpen, onClose, post }) => {
+const PostReadViewModal = ({ isOpen, onClose, post }: {isOpen: boolean, onClose: () => void, post: Post}) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const bgColor = useColorModeValue('white', 'gray.800');
