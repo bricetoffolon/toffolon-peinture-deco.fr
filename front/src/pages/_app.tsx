@@ -7,6 +7,7 @@ import { AppProps } from 'next/app';
 import '@/styles/carousel.css';
 
 import Head from 'next/head';
+import {AuthProvider} from "@/context/AuthContext";
 
 
 const theme = extendTheme({
@@ -29,7 +30,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <link rel="icon" href="/favicon.png" type="image/png"/>
             </Head>
             <ChakraProvider theme={theme}>
-                <Component {...pageProps} />
+                <AuthProvider>
+                    <Component {...pageProps} />
+                </AuthProvider>
             </ChakraProvider>
         </>
     );
