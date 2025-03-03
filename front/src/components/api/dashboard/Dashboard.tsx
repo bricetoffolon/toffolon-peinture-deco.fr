@@ -41,7 +41,7 @@ export default function Dashboard(): React.JSX.Element {
                                         <Text color="gray.600" textAlign="center" mb={4}>
                                             Create, edit, and organize all your content in one place
                                         </Text>
-                                        <NextLink href="redondo/posts" passHref>
+                                        <NextLink href="redondo/service/posts" passHref>
                                             <Button
                                                 size="md"
                                                 boxShadow="md"
