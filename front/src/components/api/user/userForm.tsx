@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import {
     Button,
     FormControl,
@@ -12,20 +12,19 @@ import {
 } from '@chakra-ui/react';
 
 import { FormValue } from './interface';
-import NextLink from "next/link";
 
 export default function UserForm({
     title,
     inputs,
     formValues,
     setFormValues,
-    setIsSubmit,
+    handleSubmit,
 }: {
     title: string;
     inputs: string[];
     formValues: FormValue;
     setFormValues: any; // eslint-disable-line
-    setIsSubmit: Dispatch<SetStateAction<boolean>>;
+    handleSubmit: any;
 }): React.JSX.Element {
     const handleValueChange = (fieldname: string, value: string) => {
         setFormValues((prevValues: any) => ({ // eslint-disable-line
@@ -47,16 +46,18 @@ export default function UserForm({
             <Heading mb="10%" color="white">
                 {title}
             </Heading>
+            <form onSubmit={handleSubmit}>
             <FormControl>
-                {inputs.map((input: string) => {
+                {inputs.map((input: string, index) => {
                     return (
-                        <Flex margin="2%" direction="column">
-                            <FormLabel color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 0.2)">
+                        <Flex key={index} margin="2%" direction="column">
+                            <FormLabel htmlFor={`field-${input}-${index}`} color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 0.2)">
                                 {input}
                             </FormLabel>
                             {input.includes('password') ? (
                                 <InputGroup boxShadow="xl" background="white" borderRadius="2xl">
                                     <Input
+                                        id={`field-${input}-${index}`}
                                         boxShadow="2xl"
                                         type={showPass ? undefined : 'password'}
                                         value={formValues[input]}
@@ -81,11 +82,10 @@ export default function UserForm({
                     );
                 })}
             </FormControl>
-            <NextLink href={`/redondo`} passHref>
-                <Button m="3%" onClick={() => setIsSubmit(true)} boxShadow="xl">
+                <Button type="submit" m="3%" boxShadow="xl">
                     Submit
                 </Button>
-            </NextLink>
+            </form>
         </Box>
     );
 }

@@ -2,20 +2,25 @@ import UserForm from "@/components/api/user/userForm";
 import {Flex} from "@chakra-ui/react";
 import React, {useState} from "react";
 import {FormValue} from "@/components/api/user/interface";
-import {useApiCallToastResp} from "@/hook/useApiCall";
+import {useAuth} from "@/context/AuthContext";
+import {useRouter} from "next/router";
 
 export default function Login() {
-    const [isSubmit, setIsSubmit] = useState<boolean>(false);
+    const router = useRouter();
+
+    const { authLogin } = useAuth();
 
     const [formValues, setFormValues] = useState<FormValue>({});
 
-    useApiCallToastResp(
-        'post',
-        'auth/login',
-        { email: formValues.email, password: formValues.password },
-        isSubmit,
-        setIsSubmit
-    );
+    const handleSubmit = async (e: React.FormEvent): Promise<void> => {
+        e.preventDefault();
+        try {
+            await authLogin(formValues.email, formValues.password);
+            router.push("/redondo");
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     return (
         <Flex alignItems="center" justifyContent="center" direction="column" w={"100%"} mt="1%">
@@ -24,7 +29,7 @@ export default function Login() {
                 inputs={['email', 'password']}
                 formValues={formValues}
                 setFormValues={setFormValues}
-                setIsSubmit={setIsSubmit}
+                handleSubmit={handleSubmit}
             />
         </Flex>
     );
