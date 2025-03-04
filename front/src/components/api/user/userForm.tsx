@@ -38,12 +38,10 @@ export default function UserForm({
     return (
         <Box
             alignItems="center"
-            padding="5%"
+            padding="3%"
             borderRadius="lg"
-            boxShadow="2xl"
-            background="brand.400"
         >
-            <Heading mb="10%" color="white">
+            <Heading mb={"1%"} color={"brand.500"}>
                 {title}
             </Heading>
             <form onSubmit={handleSubmit}>
@@ -51,7 +49,7 @@ export default function UserForm({
                 {inputs.map((input: string, index) => {
                     return (
                         <Flex key={index} margin="2%" direction="column">
-                            <FormLabel htmlFor={`field-${input}-${index}`} color="white" textShadow="2px 2px 4px rgba(0, 0, 0, 0.2)">
+                            <FormLabel color="brand.400" htmlFor={`field-${input}-${index}`} textShadow="2px 2px 4px rgba(0, 0, 0, 0.2)">
                                 {input}
                             </FormLabel>
                             {input.includes('password') ? (
@@ -82,7 +80,7 @@ export default function UserForm({
                     );
                 })}
             </FormControl>
-                <Button type="submit" m="3%" boxShadow="xl">
+                <Button type="submit" m="3%" boxShadow="xl" colorScheme={"brand"}>
                     Submit
                 </Button>
             </form>
