@@ -38,7 +38,7 @@ export default function UserForm({
     return (
         <Box
             alignItems="center"
-            padding="3%"
+            padding={"1%"}
             borderRadius="lg"
         >
             <Heading mb={"1%"} color={"brand.500"}>
@@ -52,7 +52,7 @@ export default function UserForm({
                             <FormLabel color="brand.400" htmlFor={`field-${input}-${index}`} textShadow="2px 2px 4px rgba(0, 0, 0, 0.2)">
                                 {input}
                             </FormLabel>
-                            {input.includes('password') ? (
+                            {input.toLowerCase().includes('password') ? (
                                 <InputGroup boxShadow="xl" background="white" borderRadius="2xl">
                                     <Input
                                         id={`field-${input}-${index}`}
