@@ -7,62 +7,60 @@ import {
     Icon,
     Button,
     Image,
-    Collapse,
     useDisclosure,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    DrawerHeader,
+    DrawerBody,
+    VStack,
+    Drawer,
 } from '@chakra-ui/react';
 
 import NextLink from 'next/link';
 
 import { FiMenu, FiX } from 'react-icons/fi';
 
-import { useRouter } from 'next/router';
 import PageButton from '@/components/layout/Button/PageButton';
 
 function NavBar(): React.JSX.Element {
-    const { isOpen, onToggle } = useDisclosure();
-
-    const router = useRouter();
+    const { isOpen, onToggle, onClose } = useDisclosure();
 
     return (
         <>
-            <Flex shadow="base">
-                <Flex>
-                    <Flex
-                        margin="1%"
-                        display={{
-                            base: 'none',
-                            xl: 'flex',
-                        }}
-                        right="0"
-                        alignItems="center"
-                    >
-                        <NextLink href="/" passHref>
-                            <Button
-                                w="30%"
-                                mt="1%"
-                                transition="transform 0.3s"
-                                _hover={{
-                                    transform: 'scale(1.1)',
-                                }}
-                                _active={{
-                                    transform: 'scale(0.8)',
-                                }}
-                                isActive={!router.pathname}
-                                variant="link"
-                            >
-                                <Flex>
-                                    <Image
-                                        alignItems="center"
-                                        src="https://toffolon-website.s3.eu-west-3.amazonaws.com/Toffolon-Icon.png"
-                                        maxW="60%"
-                                    />
-                                </Flex>
-                            </Button>
-                        </NextLink>
-                        <PageButton />
-                    </Flex>
+            <Flex
+                as="nav"
+                shadow="base"
+                p={4}
+                align="center"
+                justify="space-between"
+                bg="white"
+                w="100%"
+            >
+                <Flex alignItems={'left'} maxW={{ base: '30%', md: '20%', xl: '10%' }}>
+                    <NextLink href="/" passHref>
+                        <Button
+                            transition="transform 0.3s"
+                            _hover={{ transform: 'scale(1.1)' }}
+                            _active={{ transform: 'scale(0.9)' }}
+                            variant="link"
+                        >
+                            <Image
+                                src="https://toffolon-website.s3.eu-west-3.amazonaws.com/Toffolon-Icon.png"
+                                alt="Logo"
+                            />
+                        </Button>
+                    </NextLink>
                 </Flex>
                 <Spacer />
+                <Flex
+                    display={{
+                        base: 'none',
+                        xl: 'flex',
+                    }}
+                >
+                    <PageButton />
+                </Flex>
                 <Flex
                     display={{
                         base: 'flex',
@@ -72,28 +70,6 @@ function NavBar(): React.JSX.Element {
                     ml="1%"
                     mb="1%"
                 >
-                    <NextLink href="/" passHref>
-                        <Button
-                            w="30%"
-                            mt="1%"
-                            transition="transform 0.3s"
-                            _hover={{
-                                transform: 'scale(1.1)',
-                            }}
-                            _active={{
-                                transform: 'scale(0.8)',
-                            }}
-                            isActive={!router.pathname}
-                            variant="link"
-                        >
-                            <Flex>
-                                <Image
-                                    alignItems="center"
-                                    src="https://toffolon-website.s3.eu-west-3.amazonaws.com/Toffolon-Icon.png"
-                                />
-                            </Flex>
-                        </Button>
-                    </NextLink>
                     <IconButton
                         aria-label="Open menu"
                         size="lg"
@@ -105,18 +81,18 @@ function NavBar(): React.JSX.Element {
                 </Flex>
             </Flex>
 
-            <Collapse in={isOpen} unmountOnExit>
-                <Flex
-                    bg="gray.200"
-                    padding="2%"
-                    mt="1%"
-                    boxShadow="outline"
-                    direction="column"
-                    alignItems="center"
-                >
-                    <PageButton />
-                </Flex>
-            </Collapse>
+            <Drawer isOpen={isOpen} placement="bottom" onClose={onClose}>
+                <DrawerOverlay />
+                <DrawerContent>
+                    <DrawerCloseButton />
+                    <DrawerHeader>Menu</DrawerHeader>
+                    <DrawerBody>
+                        <VStack spacing={4} align="center">
+                            <PageButton />
+                        </VStack>
+                    </DrawerBody>
+                </DrawerContent>
+            </Drawer>
         </>
     );
 }
