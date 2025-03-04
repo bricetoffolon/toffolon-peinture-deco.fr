@@ -39,6 +39,7 @@ export function useApiCallToastResp(
                     });
                 })
                 .catch((error) => {
+                    console.log(error);
                     toast({
                         status: 'error',
                         duration: 9000,
