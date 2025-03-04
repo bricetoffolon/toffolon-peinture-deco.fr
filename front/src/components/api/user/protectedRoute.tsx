@@ -11,6 +11,9 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
         if (!isLoading && !user) {
             router.push("/redondo/login");
         }
+        if (!isLoading && user && user.role !== "ADMIN") {
+            router.push("/redondo/user/verify");
+        }
     }, [isLoading, user, router]);
 
     if (isLoading) {
