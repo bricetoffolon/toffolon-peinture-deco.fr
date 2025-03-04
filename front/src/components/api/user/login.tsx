@@ -1,5 +1,5 @@
 import UserForm from "@/components/api/user/userForm";
-import {Divider, Flex, Image, Text} from "@chakra-ui/react";
+import {Divider, Flex, Heading, Text} from "@chakra-ui/react";
 import React, {useState} from "react";
 import {FormValue} from "@/components/api/user/interface";
 import {useAuth} from "@/context/AuthContext";
@@ -23,10 +23,10 @@ export default function Login() {
     }
 
     return (
-        <Flex alignItems="center" mt={"1%"} direction={"column"} gap={1}>
-            <Flex direction={"column"} w={"30%"} alignItems={"center"}>
-                <Image src={"https://toffolon-website.s3.eu-west-3.amazonaws.com/Toffolon-Icon.png"}/>
-                <Text color={"brand.400"}>Manage your website content, users, and settings</Text>
+        <Flex alignItems="center" mt={"1%"} direction={"column"} gap={1} w={"100%"}>
+            <Flex direction={"column"} w={{base: "90%", xl: "30%"}} alignItems={"center"}>
+                <Heading color={"brand.500"}>Redondo</Heading>
+                <Text textAlign="center" color={"brand.400"}>Manage your website content, users, and settings</Text>
             </Flex>
             <Divider maxW={"50%"}/>
             <UserForm

@@ -15,7 +15,7 @@ export default function Dashboard(): React.JSX.Element {
     return (
         <Flex h={'100%'}>
             {response !== 'error' ? (
-                <Flex alignItems="left" direction="column">
+                <Flex alignItems={{base: "center", md: "left"}} direction="column">
                     <Box width="80%" padding="3%" borderRadius="lg">
                         <Flex direction="column" gap={8}>
                             <Heading size="xl" textShadow="2px 2px 4px rgba(0, 0, 0, 0.2)">
