@@ -13,7 +13,6 @@ const AuthContext = createContext<AuthContextType>({
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         checkAuth();
@@ -32,7 +31,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     const authLogin = async (email: string, password: string) => {
-        console.log("coucou")
         try {
             setIsLoading(true);
             const response = await instance.post('/auth/login', {email: email, password: password});
@@ -47,7 +45,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const authLogout = async () => {
         try {
             setIsLoading(true);
-            await instance.get('/auth/logout');
+            await instance.post('/auth/logout');
             setUser(null);
         } catch (err) {
             console.error(err);
