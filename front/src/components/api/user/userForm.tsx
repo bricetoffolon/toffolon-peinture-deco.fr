@@ -11,7 +11,7 @@ import {
     InputRightElement,
 } from '@chakra-ui/react';
 
-import { FormValue } from './interface';
+import { FormValue } from '@/types/formValue';
 
 export default function UserForm({
     title,

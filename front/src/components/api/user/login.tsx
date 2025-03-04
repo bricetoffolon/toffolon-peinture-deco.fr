@@ -1,7 +1,7 @@
 import UserForm from '@/components/api/user/userForm';
 import { Button, Divider, Flex, Heading, Text } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { FormValue } from '@/components/api/user/interface';
+import { FormValue } from '@/types/formValue';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/router';
 import { useApiCallToastResp } from '@/hook/useApiCall';

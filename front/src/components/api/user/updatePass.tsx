@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { useApiCallToastResp } from '@/hook/useApiCall';
 import UserForm from '@/components/api/user/userForm';
-import { FormValue } from '@/components/api/user/interface';
+import { FormValue } from '@/types/formValue';
 
 export default function UpdatePass(): React.JSX.Element {
     const router = useRouter();

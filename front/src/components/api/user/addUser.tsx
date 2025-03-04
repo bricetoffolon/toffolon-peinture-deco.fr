@@ -6,7 +6,7 @@ import { useApiCallToastResp } from '@/hook/useApiCall';
 
 import UserForm from './userForm';
 
-import { FormValue } from './interface';
+import { FormValue } from '@/types/formValue';
 
 export default function AddUser(): React.JSX.Element {
     const router: NextRouter = useRouter();
