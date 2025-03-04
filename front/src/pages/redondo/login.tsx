@@ -12,8 +12,8 @@ export default function LoginPage(): React.JSX.Element {
                 <Flex flex={"1"}>
                     <Login />
                 </Flex>
+                <Footer />
             </Flex>
-            <Footer />
         </>
     );
 }
