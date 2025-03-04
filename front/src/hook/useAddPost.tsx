@@ -12,7 +12,7 @@ export default function useAddPost(
 ): void {
     const form: FormData = new FormData();
 
-    const toast = useToast();
+    const toast = useToast({position: 'top-right'});
 
     useEffect((): void => {
         if (isSubmit) {

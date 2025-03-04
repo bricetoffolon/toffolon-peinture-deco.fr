@@ -1,8 +1,7 @@
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import instance from '@/hook/instance';
 
-import { ToastPosition, useToast } from '@chakra-ui/react';
-import useResponsiveValue from '@/hook/useResponsiveValue';
+import { useToast } from '@chakra-ui/react';
 
 async function apiCall(method: string, endpoint: string, data: JSON) {
     if (method === 'post') return instance.post(endpoint, data);
@@ -19,16 +18,13 @@ export function useApiCallToastResp(
     isSubmit: boolean,
     setIsSubmit: Dispatch<SetStateAction<boolean>>
 ): void {
-    const toast = useToast();
-
-    const toastPosition = useResponsiveValue({ defaultValue: 'top', base: 'top', xl: 'bottom' });
+    const toast = useToast({position: 'top-right'});
 
     useEffect((): void => {
         if (isSubmit) {
             apiCall(method, endpoint, data)
                 .then((response) => {
                     toast({
-                        position: toastPosition as ToastPosition,
                         status: 'success',
                         duration: 9000,
                         isClosable: true,
