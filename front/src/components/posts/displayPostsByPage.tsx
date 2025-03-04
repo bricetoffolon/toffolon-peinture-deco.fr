@@ -13,9 +13,20 @@ export default function DisplayPostsByPage({ sortedPosts, posts, setPosts, isEdi
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
-    const paginate = (pageNumber: number) => {setCurrentPage(pageNumber);};
-    const nextPage = () => setCurrentPage(prev => Math.min(prev + 1, totalPages));
-    const prevPage = () => setCurrentPage(prev => Math.max(prev - 1, 1));
+    const scrollToTop = () => {window.scrollTo({ top: 0, behavior: "smooth" });}
+
+    const paginate = (pageNumber: number) => {
+        scrollToTop(); 
+        setCurrentPage(pageNumber);
+    };
+    const nextPage = () => {
+        scrollToTop();
+        setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+    };
+    const prevPage = () => {
+        scrollToTop();
+        setCurrentPage((prev) => Math.max(prev - 1, 1));
+    };
 
     const currentPagePosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
 
