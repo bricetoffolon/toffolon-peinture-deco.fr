@@ -27,7 +27,6 @@ const MotionBox = motion(Box);
 const Posts = () => {
     const [posts, setPosts] = useState<Post[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
-    const [selectedPost, setSelectedPost] = useState<Post[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const toast = useToast();
@@ -79,7 +78,6 @@ const Posts = () => {
     ];
 
     const handleRefresh = async () => {
-        setSelectedPost([]);
         setPosts([]);
         setResponse(null);
         setIsLoading(true);
@@ -201,7 +199,6 @@ const Posts = () => {
                                     borderColor={borderColor}
                                     bg={bgCard}
                                 >
-                                    <Heading>Hello</Heading>
                                     <Skeleton height="200px" />
                                     <Box p={5}>
                                         <Skeleton height="20px" width="70%" mb={2} />

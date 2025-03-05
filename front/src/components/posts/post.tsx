@@ -49,21 +49,21 @@ export default function Post({
                     transition: { duration: 0.2 },
                 }}
             >
-                    <Card maxW={'sm'} h={'sm'} shadow="md" onClick={onOpen} as={'button'}>
+                    <Card maxW={'sm'} h={'sm'} shadow="md" {...(!isEditing ? { as: "button", onClick: onOpen} : {})}>
                         <CardHeader position={'relative'} overflow={'hidden'} h={'200px'} p={0}>
                             <Image
                                 src={
                                     data.image[0]?.url ||
                                     'https://source.unsplash.com/random/800x600/?placeholder'
                                 }
-                                fallback={<Skeleton height="200px" />}
+                                fallback={<Skeleton height="200px" w={"400px"} />}
                                 borderRadius={'lg'}
                                 alt={data.title}
                                 objectFit="cover"
                                 objectPosition="center"
                             />
                         </CardHeader>
-                        <CardBody>
+                        <CardBody justifyItems={"left"}>
                             <Heading size={'md'} noOfLines={1}>
                                 {data.title}
                             </Heading>
