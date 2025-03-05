@@ -75,9 +75,13 @@ export class UsersController {
 
     @Post('re-verify')
     async resendVerify(@Body('email') userEmail: string): Promise<void> {
+        if (!userEmail) {
+            throw new HttpException('Missing argument: email', HttpStatus.BAD_REQUEST);
+        }
+
         const user = await this.usersService.user({"email": userEmail})
 
-        if (user.role == "ADMIN") {
+        if (!user || user.role == "ADMIN") {
             throw new UnauthorizedException();
         }
 
@@ -86,6 +90,10 @@ export class UsersController {
 
     @Post('forgot-password')
     async forgotPassword(@Body('email') userEmail: string): Promise <string> {
+        if (!userEmail) {
+            throw new HttpException('Fill email argument', HttpStatus.NOT_FOUND);
+        }
+
         const user = await this.usersService.user({"email": userEmail});
 
         if (user) {
@@ -96,13 +104,17 @@ export class UsersController {
     }
     @UseGuards(tokenGuard)
     @Post('update-password')
-    async updatePassword(@Body('password') userPassword: string, @Request() req) {
-        if (!userPassword) {
-            throw new HttpException('Missing argument: password', HttpStatus.BAD_REQUEST);
+    async updatePassword(@Body('password') password: string, @Body('confirm-password') confirmPassword: string, @Request() req) {
+        if (!password || !confirmPassword) {
+            throw new HttpException('Missing argument', HttpStatus.BAD_REQUEST);
+        }
+
+        if (password !== confirmPassword) {
+            throw new HttpException('Passwords do not match', HttpStatus.BAD_REQUEST);
         }
 
         const saltOrRounds = 10;
-        const hash: string = await bcrypt.hash(userPassword, saltOrRounds);
+        const hash: string = await bcrypt.hash(password, saltOrRounds);
 
         await this.usersService.updateUser({where: {"email": req.user.username}, data: {'password': hash}})
     }

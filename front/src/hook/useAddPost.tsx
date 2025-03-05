@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect } from 'react';
 
 import instance from '@/hook/instance';
-import { useToast } from '@chakra-ui/react';
+import useCustomToast from "@/hook/useCustomToast";
 
 export default function useAddPost(
     endpoint: string,
@@ -12,7 +12,7 @@ export default function useAddPost(
 ): void {
     const form: FormData = new FormData();
 
-    const toast = useToast();
+    const showToast = useCustomToast();
 
     useEffect((): void => {
         if (isSubmit) {
@@ -32,18 +32,18 @@ export default function useAddPost(
                         instance
                             .post(`${endpoint}/${response.data.id}`, form, {timeout: 30000})
                             .then(() => {
-                                toast({
+                                showToast({
                                     status: 'success',
-                                    duration: 9000,
+                                    title: "Success",
+                                    description: `Post ${response.data.id} created successfully`,
                                     isClosable: true,
                                 });
                             })
                             .catch((error) => {
                                 console.log(error)
-                                toast({
+                                showToast({
                                     status: 'error',
-                                    duration: 9000,
-                                    title: error.message,
+                                    title: error.message || "Unable to create a post",
                                     isClosable: true,
                                 });
                             });
@@ -52,9 +52,8 @@ export default function useAddPost(
                 })
                 .catch((error) => {
                     console.log(error)
-                    toast({
+                    showToast({
                         status: 'error',
-                        duration: 9000,
                         title: error.data,
                         isClosable: true,
                     });

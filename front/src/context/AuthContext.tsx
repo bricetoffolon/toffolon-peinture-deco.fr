@@ -1,6 +1,7 @@
 import {createContext, useContext, ReactNode} from "react";
 import {useEffect, useState} from "react";
 import instance from "@/hook/instance";
+import useCustomToast from "@/hook/useCustomToast";
 
 const AuthContext = createContext<AuthContextType>({
     user: null,
@@ -13,6 +14,7 @@ const AuthContext = createContext<AuthContextType>({
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const showToast = useCustomToast();
 
     useEffect(() => {
         checkAuth();
@@ -35,8 +37,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             setIsLoading(true);
             const response = await instance.post('/auth/login', {email: email, password: password});
             setUser(response.data);
+            showToast({title: "Authentification Success", status: "success", description: `Welcome ${response.data.email}` || "Welcome"});
+
         } catch (err) {
             console.error(err);
+            showToast({title: "Authentification Error", status: "error", description: err.message || "Unable to log in"});
+            throw err;
+
         } finally {
             setIsLoading(false);
         }

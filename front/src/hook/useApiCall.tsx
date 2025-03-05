@@ -1,8 +1,6 @@
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import instance from '@/hook/instance';
-
-import { ToastPosition, useToast } from '@chakra-ui/react';
-import useResponsiveValue from '@/hook/useResponsiveValue';
+import useCustomToast from '@/hook/useCustomToast';
 
 async function apiCall(method: string, endpoint: string, data: JSON) {
     if (method === 'post') return instance.post(endpoint, data);
@@ -19,20 +17,16 @@ export function useApiCallToastResp(
     isSubmit: boolean,
     setIsSubmit: Dispatch<SetStateAction<boolean>>
 ): void {
-    const toast = useToast();
-
-    const toastPosition = useResponsiveValue({ defaultValue: 'top', base: 'top', xl: 'bottom' });
+    const showToast = useCustomToast();
 
     useEffect((): void => {
         if (isSubmit) {
             apiCall(method, endpoint, data)
                 .then((response) => {
-                    toast({
-                        position: toastPosition as ToastPosition,
+                    showToast({
                         status: 'success',
-                        duration: 9000,
-                        isClosable: true,
-                        title:
+                        title: 'Success',
+                        description:
                             response && response.data && response.data.message
                                 ? response.data.message
                                 : null,
@@ -40,15 +34,10 @@ export function useApiCallToastResp(
                 })
                 .catch((error) => {
                     console.log(error);
-                    toast({
+                    showToast({
                         status: 'error',
-                        duration: 9000,
-                        isClosable: true,
                         title: 'Error',
-                        description:
-                            error.response && error.response.data && error.response.data.message
-                                ? error.response.data.message
-                                : 'An error occured',
+                        description: error.response?.data?.message || 'An error occurred',
                     });
                 });
             setIsSubmit(false);
