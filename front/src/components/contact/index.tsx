@@ -19,9 +19,10 @@ import { MdOutlineEmail, MdPhone, MdLocationOn } from 'react-icons/md';
 import { BsPerson } from 'react-icons/bs';
 import { workStep } from '@/constant/steps';
 import { useApiCallToastResp } from '@/hook/useApiCall';
+import { FormState } from '@/types/formValue';
 
 export default function Contact() {
-    const [formData, setFormData] = useState<FormData>({
+    const [formData, setFormData] = useState<FormState>({
         username: null,
         email: null,
         message: null,
@@ -78,7 +79,7 @@ export default function Contact() {
 
                     {/* Flex container for Contact Info and Form */}
                     <Flex direction={{ base: 'column', md: 'row' }} align="center" gap={8}>
-                        <Box flex="2" w={"100%"}>
+                        <Box flex="2" w={'100%'}>
                             <VStack spacing={6}>
                                 <FormControl>
                                     <FormLabel>Votre Prénom & Nom</FormLabel>

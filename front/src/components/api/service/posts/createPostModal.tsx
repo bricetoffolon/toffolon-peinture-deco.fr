@@ -35,9 +35,9 @@ export default function CreatePostModal({
 }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [editMode, setEditMode] = useState(false);
-    const [selectedPost, setSelectedPost] = useState<Post>();
+    const [selectedPost, setSelectedPost] = useState<Post | undefined>(undefined);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [tempImages, setTempImages] = useState([]);
+    const [tempImages, setTempImages] = useState<TempImage[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
     const toast = useToast();
@@ -45,7 +45,7 @@ export default function CreatePostModal({
     const handleImageUpload = (e: any) => {
         const files: File[] = Array.from(e.target.files);
 
-        if (tempImages.length + files.length > 5) {
+        if (tempImages && tempImages.length + files.length > 5) {
             toast({
                 title: 'Maximum 5 images allowed',
                 status: 'warning',
@@ -75,7 +75,7 @@ export default function CreatePostModal({
                     type: file.type,
                 };
             })
-            .filter(Boolean); // Remove null entries
+            .filter((image): image is TempImage => image !== null); // Remove null entries
 
         setTempImages((prev) => [...prev, ...newImages]);
     };
@@ -93,7 +93,11 @@ export default function CreatePostModal({
 
     // Function to remove a temporary image
     const removeTempImage = (index: number) => {
-        setTempImages((prev) => prev.filter((_, idx) => idx !== index));
+        setTempImages((prev) => {
+            return prev ? (
+                prev.filter((_, idx) => idx !== index)
+            ) : []
+        });
     };
 
     const handlePostSelect = (post: Post, mode: string) => {
@@ -104,39 +108,26 @@ export default function CreatePostModal({
 
     const handleInputChange = (e: any) => {
         const { name, value } = e.target;
-        setSelectedPost({
-            ...selectedPost,
-            [name]: value,
+        setSelectedPost((prev) => {
+            if (!prev) return undefined;
+            return {
+                ...prev,
+                [name]: value,
+            };
         });
     };
 
     const handleUpdatePost = async () => {
-        // Simulate API call for updating post
         setIsLoading(true);
         try {
-            // Update local state
             const updatedPosts = [...posts, selectedPost];
             // @ts-ignore
             setPosts(updatedPosts);
             setIsSubmit(true);
 
-            toast({
-                title: 'Post updated',
-                description: 'Your post has been successfully updated.',
-                status: 'success',
-                duration: 3000,
-                isClosable: true,
-            });
-
             onClose();
         } catch (error) {
-            toast({
-                title: 'Error updating post',
-                description: 'Unable to update post. Please try again.',
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-            });
+            // already handled
         } finally {
             setIsLoading(false);
         }
@@ -269,7 +260,7 @@ export default function CreatePostModal({
                                 </Text>
                                 <Box>
                                     {/* Preview Uploaded Images */}
-                                    {tempImages.length > 0 && (
+                                    {tempImages && tempImages.length > 0 && (
                                         <SimpleGrid columns={[1, 2, 3]} spacing={4} mb={4}>
                                             {tempImages.map((img, idx) => (
                                                 <Box key={idx} position="relative">
@@ -304,10 +295,10 @@ export default function CreatePostModal({
                                             onChange={handleImageUpload}
                                             display="none"
                                             id="image-upload"
-                                            isDisabled={tempImages.length >= 5}
+                                            isDisabled={!!tempImages && tempImages.length >= 5}
                                         />
                                         <FormHelperText mb={2}>
-                                            Images must be under 3MB each. {5 - tempImages.length}{' '}
+                                            Images must be under 3MB each. {5 - (tempImages?.length ?? 0)}{' '}
                                             slots remaining.
                                         </FormHelperText>
                                         <Button
@@ -315,7 +306,7 @@ export default function CreatePostModal({
                                             htmlFor="image-upload"
                                             colorScheme="brand"
                                             leftIcon={<AddIcon />}
-                                            isDisabled={tempImages.length >= 5}
+                                            isDisabled={!!tempImages && tempImages.length >= 5}
                                             cursor="pointer"
                                             width={['100%', 'auto']}
                                         >

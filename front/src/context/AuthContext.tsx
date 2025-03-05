@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         } catch (err) {
             console.error(err);
-            showToast({title: "Authentification Error", status: "error", description: err.message || "Unable to log in"});
+            showToast({title: "Authentification Error", status: "error", description: (err as Error).message || "Unable to log in"});
             throw err;
 
         } finally {
