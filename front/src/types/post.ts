@@ -23,3 +23,10 @@ interface ErrorResponse {
 }
 
 type PostsApiResponse = SuccessResponse | ErrorResponse | null;
+
+interface TempImage {
+    file: File;
+    name: string;
+    size: number;
+    type: string;
+}
