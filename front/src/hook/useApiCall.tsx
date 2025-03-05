@@ -1,7 +1,6 @@
-import {Dispatch, SetStateAction, useCallback, useEffect} from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import instance from '@/hook/instance';
-
-import {useToast, UseToastOptions} from '@chakra-ui/react';
+import useCustomToast from '@/hook/useCustomToast';
 
 async function apiCall(method: string, endpoint: string, data: JSON) {
     if (method === 'post') return instance.post(endpoint, data);
@@ -18,28 +17,16 @@ export function useApiCallToastResp(
     isSubmit: boolean,
     setIsSubmit: Dispatch<SetStateAction<boolean>>
 ): void {
-    const toast = useToast();
-
-    const createToast = useCallback((options: UseToastOptions) => {
-        toast.closeAll();
-
-        toast({
-            position: 'top-right',
-            duration: 9000,
-            isClosable: true,
-            ...options
-        });
-    }, [toast]);
+    const showToast = useCustomToast();
 
     useEffect((): void => {
         if (isSubmit) {
             apiCall(method, endpoint, data)
                 .then((response) => {
-                    toast({
+                    showToast({
                         status: 'success',
-                        duration: 9000,
-                        isClosable: true,
-                        title:
+                        title: 'Success',
+                        description:
                             response && response.data && response.data.message
                                 ? response.data.message
                                 : null,
@@ -47,7 +34,7 @@ export function useApiCallToastResp(
                 })
                 .catch((error) => {
                     console.log(error);
-                    createToast({
+                    showToast({
                         status: 'error',
                         title: 'Error',
                         description: error.response?.data?.message || 'An error occurred',
