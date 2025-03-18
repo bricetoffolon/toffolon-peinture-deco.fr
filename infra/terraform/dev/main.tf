@@ -25,12 +25,17 @@ variable "instance_type" {
   description = "Instance type for scaleway server"
 }
 
-variable "volume_size_in_gb" {
+variable "cloudflare_api_token" {
   type        = string
-  description = "Size of the root volume for scaleway instance"
+  description = "Clouflare api token"
+  sensitive   = true
 }
 
-module "web-app" {
+locals {
+  environment = "dev"
+}
+
+module "scaleway-instance" {
   source = "../scaleway-module"
 
   # Input variables
@@ -39,5 +44,13 @@ module "web-app" {
   scaleway_secret_key = var.scaleway_secret_key
   project_id          = var.project_id
   ssh_key             = var.ssh_key
-  volume_size_in_gb   = var.volume_size_in_gb
+}
+
+module "cloudflare-dns-record" {
+  source = "../clouflare-module"
+
+  # Input variables
+  cloudflare_api_token = var.cloudflare_api_token
+  environment          = local.environment
+  instance_ip          = module.scaleway-instance.instance_public_ip
 }
