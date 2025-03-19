@@ -38,3 +38,6 @@ terraform.tfstate
 terraform.tfstate.backup
 secrets.tfvars
 
+# secrets
+
+*.pem

@@ -27,3 +27,9 @@ variable "aws_secret_key" {
   description = "Secret key for AWS User"
   sensitive = true
 }
+
+variable "cache_policy_id" {
+  type = string
+  description = "Cache policy used for cloudfront distribution"
+  default = "658327ea-f89d-4fab-a63d-7e88639e58f6" # CachingOptimized (Recommended for S3)
+}

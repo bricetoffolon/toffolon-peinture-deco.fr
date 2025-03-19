@@ -31,6 +31,18 @@ variable "cloudflare_api_token" {
   sensitive   = true
 }
 
+variable "aws_access_key" {
+  type = string
+  description = "Access key for AWS user"
+  sensitive = true
+}
+
+variable "aws_secret_key" {
+  type = string
+  description = "Secret key for AWS User"
+  sensitive = true
+}
+
 locals {
   environment = "dev"
 }
@@ -53,4 +65,13 @@ module "cloudflare-dns-record" {
   cloudflare_api_token = var.cloudflare_api_token
   environment          = local.environment
   instance_ip          = module.scaleway-instance.instance_public_ip
+}
+
+module "aws-storage-config" {
+  source = "../aws-module"
+
+  # Input variables
+  aws_access_key = var.aws_access_key
+  aws_secret_key = var.aws_secret_key
+  environment = local.environment
 }
