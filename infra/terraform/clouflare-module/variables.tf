@@ -1,9 +1,3 @@
-variable "cloudflare_api_token" {
-  type        = string # The type of the variable, in this case a string
-  description = "Clouflare api token"
-  sensitive   = true
-}
-
 variable "environment" {
   type        = string
   description = "environment of deployment"
