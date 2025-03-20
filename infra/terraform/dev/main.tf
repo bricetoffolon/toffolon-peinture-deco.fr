@@ -1,14 +1,3 @@
-variable "scaleway_access_key" {
-  type        = string
-  description = "access key for scaleway organisation"
-}
-
-variable "scaleway_secret_key" {
-  type        = string
-  description = "secret key for scaleway organisation"
-  sensitive   = true
-}
-
 variable "project_id" {
   type        = string
   description = "project id for scaleway"
@@ -25,26 +14,54 @@ variable "instance_type" {
   description = "Instance type for scaleway server"
 }
 
-variable "cloudflare_api_token" {
+variable "aws_region" {
+  type = string                     # The type of the variable, in this case a string
+  default = "eu-west-3"                 # Default value for the variable
+  description = "The aws region" # Description of what this variable represents
+}
+
+variable "scaleway_zone" {
   type        = string
-  description = "Clouflare api token"
-  sensitive   = true
+  description = "Zone of the instance."
+  default     = "fr-par-1"
 }
 
-variable "aws_access_key" {
-  type = string
-  description = "Access key for AWS user"
-  sensitive = true
-}
-
-variable "aws_secret_key" {
-  type = string
-  description = "Secret key for AWS User"
-  sensitive = true
+variable "scaleway_region" {
+  type        = string
+  description = "Region of the instance."
+  default     = "fr-par"
 }
 
 locals {
   environment = "dev"
+}
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 5"
+    }
+    scaleway = {
+      source = "scaleway/scaleway"
+    }
+  }
+}
+
+provider "scaleway" {
+  zone       = var.scaleway_zone
+  region     = var.scaleway_region
+}
+
+provider "cloudflare" {
+}
+
+provider "aws" {
+  region = var.aws_region
 }
 
 module "scaleway-instance" {
@@ -52,8 +69,6 @@ module "scaleway-instance" {
 
   # Input variables
   instance_type       = var.instance_type
-  scaleway_access_key = var.scaleway_access_key
-  scaleway_secret_key = var.scaleway_secret_key
   project_id          = var.project_id
   ssh_key             = var.ssh_key
 }
@@ -62,7 +77,6 @@ module "cloudflare-dns-record" {
   source = "../clouflare-module"
 
   # Input variables
-  cloudflare_api_token = var.cloudflare_api_token
   environment          = local.environment
   instance_ip          = module.scaleway-instance.instance_public_ip
 }
@@ -71,7 +85,5 @@ module "aws-storage-config" {
   source = "../aws-module"
 
   # Input variables
-  aws_access_key = var.aws_access_key
-  aws_secret_key = var.aws_secret_key
   environment = local.environment
 }
