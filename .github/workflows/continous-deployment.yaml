@@ -1,0 +1,31 @@
+name: 'Continuous Deployment'
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+      branch:
+        description: 'Branch to checkout to run the workflow'
+        type: string
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    env:
+      DEPLOYMENT_ENVIRONMENT:  ${{ github.event.inputs.environment || 'production' }}
+    environment: ${{ env.DEPLOYMENT_ENVIRONMENT }}
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./infra/terraform/${{ env.DEPLOYMENT_ENVIRONMENT }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch || main }}
