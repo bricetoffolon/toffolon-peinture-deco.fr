@@ -65,7 +65,7 @@ provider "aws" {
 }
 
 module "scaleway-instance" {
-  source = "../scaleway-module"
+  source = "../modules/scaleway-module"
 
   # Input variables
   instance_type       = var.instance_type
@@ -74,7 +74,7 @@ module "scaleway-instance" {
 }
 
 module "cloudflare-dns-record" {
-  source = "../clouflare-module"
+  source = "../modules/clouflare-module"
 
   # Input variables
   environment          = local.environment
@@ -82,7 +82,7 @@ module "cloudflare-dns-record" {
 }
 
 module "aws-storage-config" {
-  source = "../aws-module"
+  source = "../modules/aws-module"
 
   # Input variables
   environment = local.environment
