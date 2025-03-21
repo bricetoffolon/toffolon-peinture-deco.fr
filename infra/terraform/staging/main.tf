@@ -51,12 +51,12 @@ terraform {
     }
   }
   # Comment this to initialize backend
-  # backend "s3" {
-  #   bucket         = "toffolon-infra-tf-state"
-  #   key            = "staging/terraform.tfstate"
-  #   encrypt        = true
-  #   region = "eu-west-3"
-  # }
+  backend "s3" {
+    bucket         = "toffolon-infra-tf-state"
+    key            = "staging/terraform.tfstate"
+    encrypt        = true
+    region = "eu-west-3"
+  }
 }
 
 provider "scaleway" {
