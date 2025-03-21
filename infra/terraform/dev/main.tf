@@ -50,6 +50,12 @@ terraform {
       source = "scaleway/scaleway"
     }
   }
+  backend "s3" {
+    bucket  = "toffolon-infra-tf-state"
+    key     = "dev/terraform.tfstate"
+    encrypt = true
+    region  = "eu-west-3"
+  }
 }
 
 provider "scaleway" {
