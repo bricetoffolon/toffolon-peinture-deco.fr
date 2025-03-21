@@ -15,8 +15,8 @@ variable "instance_type" {
 }
 
 variable "aws_region" {
-  type = string                     # The type of the variable, in this case a string
-  default = "eu-west-3"                 # Default value for the variable
+  type        = string           # The type of the variable, in this case a string
+  default     = "eu-west-3"      # Default value for the variable
   description = "The aws region" # Description of what this variable represents
 }
 
@@ -51,17 +51,17 @@ terraform {
     }
   }
   # Comment this to initialize backend
-  backend "s3" {
-    bucket         = "toffolon-infra-tf-state"
-    key            = "staging/terraform.tfstate"
-    encrypt        = true
-    region = "eu-west-3"
-  }
+  # backend "s3" {
+  #   bucket         = "toffolon-infra-tf-state"
+  #   key            = "staging/terraform.tfstate"
+  #   encrypt        = true
+  #   region = "eu-west-3"
+  # }
 }
 
 provider "scaleway" {
-  zone       = var.scaleway_zone
-  region     = var.scaleway_region
+  zone   = var.scaleway_zone
+  region = var.scaleway_region
 }
 
 provider "cloudflare" {
@@ -80,7 +80,7 @@ resource "aws_s3_bucket" "terraform_state" {
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state_crypto_conf" {
-  bucket        = aws_s3_bucket.terraform_state.bucket
+  bucket = aws_s3_bucket.terraform_state.bucket
   rule {
     apply_server_side_encryption_by_default {
       sse_algorithm = "AES256"
@@ -88,26 +88,26 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state_c
   }
 }
 
-module "scaleway-instance" {
-  source = "../modules/scaleway-module"
-
-  # Input variables
-  instance_type       = var.instance_type
-  project_id          = var.project_id
-  ssh_key             = var.ssh_key
-}
-
-module "cloudflare-dns-record" {
-  source = "../modules/clouflare-module"
-
-  # Input variables
-  environment          = local.environment
-  instance_ip          = module.scaleway-instance.instance_public_ip
-}
-
-module "aws-storage-config" {
-  source = "../modules/aws-module"
-
-  # Input variables
-  environment = local.environment
-}
+# module "scaleway-instance" {
+#   source = "../modules/scaleway-module"
+#
+#   # Input variables
+#   instance_type       = var.instance_type
+#   project_id          = var.project_id
+#   ssh_key             = var.ssh_key
+# }
+#
+# module "cloudflare-dns-record" {
+#   source = "../modules/clouflare-module"
+#
+#   # Input variables
+#   environment          = local.environment
+#   instance_ip          = module.scaleway-instance.instance_public_ip
+# }
+#
+# module "aws-storage-config" {
+#   source = "../modules/aws-module"
+#
+#   # Input variables
+#   environment = local.environment
+# }

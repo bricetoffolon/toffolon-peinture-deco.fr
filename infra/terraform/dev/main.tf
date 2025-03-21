@@ -15,8 +15,8 @@ variable "instance_type" {
 }
 
 variable "aws_region" {
-  type = string                     # The type of the variable, in this case a string
-  default = "eu-west-3"                 # Default value for the variable
+  type        = string           # The type of the variable, in this case a string
+  default     = "eu-west-3"      # Default value for the variable
   description = "The aws region" # Description of what this variable represents
 }
 
@@ -53,8 +53,8 @@ terraform {
 }
 
 provider "scaleway" {
-  zone       = var.scaleway_zone
-  region     = var.scaleway_region
+  zone   = var.scaleway_zone
+  region = var.scaleway_region
 }
 
 provider "cloudflare" {
@@ -68,17 +68,17 @@ module "scaleway-instance" {
   source = "../modules/scaleway-module"
 
   # Input variables
-  instance_type       = var.instance_type
-  project_id          = var.project_id
-  ssh_key             = var.ssh_key
+  instance_type = var.instance_type
+  project_id    = var.project_id
+  ssh_key       = var.ssh_key
 }
 
 module "cloudflare-dns-record" {
   source = "../modules/clouflare-module"
 
   # Input variables
-  environment          = local.environment
-  instance_ip          = module.scaleway-instance.instance_public_ip
+  environment = local.environment
+  instance_ip = module.scaleway-instance.instance_public_ip
 }
 
 module "aws-storage-config" {

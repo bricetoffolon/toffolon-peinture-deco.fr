@@ -1,6 +1,6 @@
 variable "company_name" {
-  type = string
-  default = "toffolon"
+  type        = string
+  default     = "toffolon"
   description = "Name of the company"
 }
 
@@ -11,7 +11,7 @@ variable "environment" {
 }
 
 variable "cache_policy_id" {
-  type = string
+  type        = string
   description = "Cache policy used for cloudfront distribution"
-  default = "658327ea-f89d-4fab-a63d-7e88639e58f6" # CachingOptimized (Recommended for S3)
+  default     = "658327ea-f89d-4fab-a63d-7e88639e58f6" # CachingOptimized (Recommended for S3)
 }
