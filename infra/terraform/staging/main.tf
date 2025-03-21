@@ -50,7 +50,6 @@ terraform {
       source = "scaleway/scaleway"
     }
   }
-  # Comment this to initialize backend
   backend "s3" {
     bucket  = "toffolon-infra-tf-state"
     key     = "staging/terraform.tfstate"
@@ -71,22 +70,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-
-
-# When initializing backend
-resource "aws_s3_bucket" "terraform_state" {
-  bucket        = "toffolon-infra-tf-state" # REPLACE WITH YOUR BUCKET NAME
-  force_destroy = true
-}
-
-resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state_crypto_conf" {
-  bucket = aws_s3_bucket.terraform_state.bucket
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
-    }
-  }
-}
 
 module "scaleway-instance" {
   source = "../modules/scaleway-module"

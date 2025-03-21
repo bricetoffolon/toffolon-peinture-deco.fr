@@ -71,19 +71,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-
-
-# When initializing backend
-data "aws_s3_bucket" "toffolon_bucket" {
-  bucket = "toffolon-infra-tf-state"
-}
-
-resource "aws_s3_object" "production_folder" {
-  bucket       = data.aws_s3_bucket.toffolon_bucket.id
-  key          = "/production"
-  content_type = "application/x-directory"
-}
-
 module "scaleway-instance" {
   source = "../modules/scaleway-module"
 
