@@ -127,6 +127,5 @@ jobs:
       - name: Run playbook
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
-          ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
-        run: ansible-playbook --inventory inventory/hosts.yaml microk8s-setup-playbook.yaml
+        run: ansible-playbook --inventory inventory/hosts.yaml microk8s-setup-playbook.yaml -e ansible_user=${{ secrets.ANSIBLE_USER }}
           
