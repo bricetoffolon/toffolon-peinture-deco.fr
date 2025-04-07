@@ -118,8 +118,8 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
 
       - name: Setup inventory
-        run: echo "[scaleway-host]\n${{ needs.terraform.outputs.instance_public_ip }} ansible_ssh_private_key_file=~/.ssh/id_rsa" > ./inventory/hosts
+        run: sed -i . 's/HOST_IP_ADDRESS/${{ needs.terraform.outputs.instance_public_ip }}/g' inventory/hosts.yaml
 
       - name: Run playbook
-        run: ansible-playbook --inventory inventory/hosts microk8s-setup-playbook.yaml
+        run: ansible-playbook --inventory inventory/hosts.yaml microk8s-setup-playbook.yaml
           
