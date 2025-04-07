@@ -112,9 +112,12 @@ jobs:
           pip install ansible
 
       - name: Set up SSH
+        env:
+            SSH_PRIVATE_KEY: ${{ secrets.SSH }}
         run: |
-          echo "${{ secrets.SSH }}" | tr -d '\r' > private_key.pem
-          chmod 600 private_key.pem
+          mkdir ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
 
       - name: Setup inventory
         run: sed -i "s/HOST_IP_ADDRESS/${{ needs.terraform.outputs.instance_public_ip }}/g" inventory/hosts.yaml
@@ -122,5 +125,5 @@ jobs:
       - name: Run playbook
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
-        run: ansible-playbook --inventory inventory/hosts.yaml microk8s-setup-playbook.yaml --private-key private_key.pem
+        run: ansible-playbook --inventory inventory/hosts.yaml microk8s-setup-playbook.yaml
           
