@@ -11,5 +11,8 @@ rules:
     resources: ["configmaps"]
     verbs: ["get", "list", "create", "update", "patch", "delete"]
   - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["create"]
+  - apiGroups: [""]
     resources: ["events", "pods/log"]
     verbs: ["get", "list", "watch"]
