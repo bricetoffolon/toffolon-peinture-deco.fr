@@ -1,4 +1,4 @@
 webservers:
   hosts:
     HOST_IP_ADDRESS
-  ansible_ssh_private_key_file: ~/.ssh/id_rsa
+  ansible_ssh_private_key_data: SSH_KEY
