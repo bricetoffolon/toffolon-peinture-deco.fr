@@ -5,14 +5,14 @@ resource "scaleway_instance_security_group" "www" {
   outbound_default_policy = "accept"
 
   inbound_rule {
-    action = "accept"
-    port = "22"
+    action   = "accept"
+    port     = "22"
     ip_range = "0.0.0.0/0"
   }
 
   inbound_rule {
-    action = "accept"
-    port = "16443"
+    action   = "accept"
+    port     = "16443"
     ip_range = "0.0.0.0/0"
   }
 
