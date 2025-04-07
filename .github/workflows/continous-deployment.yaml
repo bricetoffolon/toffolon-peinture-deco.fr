@@ -98,6 +98,7 @@ jobs:
   ansible:
     name: Run ansible configuration
     runs-on: ubuntu-latest
+    environment:  ${{ github.event.inputs.environment || 'production' }}
     if: ${{ github.event.inputs.infra-option == 'apply' }}
     needs: terraform
     defaults:
