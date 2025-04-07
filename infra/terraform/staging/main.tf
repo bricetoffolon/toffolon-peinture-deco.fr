@@ -33,9 +33,9 @@ variable "scaleway_region" {
 }
 
 variable "scaleway_ansible_user" {
-  type = string
+  type        = string
   description = "username for ansible user"
-  sensitive = true
+  sensitive   = true
 }
 
 locals {
@@ -81,9 +81,9 @@ module "scaleway-instance" {
   source = "../modules/scaleway-module"
 
   # Input variables
-  instance_type = var.instance_type
-  project_id    = var.project_id
-  ssh_key       = var.ssh_key
+  instance_type         = var.instance_type
+  project_id            = var.project_id
+  ssh_key               = var.ssh_key
   scaleway_ansible_user = var.scaleway_ansible_user
 }
 

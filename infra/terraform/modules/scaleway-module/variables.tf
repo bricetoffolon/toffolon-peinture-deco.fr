@@ -22,7 +22,7 @@ variable "ssh_key" {
 }
 
 variable "scaleway_ansible_user" {
-  type = string
+  type        = string
   description = "username for ansible user"
-  sensitive = true
+  sensitive   = true
 }
