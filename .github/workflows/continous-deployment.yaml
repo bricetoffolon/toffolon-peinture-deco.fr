@@ -71,6 +71,7 @@ jobs:
           SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           TF_VAR_ssh_key: ${{ secrets.SSH }}
+          TF_VAR_scaleway_ansible_user: ${{ secrets.ANSIBLE_USER }}
 
         # On push to "main", build or change infrastructure according to Terraform configuration files
         # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
@@ -83,6 +84,7 @@ jobs:
           SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           TF_VAR_ssh_key: ${{ secrets.SSH }}
+          TF_VAR_scaleway_ansible_user: ${{ secrets.ANSIBLE_USER }}
 
       - name: Capture Terraform output
         id: capture_terraform_output
@@ -125,5 +127,6 @@ jobs:
       - name: Run playbook
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
+          ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
         run: ansible-playbook --inventory inventory/hosts.yaml microk8s-setup-playbook.yaml
           

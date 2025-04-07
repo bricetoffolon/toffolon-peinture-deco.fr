@@ -15,7 +15,7 @@ resource "scaleway_instance_server" "web" {
     cloud-init = <<-EOF
       #cloud-config
       users:
-        - name: ansible
+        - name: ${var.scaleway_ansible_user}
           shell: /bin/bash
           sudo: ['ALL=(ALL) NOPASSWD:ALL']
           ssh_authorized_keys:

@@ -20,3 +20,9 @@ variable "ssh_key" {
   description = "SSH KEY to use for scaleway instance"
   sensitive   = true
 }
+
+variable "scaleway_ansible_user" {
+  type = string
+  description = "username for ansible user"
+  sensitive = true
+}
