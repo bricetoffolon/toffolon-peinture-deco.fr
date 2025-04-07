@@ -32,6 +32,12 @@ variable "scaleway_region" {
   default     = "fr-par"
 }
 
+variable "scaleway_ansible_user" {
+  type        = string
+  description = "username for ansible user"
+  sensitive   = true
+}
+
 locals {
   environment = "production"
 }
@@ -75,9 +81,10 @@ module "scaleway-instance" {
   source = "../modules/scaleway-module"
 
   # Input variables
-  instance_type = var.instance_type
-  project_id    = var.project_id
-  ssh_key       = var.ssh_key
+  instance_type         = var.instance_type
+  project_id            = var.project_id
+  ssh_key               = var.ssh_key
+  scaleway_ansible_user = var.scaleway_ansible_user
 }
 
 module "cloudflare-dns-record" {
