@@ -5,6 +5,13 @@ KUBECONFIG_FILE="sa-kubeconfig.yaml"
 
 # Get cluster info
 SERVER=$(sudo /snap/bin/microk8s kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+
+PUBLIC_IP=$(curl -s ifconfig.me || curl -s icanhazip.com || curl -s ipinfo.io/ip)
+
+if [[ $SERVER == *"127.0.0.1"* ]]; then
+  SERVER="${SERVER//127.0.0.1/$PUBLIC_IP}"
+fi
+
 CA_CERT=$(sudo /snap/bin/microk8s kubectl config view --flatten=true --minify -o jsonpath='{.clusters[0].cluster.certificate-authority-data}')
 
 # Create token
