@@ -32,6 +32,12 @@ variable "scaleway_region" {
   default     = "fr-par"
 }
 
+variable "scaleway_ansible_user" {
+  type        = string
+  description = "username for ansible user"
+  sensitive   = true
+}
+
 locals {
   environment = "staging"
 }
@@ -75,9 +81,10 @@ module "scaleway-instance" {
   source = "../modules/scaleway-module"
 
   # Input variables
-  instance_type = var.instance_type
-  project_id    = var.project_id
-  ssh_key       = var.ssh_key
+  instance_type         = var.instance_type
+  project_id            = var.project_id
+  ssh_key               = var.ssh_key
+  scaleway_ansible_user = var.scaleway_ansible_user
 }
 
 module "cloudflare-dns-record" {
@@ -88,9 +95,7 @@ module "cloudflare-dns-record" {
   instance_ip = module.scaleway-instance.instance_public_ip
 }
 
-module "aws-storage-config" {
-  source = "../modules/aws-module"
-
-  # Input variables
-  environment = local.environment
+output "instance_public_ip" {
+  value     = module.scaleway-instance.instance_public_ip
+  sensitive = true
 }

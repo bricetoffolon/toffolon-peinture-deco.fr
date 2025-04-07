@@ -1,0 +1,17 @@
+---
+- name: Setup microk8s playbook
+  hosts: all
+  remote_user: "{{ lookup('env', 'ANSIBLE_USER') | default('ansible') }}"
+  become: yes
+  roles:
+    - microk8s
+
+  vars:
+    microk8s_channel: 1.32
+    enable_addons:
+      - dns
+      - dashboard
+      - storage
+      - ingress
+      - metrics-server
+      - rbac
