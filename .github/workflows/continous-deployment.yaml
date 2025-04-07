@@ -118,7 +118,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
 
       - name: Setup inventory
-        run: sed -i . 's/HOST_IP_ADDRESS/${{ needs.terraform.outputs.instance_public_ip }}/g' inventory/hosts.yaml
+        run: sed -i 's/HOST_IP_ADDRESS/${{ needs.terraform.outputs.instance_public_ip }}/g' inventory/hosts.yaml
 
       - name: Run playbook
         run: ansible-playbook --inventory inventory/hosts.yaml microk8s-setup-playbook.yaml
