@@ -89,6 +89,9 @@ jobs:
         run: |
           terraform output -json > terraform_output.json
           echo "instance_public_ip=$(jq -r .instance_public_ip.value terraform_output.json)" >> "$GITHUB_OUTPUT"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
   ansible:
     name: Run ansible configuration
