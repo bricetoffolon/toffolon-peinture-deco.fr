@@ -11,7 +11,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/toffolon-front
 
 jobs:
   build-push-image:
@@ -40,7 +39,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/toffolon-front
           tags: |
             type=ref,event=tag
             type=raw,value=${{ github.event.inputs.test-tag }},enable=${{ github.event_name == 'workflow_dispatch' && github.event.inputs.test-tag != '' }}
