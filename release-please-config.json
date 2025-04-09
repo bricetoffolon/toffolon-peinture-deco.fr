@@ -9,7 +9,9 @@
       "draft": false,
       "prerelease": false,
       "include-component-in-tag": true,
-      "include-v-in-tag": true
+      "include-v-in-tag": true,
+      "monorepo-tags": true,
+      "path": "front"
     },
     "backend": {
       "release-type": "node",
@@ -20,7 +22,9 @@
       "draft": false,
       "prerelease": false,
       "include-component-in-tag": true,
-      "include-v-in-tag": true
+      "include-v-in-tag": true,
+      "monorepo-tags": true,
+      "path": "back"
     }
   }
 }
