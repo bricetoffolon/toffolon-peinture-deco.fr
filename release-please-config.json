@@ -1,0 +1,26 @@
+{
+  "packages": {
+    "front": {
+      "release-type": "node",
+      "package-name": "toffolon-front",
+      "changelog-path": "front/CHANGELOG.md",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "draft": false,
+      "prerelease": false,
+      "include-component-in-tag": true,
+      "include-v-in-tag": true
+    },
+    "backend": {
+      "release-type": "node",
+      "package-name": "toffolon-backend",
+      "changelog-path": "backend/CHANGELOG.md",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "draft": false,
+      "prerelease": false,
+      "include-component-in-tag": true,
+      "include-v-in-tag": true
+    }
+  }
+}
