@@ -23,7 +23,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./front
     env:
       IMAGE_NAME: toffolon-front
     steps:
@@ -49,8 +48,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./front
+          file: ./front/dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
