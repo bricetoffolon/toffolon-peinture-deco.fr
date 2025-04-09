@@ -1,0 +1,56 @@
+name: Build and push front image
+
+on:
+  push:
+    tags:
+      - 'front-v*.*.*'
+  workflow_dispatch:
+    inputs:
+      test-tag:
+        description: 'Tag to test image creation'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/toffolon-front
+
+jobs:
+  build-push-image:
+    name: Build and Push Docker image
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./front
+    env:
+      IMAGE_NAME: toffolon-front
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_SECRET }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=tag
+            type=raw,value=${{ github.event.inputs.test-tag }},enable=${{ github.event_name == 'workflow_dispatch' && github.event.inputs.test-tag != '' }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
