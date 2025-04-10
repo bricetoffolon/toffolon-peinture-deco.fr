@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.2](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.1...toffolon-backend-v0.1.2) (2025-04-10)
+
+
+### Bug Fixes
+
+* **back:** remove not existing shutdown method ([da0e7b9](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/da0e7b91ff6160e35c43a7314bd555bf6c2e4ac5))
+* **back:** remove not existing shutdown method ([fe0c35d](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/fe0c35dbacc5b10c73134e198a98350d9d3f01e5))
+
 ## [0.1.1](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.0...toffolon-backend-v0.1.1) (2025-04-10)
 
 
