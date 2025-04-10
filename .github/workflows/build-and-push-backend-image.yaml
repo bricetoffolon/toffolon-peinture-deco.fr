@@ -3,7 +3,7 @@ name: Build and push backend image
 on:
   push:
     tags:
-      - 'backend-v*.*.*'
+      - 'toffolon-backend-v*.*.*'
   workflow_dispatch:
     inputs:
       test-tag:

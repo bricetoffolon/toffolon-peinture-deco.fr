@@ -3,7 +3,7 @@ name: Build and push front image
 on:
   push:
     tags:
-      - 'front-v*.*.*'
+      - 'toffolon-front-v*.*.*'
   workflow_dispatch:
     inputs:
       test-tag:
