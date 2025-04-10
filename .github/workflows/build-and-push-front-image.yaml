@@ -16,8 +16,6 @@ jobs:
   call-build-push:
     uses: ./.github/workflows/build-and-push-docker-image.yaml
     with:
-      image-name: toffolon-front
-      context-path: ./front
-      dockerfile-path: ./front/dockerfile
+      image-prefix: front
       test-tag: ${{ github.event.inputs.test-tag }}
     secrets: inherit
