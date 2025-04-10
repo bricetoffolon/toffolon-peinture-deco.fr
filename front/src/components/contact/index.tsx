@@ -19,9 +19,10 @@ import { MdOutlineEmail, MdPhone, MdLocationOn } from 'react-icons/md';
 import { BsPerson } from 'react-icons/bs';
 import { workStep } from '@/constant/steps';
 import { useApiCallToastResp } from '@/hook/useApiCall';
+import { FormState } from '@/types/formValue';
 
 export default function Contact() {
-    const [formData, setFormData] = useState<FormData>({
+    const [formData, setFormData] = useState<FormState>({
         username: null,
         email: null,
         message: null,
@@ -77,33 +78,8 @@ export default function Contact() {
                     </Text>
 
                     {/* Flex container for Contact Info and Form */}
-                    <Flex direction={{ base: 'column', md: 'row' }} align="start" gap={8}>
-                        {/* Contact Information */}
-                        <Box flex="1" p={6} rounded="lg">
-                            <VStack spacing={4} align="start">
-                                <HStack spacing={4}>
-                                    <MdPhone color="brand.500" size="24px" />
-                                    <Text fontSize="md" color="gray.700">
-                                        01 48 50 24 55
-                                    </Text>
-                                </HStack>
-                                <HStack spacing={4}>
-                                    <MdOutlineEmail color="brand.500" size="24px" />
-                                    <Text fontSize="md" color="gray.700">
-                                        contact@toffolon-peinture-deco.fr
-                                    </Text>
-                                </HStack>
-                                <HStack spacing={4}>
-                                    <MdLocationOn color="brand.500" size="24px" />
-                                    <Text fontSize="md" color="gray.700">
-                                        25 Allée Gabriel, 93320 Les Pavillons-sous-Bois
-                                    </Text>
-                                </HStack>
-                            </VStack>
-                        </Box>
-
-                        {/* Form Fields */}
-                        <Box flex="2">
+                    <Flex direction={{ base: 'column', md: 'row' }} align="center" gap={8}>
+                        <Box flex="2" w={'100%'}>
                             <VStack spacing={6}>
                                 <FormControl>
                                     <FormLabel>Votre Prénom & Nom</FormLabel>
@@ -151,6 +127,29 @@ export default function Contact() {
                                 >
                                     Envoyer le Message
                                 </Button>
+                            </VStack>
+                        </Box>
+                        {/* Contact Information */}
+                        <Box flex="1" p={6} rounded="lg">
+                            <VStack spacing={4} align="start">
+                                <HStack spacing={4}>
+                                    <MdPhone color="brand.500" size="24px" />
+                                    <Text fontSize="md" color="gray.700">
+                                        01 48 50 24 55
+                                    </Text>
+                                </HStack>
+                                <HStack spacing={4}>
+                                    <MdOutlineEmail color="brand.500" size="24px" />
+                                    <Text fontSize="md" color="gray.700">
+                                        contact@toffolon-peinture-deco.fr
+                                    </Text>
+                                </HStack>
+                                <HStack spacing={4}>
+                                    <MdLocationOn color="brand.500" size="24px" />
+                                    <Text fontSize="md" color="gray.700">
+                                        25 Allée Gabriel, 93320 Les Pavillons-sous-Bois
+                                    </Text>
+                                </HStack>
                             </VStack>
                         </Box>
                     </Flex>

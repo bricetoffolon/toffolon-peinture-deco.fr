@@ -29,7 +29,15 @@ dist/
 
 # Env
 
-.env
+.env*
 
+# Terraform
 
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+secrets.tfvars
 
+# secrets
+
+*.pem

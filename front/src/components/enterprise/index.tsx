@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Heading, Image, Text, Stack, Flex } from '@chakra-ui/react';
+import {Box, Heading, Image, Text, Stack, Flex, Skeleton} from '@chakra-ui/react';
 import Head from 'next/head';
 import CertificationElement from '@/components/enterprise/certificationElement';
 import { entrepriseCertifications } from '@/constant/certifications';
@@ -41,6 +41,7 @@ export default function Entreprise() {
                             <Image
                                 src="https://toffolon-website.s3.eu-west-3.amazonaws.com/about/maison-renove.webp"
                                 alt="Travaux de peinture Pavillon Le Raincy"
+                                fallback={<Skeleton h={"400px"} w={"400px"} />}
                                 borderRadius="md"
                                 boxShadow="md"
                                 maxH="500px"
@@ -48,7 +49,7 @@ export default function Entreprise() {
                         </Box>
                         <Box flex="2">
                             <Heading as="h2" fontSize="2xl" mb={4}>
-                                Une histoire de famille et de professionnalisme
+                                Une histoire de famille
                             </Heading>
                             <Text fontSize="md" mb={4}>
                                 Issue d&apos;une entreprise familiale créée en 1960, la SAS TOFFOLON

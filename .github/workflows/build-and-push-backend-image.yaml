@@ -1,6 +1,9 @@
 name: Build and push backend image
 
 on:
+  push:
+    tags:
+      - 'toffolon-backend-v*.*.*'
   workflow_dispatch:
     inputs:
       test-tag:
@@ -11,10 +14,8 @@ env:
 
 jobs:
   call-build-push:
-    uses: ./.github/workflows/build-push-image.yaml
+    uses: ./.github/workflows/build-and-push-docker-image.yaml
     with:
-      image-name: toffolon-backend
-      context-path: ./backend
-      dockerfile-path: ./backend/dockerfile
+      image-prefix: backend
       test-tag: ${{ github.event.inputs.test-tag }}
     secrets: inherit

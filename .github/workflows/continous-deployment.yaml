@@ -7,16 +7,25 @@ on:
         description: 'Environment to run tests against'
         type: environment
         required: true
-      branch:
-        description: 'Branch to checkout to run the workflow'
-        type: string
+      infra-option:
+        type: choice
+        description: Choose to create or delete your infra
+        options:
+          - apply
+          - destroy
+
+
+permissions:
+  contents: read
+
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'Deploy Terraform'
     runs-on: ubuntu-latest
     env:
       DEPLOYMENT_ENVIRONMENT:  ${{ github.event.inputs.environment || 'production' }}
-    environment: ${{ env.DEPLOYMENT_ENVIRONMENT }}
+      TERRAFORM_OPTION: ${{ github.event.inputs.infra-option || 'apply' }}
+    environment:  ${{ github.event.inputs.environment || 'production' }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -24,8 +33,100 @@ jobs:
         shell: bash
         working-directory: ./infra/terraform/${{ env.DEPLOYMENT_ENVIRONMENT }}
 
+    outputs:
+      instance_public_ip: ${{ steps.capture_terraform_output.outputs.instance_public_ip }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Prepare public key file
+        run: |
+          echo "${{ secrets.PUBLIC_KEY_PEM }}" > public_key.pem
+
+      # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
         with:
-          ref: ${{ github.event.inputs.branch || main }}
+          terraform_version: "1.11.2"
+
+      # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Terraform Init
+        run: terraform init
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      # Checks that all Terraform configuration files adhere to a canonical format
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      # Generates an execution plan for Terraform
+      - name: Terraform Plan
+        run: terraform plan -var-file=${{ env.DEPLOYMENT_ENVIRONMENT }}.tfvars
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
+          SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          TF_VAR_ssh_key: ${{ secrets.SSH }}
+          TF_VAR_scaleway_ansible_user: ${{ secrets.ANSIBLE_USER }}
+
+        # On push to "main", build or change infrastructure according to Terraform configuration files
+        # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+      - name: Terraform ${{ env.TERRAFORM_OPTION }}
+        run: terraform ${{ env.TERRAFORM_OPTION }} -var-file=${{ env.DEPLOYMENT_ENVIRONMENT }}.tfvars -auto-approve
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
+          SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          TF_VAR_ssh_key: ${{ secrets.SSH }}
+          TF_VAR_scaleway_ansible_user: ${{ secrets.ANSIBLE_USER }}
+
+      - name: Capture Terraform output
+        id: capture_terraform_output
+        run: |
+          terraform output -json > terraform_output.json
+          echo "instance_public_ip=$(jq -r .instance_public_ip.value terraform_output.json)" >> "$GITHUB_OUTPUT"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  ansible:
+    name: Run ansible configuration
+    runs-on: ubuntu-latest
+    environment:  ${{ github.event.inputs.environment || 'production' }}
+    if: ${{ github.event.inputs.infra-option == 'apply' }}
+    needs: terraform
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./infra/ansible
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install ansible
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible
+
+      - name: Set up SSH
+        env:
+            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Setup inventory
+        run: sed -i "s/HOST_IP_ADDRESS/${{ needs.terraform.outputs.instance_public_ip }}/g" inventory/hosts.yaml
+
+      - name: Run playbook
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: False
+          ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
+        run: ansible-playbook --inventory inventory/hosts.yaml microk8s-setup-playbook.yaml

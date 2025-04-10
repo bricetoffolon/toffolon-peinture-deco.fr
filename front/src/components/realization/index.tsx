@@ -1,148 +1,95 @@
-'use client';
-
+import React, {ReactElement, useEffect, useState} from 'react';
 import {
-    Box,
+    SimpleGrid,
+    Text,
     Flex,
     Heading,
-    Text,
-    Image,
-    VStack,
-    useBreakpointValue,
     Stack,
     Icon,
     useColorModeValue,
+    Stat,
+    StatNumber,
+    StatHelpText, Container, Box,
 } from '@chakra-ui/react';
-import Head from 'next/head';
-import React from 'react';
-import { IoConstruct, IoTime } from 'react-icons/io5';
+import { IoImages, IoTimerSharp } from 'react-icons/io5';
+import {useApiCallDataResp} from "@/hook/useApiCall";
+import { motion } from 'framer-motion';
+import DisplayPostsByPage from "@/components/posts/displayPostsByPage";
 
-interface FeatureProps {
-    text: string;
-    icon: React.ReactElement;
-    iconBg: string;
-}
+const MotionBox = motion(Box);
 
-function Feature({ text, icon, iconBg }: FeatureProps) {
+function Feature({ text, icon, iconBg, statNumber, statHelpText }: { text: string; icon: ReactElement,  iconBg: string, statNumber: number, statHelpText: string }) {
     return (
-        <Stack direction="row" align="center">
-            <Flex w={10} h={10} align="center" justify="center" rounded="full" bg={iconBg}>
-                {icon}
-            </Flex>
-            <Text fontWeight={600}>{text}</Text>
-        </Stack>
+        <Flex direction={"column"} alignItems={"center"}>
+            <Stack direction="row" align="center" spacing={4}>
+                <Flex w={10} h={10} align="center" justify="center" rounded="full" bg={iconBg}>
+                    {icon}
+                </Flex>
+                <Text fontWeight={600} fontSize={{ base: 'sm', md: 'md' }} textAlign="left">
+                    {text}
+                </Text>
+            </Stack>
+            <Stat>
+                <StatNumber textAlign="center" fontSize={{ base: 'lg', md: 'xl', lg: 'xl' }}>
+                    {statNumber}
+                </StatNumber>
+                <StatHelpText>{statHelpText}</StatHelpText>
+            </Stat>
+        </Flex>
     );
 }
 
 export default function Realisations() {
-    const isImageBelowHeading = useBreakpointValue({ base: true, md: false });
+    const [response, setResponse] = useState<PostsApiResponse>(null);
+    const [sortedPosts, setSortedPosts] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<Post[]>([]);
+
+    useApiCallDataResp('get', '/post', null, response, setResponse);
+
+    useEffect(() => {
+        if (response && response.data && "posts" in response.data) {
+            setSortedPosts(response.data.posts);
+        }
+    }, [response]);
+
+    const currentYear = new Date().getFullYear();
+    const yearsOfExperience = currentYear - 1960;
+    const totalPosts = sortedPosts ? sortedPosts.length : 0;
+
 
     return (
-        <>
-            <Head>
-                <meta charSet="utf-8" />
-                <title>Nos Réalisations | Toffolon Peinture & Décoration</title>
-                <meta
-                    name="description"
-                    content="Découvrez bientôt nos réalisations de ravalement extérieur, isolation thermique, et rénovation. Une galerie de nos meilleurs projets sera bientôt disponible !"
-                />
-                <meta
-                    name="keywords"
-                    content="Nos réalisations, travaux de peinture, Toffolon Peinture, ravalement extérieur, rénovation"
-                />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta name="author" content="Toffolon Peinture & Décoration" />
-            </Head>
-
-            <Box
-                overflowY="scroll"
-                height={{ base: '93vh', xl: '93vh' }}
-                scrollSnapType={{ base: undefined, xl: 'y mandatory' }}
-                scrollBehavior="smooth"
+        <Container maxW="container.xl" py={8}>
+            <MotionBox
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
             >
-                <Box height={{ base: undefined, xl: '93vh' }} scrollSnapAlign="start">
-                    <Flex
-                        align="center"
-                        justify="center"
-                        height="100%"
-                        direction="column"
-                        gap={8}
-                        p={6}
-                    >
-                        {/* Content */}
-                        <Flex
-                            direction="column"
-                            flex="1"
-                            maxW="600px"
-                            gap={4}
-                            align="center"
-                            textAlign="center"
-                            order={isImageBelowHeading ? 1 : 0} // Content comes first on small screens
-                        >
-                            <Flex direction="column" gap={1} mb={1}>
-                                <Heading as="h1" size="xl">
-                                    Nos Réalisations
-                                </Heading>
-                                <Text fontSize="md">
-                                    Cette page est en cours de création ! Découvrez bientôt une
-                                    galerie complète de nos meilleurs projets. Nous travaillons dur
-                                    pour vous présenter nos réalisations.
-                                </Text>
-                            </Flex>
-                        </Flex>
+                <Heading as="h1" size="xl" mb={8}>
+                    Découvrez Nos Réalisations
+                </Heading>
 
-                        {/* Image */}
-                        <Flex
-                            flex="1"
-                            justify="center"
-                            align="center"
-                            maxW="600px"
-                            order={isImageBelowHeading ? 0 : 1} // Image comes after heading on small screens
-                        >
-                            <Image
-                                src="https://toffolon-website.s3.eu-west-3.amazonaws.com/services/coming-soon-construction.jpeg"
-                                maxH="85vh"
-                                borderRadius="lg"
-                                objectFit="cover"
-                            />
-                        </Flex>
 
-                        {/* Features */}
-                        <Flex
-                            direction="column"
-                            flex="1"
-                            maxW="600px"
-                            pr={{ base: 0, md: 8 }}
-                            gap={4}
-                            align={{ base: 'center', md: 'start' }}
-                            textAlign={{ base: 'center', md: 'left' }}
-                        >
-                            <VStack spacing={6} align="stretch" w="full">
-                                {[
-                                    {
-                                        text: 'Une galerie dynamique',
-                                        icon: (
-                                            <Icon as={IoConstruct} color="orange.500" w={5} h={5} />
-                                        ),
-                                        iconBg: useColorModeValue('orange.100', 'orange.900'),
-                                    },
-                                    {
-                                        text: 'Mise à jour régulière',
-                                        icon: <Icon as={IoTime} color="blue.500" w={5} h={5} />,
-                                        iconBg: useColorModeValue('blue.100', 'blue.900'),
-                                    },
-                                ].map((feature, index) => (
-                                    <Feature
-                                        key={index}
-                                        text={feature.text}
-                                        icon={feature.icon}
-                                        iconBg={feature.iconBg}
-                                    />
-                                ))}
-                            </VStack>
-                        </Flex>
-                    </Flex>
-                </Box>
-            </Box>
-        </>
+                {/* Stats Section */}
+                <SimpleGrid columns={{ md: 3 }} spacing={6} mb={8}>
+                    {/* Number of Posts */}
+                    <Feature
+                        icon={<Icon as={IoImages} color="purple.500" w={6} h={6} />}
+                        iconBg={useColorModeValue('purple.100', 'purple.900')}
+                        text="Nombre de Posts"
+                        statNumber={totalPosts}
+                        statHelpText={"Sélection de projets que nous avons réalisés"}
+                    />
+
+                    <Feature
+                        icon={<Icon as={IoTimerSharp} color="teal.500" w={6} h={6} />}
+                        iconBg={useColorModeValue('teal.100', 'teal.900')}
+                        text="Années d'expérience"
+                        statNumber={yearsOfExperience}
+                        statHelpText={"Depuis 1960"}
+                    />
+                </SimpleGrid>
+            {sortedPosts && sortedPosts.length > 0 && (<DisplayPostsByPage posts={posts} setPosts={setPosts} sortedPosts={sortedPosts} isEditing={false}/>)}
+            </MotionBox>
+        </Container>
     );
 }

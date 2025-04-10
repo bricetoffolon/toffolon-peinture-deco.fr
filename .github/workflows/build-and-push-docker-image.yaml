@@ -3,13 +3,7 @@ name: Build and push Docker image
 on:
   workflow_call:
     inputs:
-      image-name:
-        required: true
-        type: string
-      context-path:
-        required: true
-        type: string
-      dockerfile-path:
+      image-prefix:
         required: true
         type: string
       test-tag:
@@ -44,16 +38,16 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ github.repository }}/${{ inputs.image-name }}
+          images: ${{ env.REGISTRY }}/${{ github.repository }}/toffolon-${{ inputs.image-prefix }}
           tags: |
-            type=ref,event=tag
+            type=ref,event=tag,prefix=toffolon-${{ inputs.image-prefix }}-
             type=raw,value=${{ inputs.test-tag }},enable=${{ inputs.test-tag != '' }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ${{ inputs.context-path }}
-          file: ${{ inputs.dockerfile-path }}
+          context: ./${{ inputs.image-prefix }}
+          file: ./${{ inputs.image-prefix }}/dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

@@ -1,8 +1,9 @@
 import { Box, Heading, Text, Image, Button, Flex, AspectRatio } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import NextLink from 'next/link';
+import {service} from "@/constant/services";
 
-export default function ServiceTemplate({ index, title, description, image, callToAction }) {
+export default function ServiceTemplate({ id, title, description, image, callToAction }: service) {
     const [direction, setDirection] = useState('column');
 
     // Effect to calculate the aspect ratio of the viewport and adjust direction
@@ -22,6 +23,7 @@ export default function ServiceTemplate({ index, title, description, image, call
 
     return (
         <Flex
+            //@ts-ignore
             direction={direction}
             align="center"
             justify="center"
@@ -73,8 +75,6 @@ export default function ServiceTemplate({ index, title, description, image, call
                 </Text>
                 <NextLink href="/contact" passHref>
                     <Button
-                        as="a"
-                        href="#contact"
                         bg="brand.500"
                         color="white"
                         _hover={{ bg: 'brand.600' }}

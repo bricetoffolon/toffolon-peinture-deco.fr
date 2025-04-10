@@ -150,7 +150,7 @@ export default function Services() {
                         overflow="hidden"
                     >
                         <ServiceTemplate
-                            index={index}
+                            id={index}
                             title={service.title}
                             description={service.description}
                             image={service.image}

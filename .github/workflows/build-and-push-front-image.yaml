@@ -1,15 +1,21 @@
 name: Build and push front image
 
 on:
+  push:
+    tags:
+      - 'toffolon-front-v*.*.*'
   workflow_dispatch:
+    inputs:
+      test-tag:
+        description: 'Tag to test image creation'
+
+env:
+  REGISTRY: ghcr.io
 
 jobs:
-
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+  call-build-push:
+    uses: ./.github/workflows/build-and-push-docker-image.yaml
+    with:
+      image-prefix: front
+      test-tag: ${{ github.event.inputs.test-tag }}
+    secrets: inherit
