@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-deployment
+  namespace: toffolon
+  labels:
+    app.kubernetes.io/name: toffolon-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: toffolon-front
+  template:
+    metadata:
+      labels:
+        app: toffolon-front
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: toffolon-front-container
+          image: ghcr.io/bricetoffolon/toffolon-peinture-deco.fr/toffolon-front:latest
+          ports:
+            - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /                # The path to check for the readiness probe
+              port: 3000               # The port to check on
+            initialDelaySeconds: 30   # Wait this many seconds before starting the probe
+            failureThreshold: 2
+          resources:
+            limits:
+              memory: "256Mi"  # Maximum memory allowed
+              cpu: "500m"       # Maximum CPU allowed (500 milliCPU)
+            requests:
+              memory: "128Mi"  # Initial memory request
+              cpu: "200m" # Initial CPU request
