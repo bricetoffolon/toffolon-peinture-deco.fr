@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: toffolon
+  labels:
+    app.kubernetes.io/name: toffolon-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: toffolon-backend
+  template:
+    metadata:
+      labels:
+        app: toffolon-backend
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: toffolon-backend-container
+          image: ghcr.io/bricetoffolon/toffolon-peinture-deco.fr/toffolon-backend:latest
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /api/post/                # The path to check for the readiness probe
+              port: 8000               # The port to check on
+            initialDelaySeconds: 30   # Wait this many seconds before starting the probe
+            failureThreshold: 2
+          resources:
+            limits:
+              memory: "728Mi"  # Maximum memory allowed
+              cpu: "600m"       # Maximum CPU allowed (500 milliCPU)
+            requests:
+              memory: "348Mi"  # Initial memory request
+              cpu: "300m" # Initial CPU request
+          envFrom:
+            - configMapRef:
+                name: backend-configmap
+            - secretRef:
+                name: send-grid-key
+            - secretRef:
+                name: backend.first-user
