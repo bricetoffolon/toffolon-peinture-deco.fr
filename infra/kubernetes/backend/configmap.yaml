@@ -8,3 +8,4 @@ data:
   ALLOWED_ORIGIN: "https://staging.toffolon-peinture-deco.fr"
   API_ROUTE: "https://staging.toffolon-peinture-deco.fr/redondo"
   EMAIL: "no-reply@toffolon-peinture-deco.fr"
+  DATABASE_URL: "file:./../dev.db"
