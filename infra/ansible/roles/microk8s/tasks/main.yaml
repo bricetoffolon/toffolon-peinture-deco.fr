@@ -118,6 +118,9 @@
   shell: /tmp/generate-sa-config.sh
   register: sa_config_output
 
+- name: Install cert-manager
+  shell: sudo /snap/bin/microk8s kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.17.0/cert-manager.yaml
+
 - name: Fetch the generated kubeconfig
   fetch:
     src: ./sa-kubeconfig.yaml
