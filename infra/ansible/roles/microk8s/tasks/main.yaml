@@ -86,6 +86,24 @@
 - name: Install role biding
   shell: /snap/bin/microk8s kubectl apply -f /tmp/role-biding.yaml
 
+- name: Copy role cluster config
+  template:
+    src: templates/role-cluster.yaml
+    dest: /tmp/role-cluster.yaml
+    mode: '0644'
+
+- name: Install role biding
+  shell: /snap/bin/microk8s kubectl apply -f /tmp/role-cluster.yaml
+
+- name: Copy role biding cluster
+  template:
+    src: templates/role-biding-cluster.yaml
+    dest: /tmp/role-biding-cluster.yaml
+    mode: '0644'
+
+- name: Install role biding
+  shell: /snap/bin/microk8s kubectl apply -f /tmp/role-biding-cluster.yaml
+
 - name: Get Kubernetes config
   shell: /snap/bin/microk8s config
   register: kube_config
