@@ -5,10 +5,10 @@ metadata:
   name: prisma-pv
 spec:
   capacity:
-    storage: 3Gi
+    storage: {{.Values.persistentVolume.capacity.storage }}
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: standard
   hostPath:
-    path: "/mnt/data/prisma"
+    path: {{ .Values.persistentVolume.hostPath.path }}

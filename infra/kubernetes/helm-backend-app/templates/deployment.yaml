@@ -3,35 +3,34 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deployment
-  namespace: toffolon
+  namespace: {{ .Values.namespace }}
   labels:
-    app.kubernetes.io/name: toffolon-backend
+    app.kubernetes.io/name: {{ .Values.appName }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: toffolon-backend
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: toffolon-backend
+        app: {{ .Values.appName }}
     spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        - name: toffolon-backend-container
-          image: ghcr.io/bricetoffolon/toffolon-peinture-deco.fr/toffolon-backend:0.1.3
+        - name: "{{ .Values.appName }}-container"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 8000
+          {{- with .Values.readinessProbe }}
           readinessProbe:
-            httpGet:
-              path: /api/post/                # The path to check for the readiness probe
-              port: 8000               # The port to check on
-            initialDelaySeconds: 30   # Wait this many seconds before starting the probe
-            failureThreshold: 2
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.volumeMounts }}
           volumeMounts:
-            - name: prisma-storage
-              mountPath: /mnt/data/prisma  # Adjust this path for your DB
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           resources:
             limits:
               memory: "728Mi"  # Maximum memory allowed
@@ -46,7 +45,7 @@ spec:
                 name: send-grid-key
             - secretRef:
                 name: backend.first-user
+      {{- with .Values.volumes}}
       volumes:
-        - name: prisma-storage
-          persistentVolumeClaim:
-            claimName: prisma-pvc
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

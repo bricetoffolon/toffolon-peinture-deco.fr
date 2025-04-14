@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: backend-ingress
-  namespace: toffolon
+  namespace: {{ .Values.namespace }}
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
@@ -11,12 +11,12 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /api/$2
 spec:
   ingressClassName: nginx
+  {{- with .Values.ingress.tls }}
   tls:
-    - hosts:
-        - staging.toffolon-peinture-deco.fr
-      secretName: nginx-tls
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   rules:
-    - host: staging.toffolon-peinture-deco.fr
+    - host: {{ .Values.ingress.host }}
       http:
         paths:
           - path: /api(/|$)(.*)

@@ -1,0 +1,60 @@
+# Default values for helm-backend-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+appName: toffolon-backend
+namespace: toffolon
+
+# This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+replicaCount: 1
+
+# This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
+image:
+  repository: ghcr.io/bricetoffolon/toffolon-peinture-deco.fr/toffolon-backend
+  tag: latest
+
+# This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
+service:
+  port: 80
+  targetPort: 8000
+
+# This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
+ingress:
+  host: toffolon-peinture-deco.fr
+  tls:
+    - secretName: nginx-tls
+      hosts:
+        - toffolon-peinture-deco.fr
+  port: 80
+
+readinessProbe:
+  httpGet:
+    path: /api/post/                # The path to check for the readiness probe
+    port: 8000               # The port to check on
+  initialDelaySeconds: 30   # Wait this many seconds before starting the probe
+  failureThreshold: 2
+
+# Additional volumes on the output Deployment definition.
+volumes:
+  - name: prisma-storage
+    persistentVolumeClaim:
+      claimName: prisma-pvc
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts:
+  - name: prisma-storage
+    mountPath: /mnt/data/prisma
+
+configMap:
+  data:
+    PORT: "8000"
+    ALLOWED_ORIGIN: "https://toffolon-peinture-deco.fr"
+    API_ROUTE: "https://toffolon-peinture-deco.fr/redondo"
+    EMAIL: "no-reply@toffolon-peinture-deco.fr"
+    DATABASE_URL: "file:../mnt/data/prisma/prisma.db"
+
+persistentVolume:
+  capacity:
+    storage: 3Gi
+  hostPath:
+    path: "/mnt/data/prisma"
