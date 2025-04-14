@@ -130,3 +130,40 @@ jobs:
           ANSIBLE_HOST_KEY_CHECKING: False
           ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
         run: ansible-playbook --inventory inventory/hosts.yaml microk8s-setup-playbook.yaml
+
+      - name: Upload kubeconfig as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kubeconfig
+          path: /tmp/sa-kubeconfig.yaml
+          retention-days: 1
+          overwrite: 'true'
+          include-hidden-files: 'true'
+
+  apply-kubernetes-front:
+    name: Apply kubernetes front deployment
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'production' }}
+    if: ${{ github.event.inputs.infra-option == 'apply' }}
+    needs: ansible
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Download kubeconfig
+        uses: actions/download-artifact@v4
+        with:
+          name: kubeconfig
+          path: /tmp
+
+      - name: set KUBECONFIG environment variable
+        run: echo "KUBECONFIG=/tmp/sa-kubeconfig.yaml" >> $GITHUB_ENV
+
+      - name: Install helm
+        uses: azure/setup-helm@v4.3.0
+        with:
+          version: 'latest'
+
+      - name: Deploy release
+        run: |
+          helm upgrade --install my-release ./infra/kubernetes/helm-front-app --values ./infra/kubernetes/helm-front-app/values.yaml --values ./infra/kubernetes/helm-front-app/values-${{ github.event.inputs.environment }}.yaml
