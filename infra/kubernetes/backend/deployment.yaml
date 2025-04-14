@@ -20,7 +20,7 @@ spec:
         - name: regcred
       containers:
         - name: toffolon-backend-container
-          image: ghcr.io/bricetoffolon/toffolon-peinture-deco.fr/toffolon-backend:latest
+          image: ghcr.io/bricetoffolon/toffolon-peinture-deco.fr/toffolon-backend:0.1.3
           ports:
             - containerPort: 8000
           readinessProbe:
@@ -29,6 +29,9 @@ spec:
               port: 8000               # The port to check on
             initialDelaySeconds: 30   # Wait this many seconds before starting the probe
             failureThreshold: 2
+          volumeMounts:
+            - name: prisma-storage
+              mountPath: /mnt/data/prisma  # Adjust this path for your DB
           resources:
             limits:
               memory: "728Mi"  # Maximum memory allowed
@@ -43,3 +46,7 @@ spec:
                 name: send-grid-key
             - secretRef:
                 name: backend.first-user
+      volumes:
+        - name: prisma-storage
+          persistentVolumeClaim:
+            claimName: prisma-pvc
