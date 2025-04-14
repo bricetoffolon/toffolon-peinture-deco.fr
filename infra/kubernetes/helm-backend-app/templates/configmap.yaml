@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-configmap
+  namespace: {{ .Values.namespace }}
+data:
+  PORT: "{{ .Values.configMap.data.PORT }}"
+  ALLOWED_ORIGIN: "{{ .Values.configMap.data.ALLOWED_ORIGIN }}"
+  API_ROUTE: "{{ .Values.configMap.data.API_ROUTE }}"
+  EMAIL: "{{ .Values.configMap.data.EMAIL }}"
+  DATABASE_URL: "{{ .Values.configMap.data.DATABASE_URL }}"

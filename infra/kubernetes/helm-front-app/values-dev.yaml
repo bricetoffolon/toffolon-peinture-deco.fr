@@ -1,0 +1,18 @@
+# Default values for helm-front-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+appName: dev-toffolon-front
+namespace: toffolon # To be updated along with ansible for enable environment
+
+# This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
+ingress:
+  host: dev.toffolon-peinture-deco.fr
+  tls:
+    - secretName: nginx-tls
+      hosts:
+        - dev.toffolon-peinture-deco.fr
+
+configMap:
+  data:
+    API_HOST: "https://dev.toffolon-peinture-deco.fr/api"

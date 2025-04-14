@@ -1,0 +1,19 @@
+# Default values for helm-backend-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+appName: staging-toffolon-backend
+
+# This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
+ingress:
+  host: staging.toffolon-peinture-deco.fr
+  tls:
+    - secretName: nginx-tls
+      hosts:
+        - staging.toffolon-peinture-deco.fr
+  port: 80
+
+configMap:
+  data:
+    ALLOWED_ORIGIN: "https://staging.toffolon-peinture-deco.fr"
+    API_ROUTE: "https://staging.toffolon-peinture-deco.fr/redondo"

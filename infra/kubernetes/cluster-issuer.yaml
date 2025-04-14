@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: tech@toffolon-peinture-deco.fr  # Important for renewal notifications
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+      - dns01:
+          cloudflare:
+            email: brice.toffolon@icloud.com
+            apiTokenSecretRef:
+              name: cloudflare-api-key-secret
+              key: api-key
