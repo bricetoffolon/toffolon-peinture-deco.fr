@@ -36,3 +36,6 @@ spec:
             requests:
               memory: "128Mi"  # Initial memory request
               cpu: "200m" # Initial CPU request
+          envFrom:
+            - configMapRef:
+                name: front-configmap

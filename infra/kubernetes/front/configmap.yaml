@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: front-configmap
+  namespace: toffolon
+data:
+  NEXT_PUBLIC_HOST:  "http://staging.toffolon-peinture-deco.fr/api"
