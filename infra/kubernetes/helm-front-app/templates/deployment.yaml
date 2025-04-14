@@ -3,32 +3,30 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front-deployment
-  namespace: toffolon
+  namespace: {{ .Values.namespace }}
   labels:
-    app.kubernetes.io/name: toffolon-front
+    app.kubernetes.io/name: {{ .Values.appName }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: toffolon-front
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: toffolon-front
+        app: {{ .Values.appName }}
     spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        - name: toffolon-front-container
-          image: ghcr.io/bricetoffolon/toffolon-peinture-deco.fr/toffolon-front:latest
+        - name: "{{ .Values.appName }}-container"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
-            - containerPort: 3000
+            - containerPort: {{ .Values.service.targetPort }}
+          {{- with .Values.readinessProbe }}
           readinessProbe:
-            httpGet:
-              path: /                # The path to check for the readiness probe
-              port: 3000               # The port to check on
-            initialDelaySeconds: 30   # Wait this many seconds before starting the probe
-            failureThreshold: 2
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           resources:
             limits:
               memory: "256Mi"  # Maximum memory allowed
