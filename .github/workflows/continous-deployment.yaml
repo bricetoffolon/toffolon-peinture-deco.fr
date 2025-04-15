@@ -223,21 +223,17 @@ jobs:
         with:
           version: 'latest'
 
-      - name: Fill secret.yaml
-        env:
-          SEND_GRID_KEY_BASE64: ${{ secrets.SEND_GRID_KEY_BASE64 }}
-          AWS_ACCESS_KEY_ID_BACKEND_BASE64:  ${{ secrets.AWS_ACCESS_KEY_ID_BACKEND_BASE64 }}
-          AWS_ACCESS_KEY_SECRET_BACKEND_BASE64: ${{ secrets.AWS_ACCESS_KEY_SECRET_BACKEND_BASE64 }}
-          FIRST_EMAIL_USER_BASE64: ${{ secrets.FIRST_EMAIL_USER_BASE64 }}
-        run: |
-          envsubst < ./infra/kubernetes/helm-backend-app/templates/secrets.yaml > secrets_filled.yaml
-          kubectl apply -f secrets_filled.yaml
-
       - name: Install helm
         uses: azure/setup-helm@v4.3.0
         with:
           version: 'latest'
 
       - name: Deploy release
-        run: |
-          helm upgrade --install toffolon-website-backend-release ./infra/kubernetes/helm-backend-app --values ./infra/kubernetes/helm-backend-app/values.yaml --values ./infra/kubernetes/helm-backend-app/values-${{ github.event.inputs.environment || 'production' }}.yaml -n toffolon-website-${{ github.event.inputs.environment || 'production' }}
+        run: helm --install toffolon-website-backend-release ./infra/kubernetes/helm-backend-app \
+          --values ./infra/kubernetes/helm-backend-app/values.yaml \
+          --values ./infra/kubernetes/helm-backend-app/values-${{ github.event.inputs.environment || 'production' }}.yaml \
+          --set-string secrets.data.SEND_GRID_KEY="${{ secrets.SEND_GRID_KEY_BASE64 }} \
+          --set-string secrets.data.AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID_BACKEND_BASE64 }}" \
+          --set-string secrets.data.AWS_ACCESS_KEY_SECRET="${{ secrets.AWS_ACCESS_KEY_SECRET_BACKEND_BASE64 }}" \
+          --set-string secrets.data.FIRST_EMAIL_USER="${{ secrets.FIRST_EMAIL_USER_BASE64 }} }}
+          -n toffolon-website-${{ github.event.inputs.environment || 'production' }} \
