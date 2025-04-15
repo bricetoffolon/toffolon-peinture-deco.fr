@@ -169,11 +169,7 @@ jobs:
 
       - name: |
         run:
-          kubectl create secret docker-registry regcred \
-          --docker-server=ghcr.io \
-          --docker-username=${{ secrets.DOCKER_USERNAME }} \
-          --docker-password=${{ secrets.DOCKER_PASSWORD }} \
-          --docker-email=${{ secrets.DOCKER_EMAIL }} \
+          kubectl create secret docker-registry regcred --docker-server=ghcr.io --docker-username=${{ secrets.DOCKER_USERNAME }} --docker-password=${{ secrets.DOCKER_PASSWORD }} --docker-email=${{ secrets.DOCKER_EMAIL }} \
 
   upgrade-helm-front:
     name: Upgrade helm release front
