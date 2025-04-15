@@ -1,4 +1,4 @@
-name: 'CD Backend Deploy'
+name: 'cd-backend-deploy'
 on:
   workflow_dispatch:
     inputs:
@@ -58,6 +58,6 @@ jobs:
           --set-string secrets.data.AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID_BACKEND_BASE64 }}" \
           --set-string secrets.data.AWS_ACCESS_KEY_SECRET="${{ secrets.AWS_ACCESS_KEY_SECRET_BACKEND_BASE64 }}" \
           --set-string secrets.data.FIRST_EMAIL_USER="${{ secrets.FIRST_USER_EMAIL_BASE64 }}" \
-          --set-string image.tag="${{ inputs.tag }}"
+          --set-string image.tag="${{ inputs.tag }}" \
           -n toffolon-website-${{ github.event.inputs.environment || 'production' }} \
           --atomic
