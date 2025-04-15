@@ -57,5 +57,5 @@ jobs:
           --set-string secrets.data.SEND_GRID_KEY="${{ secrets.SEND_GRID_KEY_BASE64 }}" \
           --set-string secrets.data.AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID_BACKEND_BASE64 }}" \
           --set-string secrets.data.AWS_ACCESS_KEY_SECRET="${{ secrets.AWS_ACCESS_KEY_SECRET_BACKEND_BASE64 }}" \
-          --set-string secrets.data.FIRST_EMAIL_USER="${{ secrets.FIRST_EMAIL_USER_BASE64 }}" \
+          --set-string secrets.data.FIRST_EMAIL_USER="${{ secrets.FIRST_USER_EMAIL_BASE64 }}" \
           -n toffolon-website-${{ github.event.inputs.environment || 'production' }}
