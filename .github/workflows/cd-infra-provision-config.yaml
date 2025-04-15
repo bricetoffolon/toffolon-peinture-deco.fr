@@ -1,4 +1,4 @@
-name: 'Continuous Deployment'
+name: 'cd-infra-provision-config'
 
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   terraform:
-    name: 'Deploy Terraform'
+    name: 'Provision Terraform resources'
     runs-on: ubuntu-latest
     env:
       DEPLOYMENT_ENVIRONMENT:  ${{ github.event.inputs.environment || 'production' }}
@@ -96,7 +96,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
   ansible:
-    name: Run ansible configuration
+    name: Run Ansible configuration
     runs-on: ubuntu-latest
     environment:  ${{ github.event.inputs.environment || 'production' }}
     if: ${{ github.event.inputs.infra-option == 'apply' }}
