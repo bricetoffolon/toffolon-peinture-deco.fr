@@ -1,10 +1,17 @@
 ---
 - name: Setup microk8s playbook
   hosts: all
+  vars_prompt:
+    - name: cloudflare_secret_api_key
+      prompt: Please provide the cloudflare_secret_api_key
+      private: true
   remote_user: "{{ lookup('env', 'ANSIBLE_USER') | default('ansible') }}"
   become: yes
   roles:
-    - microk8s
+    - install_requirements
+    - setup_k8s_cert_manager
+    - setup_k8s
+    - generate_sa_kubeconfig
 
   vars:
     microk8s_channel: 1.32
@@ -15,3 +22,5 @@
       - ingress
       - metrics-server
       - rbac
+    deployment_env: "{{ lookup('env', 'DEPLOYMENT_ENV') | default('staging', true) }}"
+    deployment_namespace: "toffolon-website-{{ deployment_env }}"

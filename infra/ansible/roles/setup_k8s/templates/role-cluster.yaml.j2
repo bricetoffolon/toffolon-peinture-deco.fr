@@ -2,6 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: deployment-manager-clusterrole
+  namespace: {{ deployment_namespace }}
 rules:
   - apiGroups: ["cert-manager.io"]
     resources: ["clusterissuers"]
