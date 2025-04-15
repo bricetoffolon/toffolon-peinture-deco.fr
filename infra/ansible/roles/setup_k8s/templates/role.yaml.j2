@@ -5,14 +5,14 @@ metadata:
   namespace: {{ deployment_namespace }}
 rules:
   - apiGroups: ["", "apps", "networking.k8s.io"]
-    resources: ["pods", "services", "deployments", "ingresses"]
+    resources: ["pods", "services", "deployments", "ingresses", "replicasets"]
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
   - apiGroups: [""]
     resources: ["configmaps", "persistentvolumeclaims"]
     verbs: ["get", "list", "create", "update", "patch", "delete"]
   - apiGroups: [""]
     resources: ["secrets"]
-    verbs: ["get", "list", "create", "delete"]
+    verbs: ["get", "list", "create", "delete", "update"]
   - apiGroups: [""]
     resources: ["events", "pods/log"]
     verbs: ["get", "list", "watch"]
