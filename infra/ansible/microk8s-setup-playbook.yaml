@@ -1,10 +1,6 @@
 ---
 - name: Setup microk8s playbook
   hosts: all
-  vars_prompt:
-    - name: cloudflare_secret_api_key
-      prompt: Please provide the cloudflare_secret_api_key
-      private: true
   remote_user: "{{ lookup('env', 'ANSIBLE_USER') | default('ansible') }}"
   become: yes
   roles:

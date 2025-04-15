@@ -5,7 +5,7 @@
   shell: sudo /snap/bin/microk8s kubectl delete secret cloudflare-api-key-secret -n cert-manager --ignore-not-found=true
 
 - name: Add Cloudflare secret
-  shell: sudo /snap/bin/microk8s kubectl create secret generic cloudflare-api-key-secret --from-literal=api_key={{ cloudflare_secret_api_key | default(lookup('env', 'CLOUDFLARE_SECRET_API_KEY')) }} -n cert-manager
+  shell: sudo /snap/bin/microk8s kubectl create secret generic cloudflare-api-key-secret --from-literal=api_key={{ lookup('env', 'CLOUDFLARE_SECRET_API_KEY') }} -n cert-manager
   no_log: true
 
 - name: Copy cluster issuer
