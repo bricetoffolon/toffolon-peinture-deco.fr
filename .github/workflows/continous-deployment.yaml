@@ -176,7 +176,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment || 'production' }}
     if: ${{ github.event.inputs.infra-option == 'apply' }}
-    needs: ansible
+    needs: create-docker-registry-secret-k8s
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
