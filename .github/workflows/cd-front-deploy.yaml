@@ -1,0 +1,17 @@
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+      tag:
+        type: string
+        description: Choose which image version you want to deploy
+        default: latest
+jobs:
+  install-helm-front-release:
+    name: Install helm front release
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'production' }}
+  
