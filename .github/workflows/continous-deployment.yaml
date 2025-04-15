@@ -179,7 +179,7 @@ jobs:
     needs: create-docker-registry-secret-k8s
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download kubeconfig
         uses: actions/download-artifact@v4
@@ -207,7 +207,7 @@ jobs:
     needs: create-docker-registry-secret-k8s
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download kubeconfig
         uses: actions/download-artifact@v4
@@ -230,8 +230,8 @@ jobs:
           AWS_ACCESS_KEY_SECRET_BACKEND_BASE64: ${{ secrets.AWS_ACCESS_KEY_SECRET_BACKEND_BASE64 }}
           FIRST_EMAIL_USER_BASE64: ${{ secrets.FIRST_EMAIL_USER_BASE64 }}
         run: |
-          envsubst < secret.yaml > secret_filled.yaml
-          kubectl apply -f secret_filled.yaml
+          envsubst < ./infra/kubernetes/helm-backend-app/templates/secrets.yaml > secrets_filled.yaml
+          kubectl apply -f secrets_filled.yaml
 
       - name: Install helm
         uses: azure/setup-helm@v4.3.0
