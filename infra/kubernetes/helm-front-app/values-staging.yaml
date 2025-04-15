@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 appName: staging-toffolon-front
-namespace: toffolon # To be updated along with ansible for enable environment namespace
+namespace: toffolon-website-staging
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:

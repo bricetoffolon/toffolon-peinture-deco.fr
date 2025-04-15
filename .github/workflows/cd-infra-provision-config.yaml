@@ -1,4 +1,4 @@
-name: 'Continuous Deployment'
+name: 'cd-infra-provision-config'
 
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   terraform:
-    name: 'Deploy Terraform'
+    name: 'Provision Terraform resources'
     runs-on: ubuntu-latest
     env:
       DEPLOYMENT_ENVIRONMENT:  ${{ github.event.inputs.environment || 'production' }}
@@ -96,7 +96,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
   ansible:
-    name: Run ansible configuration
+    name: Run Ansible configuration
     runs-on: ubuntu-latest
     environment:  ${{ github.event.inputs.environment || 'production' }}
     if: ${{ github.event.inputs.infra-option == 'apply' }}
@@ -129,4 +129,44 @@ jobs:
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
           ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
+          CLOUDFLARE_SECRET_API_KEY: ${{ secrets.CLOUDFLARE_SECRET_API_KEY }}
+          DEPLOYMENT_ENV: ${{ github.event.inputs.environment || 'production' }}
         run: ansible-playbook --inventory inventory/hosts.yaml microk8s-setup-playbook.yaml
+
+      - name: Upload kubeconfig as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kubeconfig
+          path: /tmp/sa-kubeconfig.yaml
+          retention-days: 1
+          overwrite: 'true'
+          include-hidden-files: 'true'
+
+  create-docker-registry-secret-k8s:
+    name: Create docker registry secret for k8s
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'production' }}
+    if: ${{ github.event.inputs.infra-option == 'apply' }}
+    needs: ansible
+    steps:
+      - name: Download kubeconfig
+        uses: actions/download-artifact@v4
+        with:
+          name: kubeconfig
+          path: /tmp
+
+      - name: set KUBECONFIG environment variable
+        run: echo "KUBECONFIG=/tmp/sa-kubeconfig.yaml" >> $GITHUB_ENV
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: 'latest'
+
+      - name: Delete old secret
+        run: |
+          kubectl delete secret regcred --ignore-not-found
+
+      - name: Create secret
+        run:
+          kubectl create secret docker-registry regcred --docker-server=ghcr.io --docker-username=${{ secrets.DOCKER_USERNAME }} --docker-password=${{ secrets.DOCKER_PASSWORD }} --docker-email=${{ secrets.DOCKER_EMAIL }} \

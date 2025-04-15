@@ -1,5 +1,5 @@
 #!/bin/bash
-NAMESPACE="toffolon"
+NAMESPACE=$1
 SA_NAME="deployment-manager"
 KUBECONFIG_FILE="sa-kubeconfig.yaml"
 

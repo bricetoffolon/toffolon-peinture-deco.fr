@@ -3,5 +3,7 @@ kind: ConfigMap
 metadata:
   name: front-configmap
   namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.appName }}
 data:
-  API_HOST: {{ .Values.configMap.data.API_HOST }}
+  API_HOST: "{{ .Values.configMap.data.API_HOST }}"

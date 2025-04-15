@@ -1,3 +1,4 @@
+name: 'cd-backend-deploy'
 on:
   workflow_dispatch:
     inputs:
@@ -14,6 +15,49 @@ jobs:
     name: Install helm backend release
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment || 'production' }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./infra/kubernetes/helm-backend-app
+    outputs:
+      workflow_id: ${{ steps.get-run-id.outputs.workflow_id }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Get latest successful workflow run ID
+        id: get-run-id
+        env:
+          GH_TOKEN: ${{ secrets.GH_CLI_TOKEN }}
+        run: |
+          WORKFLOW_ID=$(gh api repos/${{ github.repository }}/actions/workflows/continous-deployment.yaml/runs --jq '.workflow_runs[] | select(.conclusion == "success") | .id' | awk 'NR==1 { print; exit }' || true)
+          echo "workflow_id=$WORKFLOW_ID" >> $GITHUB_OUTPUT
+
+      - name: Download kubeconfig
+        uses: actions/download-artifact@v4
+        with:
+          name: kubeconfig
+          github-token: ${{ secrets.GITHUB_TOKEN }} # token with actions:read permissions on target repo
+          path: /tmp
+          run-id: ${{ steps.get-run-id.outputs.workflow_id }}
+
+      - name: set KUBECONFIG environment variable
+        run: echo "KUBECONFIG=/tmp/sa-kubeconfig.yaml" >> $GITHUB_ENV
+
+      - name: Install helm
+        uses: azure/setup-helm@v4.3.0
+        with:
+          version: 'latest'
+
+      - name: Deploy release
+        run: | 
+          helm upgrade --install toffolon-website-backend-release . \
+          --values ./values.yaml \
+          --values ./values-${{ github.event.inputs.environment || 'production' }}.yaml \
+          --set-string secrets.data.SEND_GRID_KEY="${{ secrets.SEND_GRID_KEY_BASE64 }}" \
+          --set-string secrets.data.AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID_BACKEND_BASE64 }}" \
+          --set-string secrets.data.AWS_ACCESS_KEY_SECRET="${{ secrets.AWS_ACCESS_KEY_SECRET_BACKEND_BASE64 }}" \
+          --set-string secrets.data.FIRST_EMAIL_USER="${{ secrets.FIRST_USER_EMAIL_BASE64 }}" \
+          --set-string image.tag="${{ inputs.tag }}" \
+          -n toffolon-website-${{ github.event.inputs.environment || 'production' }} \
+          --atomic
