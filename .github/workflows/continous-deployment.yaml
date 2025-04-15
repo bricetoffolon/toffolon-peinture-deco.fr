@@ -167,7 +167,7 @@ jobs:
         run: |
           kubectl delete secret regcred --ignore-not-found
 
-      - name: |
+      - name: Create secret
         run:
           kubectl create secret docker-registry regcred --docker-server=ghcr.io --docker-username=${{ secrets.DOCKER_USERNAME }} --docker-password=${{ secrets.DOCKER_PASSWORD }} --docker-email=${{ secrets.DOCKER_EMAIL }} \
 
