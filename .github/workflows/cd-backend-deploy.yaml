@@ -39,7 +39,7 @@ jobs:
           name: kubeconfig
           github-token: ${{ secrets.GITHUB_TOKEN }} # token with actions:read permissions on target repo
           path: /tmp
-          run-id: ${{ steps.get_id.outputs.workflow_id }}
+          run-id: ${{ steps.get-run-id.outputs.workflow_id }}
 
       - name: set KUBECONFIG environment variable
         run: echo "KUBECONFIG=/tmp/sa-kubeconfig.yaml" >> $GITHUB_ENV
