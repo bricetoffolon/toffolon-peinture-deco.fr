@@ -142,8 +142,41 @@ jobs:
           overwrite: 'true'
           include-hidden-files: 'true'
 
-  apply-kubernetes-front:
-    name: Apply kubernetes front deployment
+  create-docker-registry-secret-k8s:
+    name: Create docker registry secret for k8s
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'production' }}
+    if: ${{ github.event.inputs.infra-option == 'apply' }}
+    needs: ansible
+    steps:
+      - name: Download kubeconfig
+        uses: actions/download-artifact@v4
+        with:
+          name: kubeconfig
+          path: /tmp
+
+      - name: set KUBECONFIG environment variable
+        run: echo "KUBECONFIG=/tmp/sa-kubeconfig.yaml" >> $GITHUB_ENV
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: 'latest'
+
+      - name: Delete old secret
+        run: |
+          kubectl delete secret regcred --ignore-not-found
+
+      - name: |
+        run:
+          kubectl create secret docker-registry regcred \
+          --docker-server=ghcr.io \
+          --docker-username=${{ secrets.DOCKER_USERNAME }} \
+          --docker-password=${{ secrets.DOCKER_PASSWORD }} \
+          --docker-email=${{ secrets.DOCKER_EMAIL }} \
+
+  upgrade-helm-front:
+    name: Upgrade helm release front
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment || 'production' }}
     if: ${{ github.event.inputs.infra-option == 'apply' }}
