@@ -3,6 +3,8 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: prisma-pv
+  labels:
+    app.kubernetes.io/name: {{ .Values.appName }}
 spec:
   capacity:
     storage: {{.Values.persistentVolume.capacity.storage }}

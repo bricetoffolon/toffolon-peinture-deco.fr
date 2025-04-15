@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: backend-configmap
   namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.appName }}
 data:
   PORT: "{{ .Values.configMap.data.PORT }}"
   ALLOWED_ORIGIN: "{{ .Values.configMap.data.ALLOWED_ORIGIN }}"

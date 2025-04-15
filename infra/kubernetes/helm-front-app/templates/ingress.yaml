@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: front-ingress
   namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.appName }}
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
