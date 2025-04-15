@@ -1,4 +1,4 @@
-name: Create Release
+name: ci-release-please
 on:
   push:
     branches: [ 'main' ]
