@@ -129,6 +129,8 @@ jobs:
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
           ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
+          CLOUDFLARE_SECRET_API_KEY: ${{ secrets.CLOUDFLARE_SECRET_API_KEY }}
+          DEPLOYMENT_ENV: ${{ github.event.inputs.environment || 'production' }}
         run: ansible-playbook --inventory inventory/hosts.yaml microk8s-setup-playbook.yaml
 
       - name: Upload kubeconfig as artifact
@@ -166,4 +168,4 @@ jobs:
 
       - name: Deploy release
         run: |
-          helm upgrade --install my-release ./infra/kubernetes/helm-front-app --values ./infra/kubernetes/helm-front-app/values.yaml --values ./infra/kubernetes/helm-front-app/values-${{ github.event.inputs.environment }}.yaml
+          helm upgrade --install toffolon-website-front-release ./infra/kubernetes/helm-front-app --values ./infra/kubernetes/helm-front-app/values.yaml --values ./infra/kubernetes/helm-front-app/values-${{ github.event.inputs.environment || 'production' }}.yaml -n toffolon-website-${{ github.event.inputs.environment || 'production' }}
