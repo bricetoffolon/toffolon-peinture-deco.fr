@@ -27,10 +27,7 @@ jobs:
       - name: Get latest successful workflow run ID
         id: get-run-id
         run: |
-          WORKFLOW_ID=$(gh api \
-            repos/${{ github.repository }}/actions/workflows/continous-deployment.yaml/runs \
-            --jq '.workflow_runs[] | select(.conclusion == "success") | .id' \
-            --limit 1)
+          WORKFLOW_ID=$(gh api repos/${{ github.repository }}/actions/workflows/continous-deployment.yaml/runs --jq '.workflow_runs[] | select(.conclusion == "success") | .id' --limit 1)
           echo "workflow_id=$WORKFLOW_ID" >> $GITHUB_OUTPUT
 
       - name: Download kubeconfig
