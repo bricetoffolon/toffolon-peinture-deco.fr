@@ -5,7 +5,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: deployment-manager
-    namespace: toffolon
+    namespace: {{ deployment_namespace }}
 roleRef:
   kind: ClusterRole
   name: deployment-manager-clusterrole

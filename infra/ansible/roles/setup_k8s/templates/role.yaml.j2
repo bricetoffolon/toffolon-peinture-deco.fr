@@ -2,6 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: deployment-manager-role
+  namespace: {{ deployment_namespace }}
 rules:
   - apiGroups: ["", "apps", "networking.k8s.io"]
     resources: ["pods", "services", "deployments", "ingresses"]
