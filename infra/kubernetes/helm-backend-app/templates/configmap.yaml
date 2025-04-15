@@ -9,3 +9,6 @@ data:
   API_ROUTE: "{{ .Values.configMap.data.API_ROUTE }}"
   EMAIL: "{{ .Values.configMap.data.EMAIL }}"
   DATABASE_URL: "{{ .Values.configMap.data.DATABASE_URL }}"
+  AWS_REGION: "{{ .Values.configMap.data.AWS_REGION }}"
+  AWS_BUCKET: "{{ .Values.configMap.data.AWS_BUCKET }}"
+  AWS_BUCKET_POSTS: "{{ .Values.configMap.data.AWS_BUCKET_POSTS }}"

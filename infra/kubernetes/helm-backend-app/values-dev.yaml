@@ -3,6 +3,7 @@
 # Declare variables to be passed into your templates.
 
 appName: dev-toffolon-backend
+namespace: toffolon-website-dev
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:

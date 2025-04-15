@@ -52,6 +52,9 @@ configMap:
     API_ROUTE: "https://toffolon-peinture-deco.fr/redondo"
     EMAIL: "no-reply@toffolon-peinture-deco.fr"
     DATABASE_URL: "file:../mnt/data/prisma/prisma.db"
+    AWS_REGION: "eu-west-3"
+    AWS_BUCKET: "toffolon-website"
+    AWS_BUCKET_POSTS: "toffolon-website-posts"
 
 persistentVolume:
   capacity:
