@@ -30,7 +30,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_CLI_TOKEN }}
         run: |
-          WORKFLOW_ID=$(gh api repos/${{ github.repository }}/actions/workflows/continous-deployment.yaml/runs --jq '.workflow_runs[] | select(.conclusion == "success") | .id' | awk 'NR==1 { print; exit }')
+          WORKFLOW_ID=$(gh api repos/${{ github.repository }}/actions/workflows/continous-deployment.yaml/runs --jq '.workflow_runs[] | select(.conclusion == "success") | .id' | awk 'NR==1 { print; exit }' || true)
           echo "workflow_id=$WORKFLOW_ID" >> $GITHUB_OUTPUT
 
       - name: Download kubeconfig
