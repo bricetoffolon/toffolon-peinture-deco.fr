@@ -180,12 +180,13 @@ export class ImageService {
         });
     }
 
-    async compressImageToWebP(filename: string, image: Buffer, quality: number, metadata: string): Promise<Buffer> {
+    async compressImageToWebP(filename: string, image: Buffer, quality: number, metadata: string): Promise<{webPBuffer: Buffer, outputName: string}> {
         try {
             const ext = path.extname(filename);
             const basename = path.basename(filename, ext);
             const inputPath = path.join(os.tmpdir(), `${filename}`);
-            const outputPath = path.join(os.tmpdir(), `${basename}.webp`);
+            const outputName = `${basename}.webp`
+            const outputPath = path.join(os.tmpdir(), outputName);
 
             if (quality < 0 || quality > 100 ) {
             }
@@ -208,7 +209,10 @@ export class ImageService {
             await unlink(inputPath);
             await unlink(outputPath);
 
-            return webPBuffer;
+            return {
+                webPBuffer,
+                outputName
+            };
         } catch (err) {
             console.log(err);
         }

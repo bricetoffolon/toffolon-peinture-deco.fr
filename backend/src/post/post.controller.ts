@@ -99,11 +99,11 @@ export class PostController {
 
             const imageBuffer = await this.imageService.addWatermarkPattern(files[i].buffer, './assets/images/watermark.png');
 
-            const compressImageBuffer= await this.imageService.compressImageToWebP(name, imageBuffer, 80, 'all');
+            const { webPBuffer: compressImageBuffer, outputName }= await this.imageService.compressImageToWebP(name, imageBuffer, 80, 'all');
 
-            const url: string = await this.awsService.imageUpload(post.id, compressImageBuffer, name);
+            const url: string = await this.awsService.imageUpload(post.id, compressImageBuffer, outputName);
 
-            await this.imageService.createImage({name, url, post: {connect: {id: post.id}}});
+            await this.imageService.createImage({name: outputName, url, post: {connect: {id: post.id}}});
         }
     }
 }
