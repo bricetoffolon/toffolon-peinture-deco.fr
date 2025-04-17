@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.2](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-front-v0.1.1...toffolon-front-v0.1.2) (2025-04-17)
+
+
+### Bug Fixes
+
+* **front:** ternary to use or not env var ([56e939e](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/56e939ee1f83508e2320ed59072b0411a5cbd72c))
+* **front:** ternary to use or not env var ([5950287](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/59502877c43cf5cf1347b94010e8217b06c26b7a))
+
 ## [0.1.1](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-front-v0.1.0...toffolon-front-v0.1.1) (2025-04-10)
 
 
