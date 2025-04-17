@@ -1,0 +1,90 @@
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# Configure minimal datasources - just VictoriaMetrics
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: VictoriaMetrics
+        type: prometheus
+        access: proxy
+        url: http://victoria-metrics-victoria-metrics-single-server.default.svc.cluster.local:8428
+        isDefault: true
+        jsonData:
+          timeInterval: "60s"
+          queryTimeout: "30s"
+          httpMethod: "GET"
+        editable: true
+
+# Disable unnecessary services
+initChownData:
+  enabled: false
+
+# Disable image renderer to save resources
+imageRenderer:
+  enabled: false
+
+# Provide a few basic dashboards
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: 'default'
+        orgId: 1
+        folder: ''
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/default
+
+# Persistent storage for dashboards
+persistence:
+  enabled: true
+  size: 500Mi
+
+# Admin user configuration
+adminUser: admin
+adminPassword: strongpassword  # Change this!
+
+# Service configuration
+service:
+  port: 80
+  targetPort: 3000
+
+# Enable the ingress
+ingress:
+  enabled: true
+  ingressClassName: nginx
+
+  # Important annotations for path-based routing
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # Use this annotation if you still want https but want to prevent loops
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+
+  # Configure the path with a regex capture group
+  path: /grafana/?(.*)
+
+  # Set your domain name here
+  hosts:
+    - staging.toffolon-peinture-deco.fr
+
+  # TLS configuration if needed
+  tls:
+    - secretName: nginx-tls
+      hosts:
+        - staging.toffolon-peinture-deco.fr
+
+grafana.ini:
+  server:
+    root_url: https://staging.toffolon-peinture-deco.fr/grafana
