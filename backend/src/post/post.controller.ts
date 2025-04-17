@@ -97,9 +97,11 @@ export class PostController {
         for (let i: number = 0; i < files.length; i += 1) {
             const name: string = files[i].originalname
 
-            const imageBuffer = await this.imageService.mergeCopyrightToImage(files[i].buffer);
+            const imageBuffer = await this.imageService.addWatermarkPattern(files[i].buffer, './assets/images/watermark.png');
 
-            const url: string = await this.awsService.imageUpload(post.id, imageBuffer, name);
+            const compressImageBuffer= await this.imageService.compressImageToWebP(name, imageBuffer, 80, 'all');
+
+            const url: string = await this.awsService.imageUpload(post.id, compressImageBuffer, name);
 
             await this.imageService.createImage({name, url, post: {connect: {id: post.id}}});
         }
