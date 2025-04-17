@@ -19,8 +19,33 @@ ENV NODE_ENV=production
 COPY tsconfig*.json ./
 COPY src ./src
 COPY src/prisma ./prisma
+COPY assets ./assets
 RUN npx prisma generate
 RUN pnpm run build
+
+FROM debian:bullseye-slim AS cwebp-builder
+WORKDIR /build
+COPY libwebp-1.5.0.tar.gz .
+COPY install-cwebp.sh .
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    gcc \
+    make \
+    automake \
+    libtool \
+    pkg-config \
+    && chmod +x install-cwebp.sh \
+    && ./install-cwebp.sh \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create a directory to collect all required libraries
+RUN mkdir -p /collected-libs
+
+# Copy the cwebp binary
+RUN cp $(which cwebp) /collected-libs/
+
+# Use ldd to find all dependencies and copy them
+RUN ldd $(which cwebp) | grep "=> /" | awk '{print $3}' | xargs -I '{}' cp -v '{}' /collected-libs/
 
 # Production stage - minimal final image
 FROM node:20-slim AS production
@@ -29,6 +54,7 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 WORKDIR /app
+
 
 # Copy only production dependencies
 COPY package.json pnpm-lock.yaml* ./
@@ -39,12 +65,25 @@ COPY --from=build /app/src/prisma ./prisma
 # Copy built application
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/assets ./assets
 
 RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 RUN chown -R node:node /app
 
+# Copy cwebp binary and ALL its dependencies from the collected-libs directory
+COPY --from=cwebp-builder /collected-libs/cwebp /usr/local/bin/
+COPY --from=cwebp-builder /collected-libs/*.so* /usr/lib/
+# Update the dynamic linker run-time bindings
+# Update the dynamic linker run-time bindings
+RUN ldconfig
+
+# Verify cwebp works
+RUN cwebp -version
+# Verify it's working and has its dependencies
+RUN cwebp -version
+
 USER node
-ENV PORT=8000
+
 EXPOSE 8000
 # Start the NestJS application
 CMD ["pnpm", "start:migrate:prod"]
