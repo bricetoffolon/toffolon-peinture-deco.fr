@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.3](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.2...toffolon-backend-v0.1.3) (2025-04-17)
+
+
+### Features
+
+* **backend:** add upload image compression and dynamic copyright with watermark pattern ([39d594e](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/39d594ee11f235b529511abb135f3117d0b7e632))
+
+
+### Bug Fixes
+
+* **backend:** wrong .ext used to upload compressed img ([6e30d9c](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/6e30d9c64cbb9d6d4d05f6212c2f8427a58965d3))
+
 ## [0.1.2](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.1...toffolon-backend-v0.1.2) (2025-04-10)
 
 
