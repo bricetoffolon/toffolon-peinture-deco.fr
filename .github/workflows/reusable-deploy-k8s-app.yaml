@@ -1,0 +1,27 @@
+name: 'reusable-deploy-k8s-app-yaml'
+on:
+    workflow_call:
+      inputs:
+        app-name:
+            required: true
+            type: string
+        environment:
+          required: true
+          type: string
+        helm-args:
+            required: true
+            type: string
+jobs:
+  install-helm-release:
+    name: Install helm release
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./infra/kubernetes/helm-{{ github.event.inputs.app-name }}-app
+    outputs:
+      workflow_id: ${{ steps.get-run-id.outputs.workflow_id }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
