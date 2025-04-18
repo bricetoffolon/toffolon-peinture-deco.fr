@@ -22,7 +22,7 @@ export default function UpdatePass(): React.JSX.Element {
         }
     }, [router]);
 
-    const [formValues, setFormValues] = useState<FormValue>({});
+    const [formValues, setFormValues] = useState<FormValue>({password: '', confirmPassword: ''});
 
     useApiCallToastResp(
         'post',
@@ -50,7 +50,6 @@ export default function UpdatePass(): React.JSX.Element {
                     <Heading>Update your password</Heading>
                     <UserForm
                         title=""
-                        inputs={['password', 'confirmPassword']}
                         formValues={formValues}
                         setFormValues={setFormValues}
                         handleSubmit={handleSubmit}

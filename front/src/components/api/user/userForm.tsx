@@ -15,13 +15,11 @@ import { FormValue } from '@/types/formValue';
 
 export default function UserForm({
     title,
-    inputs,
     formValues,
     setFormValues,
     handleSubmit,
 }: {
     title: string;
-    inputs: string[];
     formValues: FormValue;
     setFormValues: any; // eslint-disable-line
     handleSubmit: any;
@@ -46,7 +44,7 @@ export default function UserForm({
             </Heading>
             <form onSubmit={handleSubmit}>
             <FormControl>
-                {inputs.map((input: string, index) => {
+                    {Object.keys(formValues).map((input: string, index) => {
                     return (
                         <Flex key={index} margin="2%" direction="column">
                             <FormLabel color="brand.400" htmlFor={`field-${input}-${index}`} textShadow="2px 2px 4px rgba(0, 0, 0, 0.2)">

@@ -13,7 +13,7 @@ export default function Login() {
 
     const [isSubmit, setIsSubmit] = useState(false);
 
-    const [formValues, setFormValues] = useState<FormValue>({});
+    const [formValues, setFormValues] = useState<FormValue>({email: '', password: ''});
 
     const handleSubmit = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault();
@@ -44,7 +44,6 @@ export default function Login() {
             <Divider maxW={'50%'} />
             <UserForm
                 title="Welcome back"
-                inputs={['email', 'password']}
                 formValues={formValues}
                 setFormValues={setFormValues}
                 handleSubmit={handleSubmit}

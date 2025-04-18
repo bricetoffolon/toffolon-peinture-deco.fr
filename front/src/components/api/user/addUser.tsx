@@ -13,7 +13,7 @@ export default function AddUser(): React.JSX.Element {
 
     const [isSubmit, setIsSubmit] = useState<boolean>(false);
 
-    const [formValues, setFormValues] = useState<FormValue>({});
+    const [formValues, setFormValues] = useState<FormValue>({email: '', username: '', password: '', confirmPassword: ''});
 
     useEffect(() => {
         if (router.isReady && router.query.key === undefined) {
