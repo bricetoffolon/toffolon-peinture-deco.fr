@@ -47,7 +47,7 @@ export default class MailService {
     return this.sendEmail(
       userEmail,
       "Créer votre utilisateur",
-      `<h1>${this.serverRoute}/user/?key=${accessToken}<h1>`,
+      `<h1>${this.serverRoute}/user/create?key=${accessToken}<h1>`,
     );
   }
 }
