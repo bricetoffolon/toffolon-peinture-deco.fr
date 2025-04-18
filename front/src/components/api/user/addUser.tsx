@@ -42,7 +42,6 @@ export default function AddUser(): React.JSX.Element {
         <Flex alignItems="center" mt={'1%'} direction={'column'} w={'100%'}>
             <UserForm
                 title="Register"
-                inputs={['email', 'username', 'password', 'confirm password']}
                 formValues={formValues}
                 setFormValues={setFormValues}
                 handleSubmit={handleSubmit}
