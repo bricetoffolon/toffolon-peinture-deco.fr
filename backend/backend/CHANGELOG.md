@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.4](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.3...toffolon-backend-v0.1.4) (2025-04-18)
+
+
+### Bug Fixes
+
+* **back:** update front path ([53b4223](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/53b4223bec34e8f392b76ff2d39a1c30b9ae0178))
+* **back:** update front path ([8be6ab0](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/8be6ab020a8c43f7c97cf88eeb2300206e9305e3))
+
 ## [0.1.3](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.2...toffolon-backend-v0.1.3) (2025-04-17)
 
 
