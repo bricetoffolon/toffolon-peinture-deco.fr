@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.4](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-front-v0.1.3...toffolon-front-v0.1.4) (2025-04-18)
+
+
+### Bug Fixes
+
+* **front:** error with non-existing param ([4289973](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/4289973103b2afe6a799e8a3a05c018f58bd3848))
+* **front:** error with non-existing param ([6ad4a0a](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/6ad4a0a0f86b4f44c14141a4a0b012b219decf25))
+
 ## [0.1.3](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-front-v0.1.2...toffolon-front-v0.1.3) (2025-04-18)
 
 
