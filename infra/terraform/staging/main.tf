@@ -95,6 +95,13 @@ module "cloudflare-dns-record" {
   instance_ip = module.scaleway-instance.instance_public_ip
 }
 
+module "aws-storage-config" {
+  source = "../modules/aws-module"
+
+  # Input variables
+  environment = local.environment
+}
+
 output "instance_public_ip" {
   value     = module.scaleway-instance.instance_public_ip
   sensitive = true
