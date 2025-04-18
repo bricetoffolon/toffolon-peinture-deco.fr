@@ -101,3 +101,8 @@ module "aws-storage-config" {
   # Input variables
   environment = local.environment
 }
+
+output "instance_public_ip" {
+  value     = module.scaleway-instance.instance_public_ip
+  sensitive = true
+}
