@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.3](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-front-v0.1.2...toffolon-front-v0.1.3) (2025-04-18)
+
+
+### Bug Fixes
+
+* **front:** instance ternary for local env ([f4d2a59](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/f4d2a59805d845025a91c43a3bb69b9c5caecf1e))
+* **front:** warning not controlled input values ([ecfac6a](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/ecfac6a2ca3902ba677c3e0545773716ec40030b))
+
 ## [0.1.2](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-front-v0.1.1...toffolon-front-v0.1.2) (2025-04-17)
 
 
