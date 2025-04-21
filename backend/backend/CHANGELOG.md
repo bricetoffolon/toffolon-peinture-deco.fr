@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.5](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.4...toffolon-backend-v0.1.5) (2025-04-21)
+
+
+### Bug Fixes
+
+* dockerfile missing html templates for mails ([622f724](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/622f72497129d3826140704d3ec3fd2af2f1d22d))
+* dockerfile missing html templates for mails ([e3ba5e9](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/e3ba5e9b82d339f6c8c9116b4d626789bfee24c8))
+
 ## [0.1.4](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.3...toffolon-backend-v0.1.4) (2025-04-18)
 
 
