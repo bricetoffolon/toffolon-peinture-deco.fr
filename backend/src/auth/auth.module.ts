@@ -68,6 +68,9 @@ export class AuthModule implements NestModule {
                     cookie: {
                         secure: this.isProduction,
                         maxAge: this.sessionMaxAge, // 30 minutes
+                        secure: this.isProduction,
+                        httpOnly: true,
+                        sameSite: this.isProduction ? 'none' : 'lax',
                     }
                 }),
                 passport.initialize(),

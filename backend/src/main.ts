@@ -10,7 +10,7 @@ async function bootstrap(): Promise<void> {
 
   const config = new ConfigService();
 
-  app.set('trust proxy', 'loopback');
+  app.set('trust proxy', 1);
   app.setGlobalPrefix('api');
   app.enableCors({
     origin: config.get<string>("ALLOWED_ORIGIN"),
