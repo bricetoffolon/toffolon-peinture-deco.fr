@@ -55,6 +55,7 @@ configMap:
     AWS_REGION: "eu-west-3"
     AWS_BUCKET: "toffolon-website"
     AWS_BUCKET_POSTS: "toffolon-website-posts"
+    REDIS_URL: "redis://my-redis-master.toffolon-website-staging.svc.cluster.local:6379"
 
 persistentVolume:
   capacity:
@@ -68,3 +69,4 @@ secrets:
     AWS_ACCESS_KEY_ID: ""
     AWS_ACCESS_KEY_SECRET: ""
     FIRST_EMAIL_USER: ""
+    SESSION_SECRET: ""
