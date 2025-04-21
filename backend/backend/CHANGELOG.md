@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.5...toffolon-backend-v0.1.6) (2025-04-21)
+
+
+### Bug Fixes
+
+* enabling trust proxy to get cookies ([020572d](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/020572dc4591408c774054aff7b6cb6049d87dc6))
+
 ## [0.1.5](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.4...toffolon-backend-v0.1.5) (2025-04-21)
 
 
