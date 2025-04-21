@@ -66,6 +66,7 @@ COPY --from=build /app/src/prisma ./prisma
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/assets ./assets
+COPY --from=build /app/src/contact/views ./src/contact/views
 
 RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 RUN chown -R node:node /app
@@ -78,8 +79,6 @@ COPY --from=cwebp-builder /collected-libs/*.so* /usr/lib/
 RUN ldconfig
 
 # Verify cwebp works
-RUN cwebp -version
-# Verify it's working and has its dependencies
 RUN cwebp -version
 
 USER node
