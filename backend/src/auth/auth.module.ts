@@ -66,7 +66,8 @@ export class AuthModule implements NestModule {
                     resave: false,
                     saveUninitialized: false,
                     cookie: {
-                        secure: this.isProduction,
+                        // secure: this.isProduction,
+                        secure: false,
                         maxAge: this.sessionMaxAge, // 30 minutes
                         httpOnly: true,
                         sameSite: this.isProduction ? 'none' : 'lax',
@@ -76,10 +77,17 @@ export class AuthModule implements NestModule {
                     proxy: this.isProduction
                 }),
                 (req, res, next) => {
-                    res.on('finish', () => {
+                    res.on('header', () => {
                         console.log('Session ID:', req.sessionID);
-                        console.log('Set-Cookie header sent?', res.getHeader('Set-Cookie'));
+                        console.log('Set-Cookie header (during header event):', res.getHeader('Set-Cookie'));
                     });
+
+                    const originalWriteHead = res.writeHead;
+                    res.writeHead = function() {
+                        console.log('Set-Cookie header (before writeHead):', this.getHeader('Set-Cookie'));
+                        return originalWriteHead.apply(this, arguments);
+                    };
+
                     next();
                 },
                 passport.initialize(),
