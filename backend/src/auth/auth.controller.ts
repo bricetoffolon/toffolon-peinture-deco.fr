@@ -9,8 +9,14 @@ import { Request } from "express";
 export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Post('login')
-    login(@Req() request: any, @Session() session: ExpressSession): UserResponseDto {
+    async login(@Req() request: any, @Session() session: ExpressSession): Promise<UserResponseDto> {
         const user = request.user;
+        await new Promise((resolve) => {
+            request.session.save(() => {
+                console.log('Session saved, cookie should now be sent');
+                resolve(null);
+            });
+        });
         return new UserResponseDto(user.id, user.email, user.name, user.role);
     }
 
