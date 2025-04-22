@@ -12,7 +12,7 @@ variable "instance_type" {
 variable "volume_size_in_gb" {
   type        = number
   description = "Size of the root volume for instance min 10gb"
-  default     = 10
+  default     = 20
 }
 
 variable "ssh_key" {
