@@ -75,6 +75,13 @@ export class AuthModule implements NestModule {
                     },
                     proxy: this.isProduction
                 }),
+                (req, res, next) => {
+                    res.on('finish', () => {
+                        console.log('Session ID:', req.sessionID);
+                        console.log('Set-Cookie header sent?', res.getHeader('Set-Cookie'));
+                    });
+                    next();
+                },
                 passport.initialize(),
                 passport.session(),
             )
