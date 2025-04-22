@@ -12,12 +12,8 @@ export class AuthController {
     async login(@Req() request: any, @Session() session: ExpressSession): Promise<UserResponseDto> {
         const user = request.user;
         await new Promise((resolve) => {
-            request.session.save((err) => {
-                if (err) {
-                    console.error('Session save error:', err);
-                }
-                console.log('After save - sessionID:', request.sessionID);
-                console.log('Session cookie:', request.headers.cookie);
+            request.session.save(() => {
+                console.log('Session saved, cookie should now be sent');
                 resolve(null);
             });
         });
