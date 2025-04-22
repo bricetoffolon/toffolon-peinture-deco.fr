@@ -71,8 +71,7 @@ export class AuthModule implements NestModule {
                         maxAge: this.sessionMaxAge, // 30 minutes
                         httpOnly: true,
                         sameSite: this.isProduction ? 'none' : 'lax',
-                        path: '/api/',
-                        domain: this.isProduction ? '.toffolon-peinture-deco.fr' : undefined // Important for cross-subdomain
+                        path: '/',
                     },
                     proxy: this.isProduction
                 }),
