@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.7](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.6...toffolon-backend-v0.1.7) (2025-04-25)
+
+
+### Bug Fixes
+
+* **backend:** fix issue with cwebp missing lib for jpeg & png ([d195ea9](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/d195ea91fb5fce6b49bcd7b0bcc35e8acfeb90dd))
+
 ## [0.1.6](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.5...toffolon-backend-v0.1.6) (2025-04-25)
 
 
