@@ -66,8 +66,7 @@ export class AuthModule implements NestModule {
                     resave: false,
                     saveUninitialized: false,
                     cookie: {
-                        // secure: this.isProduction,
-                        secure: false,
+                        secure: this.isProduction,
                         maxAge: this.sessionMaxAge, // 30 minutes
                         httpOnly: true,
                         sameSite: this.isProduction ? 'none' : 'lax',
