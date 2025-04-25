@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.8](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.7...toffolon-backend-v0.1.8) (2025-04-25)
+
+
+### Bug Fixes
+
+* **backend:** set timeout to 3 min for uploading images ([acfc179](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/acfc179ad4844323445049e970e6e852959b15ad))
+* **backend:** set timeout to 3 min for uploading images ([b217994](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/b217994e2f7a30ff20d3895d47d5c9af064c2fc3))
+
 ## [0.1.7](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.6...toffolon-backend-v0.1.7) (2025-04-25)
 
 
