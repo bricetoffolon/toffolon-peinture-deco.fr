@@ -34,12 +34,6 @@ readinessProbe:
   initialDelaySeconds: 30   # Wait this many seconds before starting the probe
   failureThreshold: 2
 
-# Additional volumes on the output Deployment definition.
-volumes:
-  - name: prisma-storage
-    persistentVolumeClaim:
-      claimName: prisma-pvc
-
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: prisma-storage
@@ -51,7 +45,7 @@ configMap:
     ALLOWED_ORIGIN: "https://toffolon-peinture-deco.fr"
     API_ROUTE: "https://toffolon-peinture-deco.fr/redondo"
     EMAIL: "no-reply@toffolon-peinture-deco.fr"
-    DATABASE_URL: "file:../mnt/data/prisma/prisma.db"
+    DATABASE_URL: "file:/mnt/data/prisma/prisma.db"
     AWS_REGION: "eu-west-3"
     AWS_BUCKET: "toffolon-website"
     AWS_BUCKET_POSTS: "toffolon-website-posts"

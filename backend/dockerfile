@@ -33,6 +33,8 @@ RUN apt-get update && apt-get install -y \
     make \
     automake \
     libtool \
+    libjpeg-dev \
+    libpng-dev \
     pkg-config \
     && chmod +x install-cwebp.sh \
     && ./install-cwebp.sh \
@@ -68,7 +70,11 @@ COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/assets ./assets
 COPY --from=build /app/src/contact/views ./src/contact/views
 
-RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    openssl \
+    && rm -rf /var/lib/apt/lists/*
 RUN chown -R node:node /app
 
 # Copy cwebp binary and ALL its dependencies from the collected-libs directory

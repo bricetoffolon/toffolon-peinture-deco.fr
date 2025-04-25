@@ -11,6 +11,7 @@ metadata:
     # Use this annotation if you still want https but want to prevent loops
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
     nginx.ingress.kubernetes.io/rewrite-target: /api/$2
+    nginx.ingress.kubernetes.io/proxy-body-size: "15m"
 spec:
   ingressClassName: nginx
   {{- with .Values.ingress.tls }}
