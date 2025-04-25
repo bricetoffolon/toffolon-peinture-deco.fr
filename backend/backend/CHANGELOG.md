@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.1.6](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.5...toffolon-backend-v0.1.6) (2025-04-25)
+
+
+### Bug Fixes
+
+* add params to cookie to retrieve it in staging & prod ([870b5a6](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/870b5a64c6132b4c84464b8581e1c8ab005f1e52))
+* **backend:** add debug console log ([2593cc9](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/2593cc97e09ed78851223a7103b3a3a489ac78d6))
+* **backend:** add domain and proxy params ([4098108](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/409810828fb6ace89cada84f7391989c4a192efa))
+* **backend:** add more log description to help debug ([d49ddd6](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/d49ddd63a59adc529ebcf2a6c1da9c6e4606df44))
+* **backend:** change path for cookie ([e2fc903](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/e2fc9032f15f0c4099fc4d4e3128b0502593d6fc))
+* **backend:** changing default path ([3d7ce88](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/3d7ce883da2c38d97e7bbb35553e22610bbfadb8))
+* **backend:** fix cookie never saved ([2ba36e7](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/2ba36e7e7184cb36003393bea7fd2be87693e2fd))
+* **backend:** put secure to true in prod ([1074d23](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/1074d23ec05bfe7854c97919afaad6969d3738b5))
+* **backend:** remove console.log & secure to false for now ([6ab2319](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/6ab2319087c65704bbf7300e0abd5d233165098e))
+* **backend:** remove useless console.log ([9abac01](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/9abac01cb803c600be0f6a7f60036f94045c7d72))
+* **backend:** remove useless console.log ([140f73e](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/140f73eb80560b48cd7b54bd3c4fbf8756f8ffc9))
+* **backend:** remove useless param ([caa89aa](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/caa89aa6cc71de6b39250936437bb1097a5d79b0))
+* **backend:** removing secure: true option for test ([fe05ea7](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/fe05ea7fdb7c0ef4893ebfd11619349ac02e0982))
+* **backend:** set trust proxy ([4c7a9de](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/4c7a9deff132116e485e30c653afa09a00ffe0f9))
+* remove set proxy that cause 500 ([f10f084](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/f10f0847f7bf090c8fc9c5aafe2db354a2519909))
+* set proxy & necessary parameters for cookie ([2c35174](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/2c3517456cc4b4c03b50bc4d7ca14acfd6c06609))
+* set trust proxy to get cookie in prod ([594bfc9](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/commit/594bfc9ee2a616b26d2c521a7ccb9557f7ac25b3))
+
 ## [0.1.5](https://github.com/bricetoffolon/toffolon-peinture-deco.fr/compare/toffolon-backend-v0.1.4...toffolon-backend-v0.1.5) (2025-04-21)
 
 
