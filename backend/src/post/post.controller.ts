@@ -83,7 +83,7 @@ export class PostController {
     @UseGuards(IsAuthenticatedGuard)
     @Post('/:id')
     @UseInterceptors(FilesInterceptor('files'))
-    @Timeout(30000)
+    @Timeout(180000)
     async uploadPostImages(
         @Param ("id") id: string,
         @UploadedFiles() files: Array<Express.Multer.File>
