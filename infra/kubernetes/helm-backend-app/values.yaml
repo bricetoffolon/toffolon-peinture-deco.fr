@@ -34,6 +34,11 @@ readinessProbe:
   initialDelaySeconds: 30   # Wait this many seconds before starting the probe
   failureThreshold: 2
 
+volumes:
+  - name: prisma-storage
+    persistentVolumeClaim:
+      claimName: prisma-pvc
+
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: prisma-storage
