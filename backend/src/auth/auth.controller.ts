@@ -9,7 +9,7 @@ import { Request } from "express";
 export class AuthController {
     @UseGuards(LocalAuthGuard)
     @Post('login')
-    login(@Req() request: any, @Session() session: ExpressSession): UserResponseDto {
+    async login(@Req() request: any, @Session() session: ExpressSession): Promise<UserResponseDto> {
         const user = request.user;
         return new UserResponseDto(user.id, user.email, user.name, user.role);
     }
